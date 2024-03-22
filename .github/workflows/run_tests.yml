@@ -1,0 +1,26 @@
+name: dnnbugs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: dnnbugs-build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      # Hardcoded for one bug, should loop across bugs...
+
+      - name: Run Python script
+        run: cd jax/issue_18218/ && bash reproduce_bug.sh
