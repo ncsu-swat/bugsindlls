@@ -5,4 +5,4 @@ pip install jaxlib==0.4.20 -f https://storage.googleapis.com/jax-releases/jax_re
 pip install -U pytest
 pytest -sx
 conda deactivate
-conda env remove --name issue_18680
+conda env remove --name issue_18680 -y
