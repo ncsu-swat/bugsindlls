@@ -1,0 +1,8 @@
+conda create --name issue_122296 python==3.10 pip -y
+source activate issue_122296
+pip3 install --pre torch==2.4.0.dev20240317 --index-url https://download.pytorch.org/whl/nightly
+pip install -U pytest
+python -m torch.utils.collect_env
+pytest -sx
+conda deactivate
+conda env remove --name issue_122296 -y
