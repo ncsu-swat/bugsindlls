@@ -20,7 +20,5 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Hardcoded for one bug, should loop across bugs...
-
       - name: Run Python script
-        run: cd jax/issue_18218/ && bash reproduce_bug.sh
+        run: bash reproduce_all.sh
