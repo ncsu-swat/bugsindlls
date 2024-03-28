@@ -2,7 +2,7 @@
 
 libraries=(jax pytorch tensorflow)
 NOW=$(date +"%m-%d-%Y-%T")
-LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XX || exit 1)
+LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XXX || exit 1)
 
 ###
 # reproducing bugs
@@ -12,7 +12,7 @@ for library in "${libraries[@]}"; do
     (cd "${library}";
      
         parentdirectory=$(pwd)
-        echo "starting $library" 
+        echo "---------- Starting $library ----------" 
 
         for subdir in "$parentdirectory"/*; do
             if [ -d "$subdir" ]; then
@@ -22,7 +22,7 @@ for library in "${libraries[@]}"; do
                     bug_id=$(basename $subdir)                    
                     log_dir_library=${LOG_DIR}/$library
                     mkdir -p $log_dir_library # create directory
-                    LOG_FILE=$(mktemp -q ${log_dir_library}/${bug_id} || exit 1)
+                    LOG_FILE=$(mktemp -q ${log_dir_library}/${bug_id}.XXX || exit 1)
 
                     echo "Start bug id $bug_id. Log: ${LOG_FILE}"
                     # avoid verbose output on screen (make it optional later)
@@ -36,10 +36,12 @@ for library in "${libraries[@]}"; do
                         msg="Bug reproduction failed" 
                     fi
                     echo "End bug id $bug_id: $msg" | tee -a $LOG_FILE
-                ) # leaving bug id
+                ) 
+                # leaving bug id
             fi
         done
-    ) # leaving library
+    )
+    # leaving library
 done
 
 ###
@@ -54,5 +56,3 @@ for library in "${libraries[@]}"; do
     totalcount=$((passcount+failcount+breakcount))
     printf "%-10s | %-5s | %-5s | %-5s | %-5s\n" "${library}" "${totalcount}" "${passcount}" "${failcount}" "${breakcount}"
 done
-
-
