@@ -1,7 +1,7 @@
 #!/bin/bash
 
 libraries=(jax pytorch tensorflow)
-declare -A results
+results=$(printf "%-10s | %-10s | %-10s | %-10s | %-10s\n" "Library" "Total" "Pass" "Fail" "Broken")
 
 for library in "${libraries[@]}"; do
     cd "${library}"
@@ -35,12 +35,14 @@ for library in "${libraries[@]}"; do
 
     totalcount=$((passcount+failcount+breakcount))
 
-    results["${library}"]=$(printf "%-10s | %-10s | %-10s | %-10s | %-10s" "${library}" "${totalcount}" "${passcount}" "${failcount}" "${breakcount}")
+    resultstring=$(printf "\n%-10s | %-10s | %-10s | %-10s | %-10s\n\n" "${library}" "${totalcount}" "${passcount}" "${failcount}" "${breakcount}")
+    results+="${resultstring}"
     cd ..
 done
 
 printf "\n---- %s ----\n" "Summary"
-printf "%-10s | %-10s | %-10s | %-10s | %-10s\n" "Library" "Total" "Pass" "Fail" "Broken"
-for library in "${libraries[@]}"; do
-    echo "${results["${library}"]}"
-done
+
+# for result in "${results[@]}"; do
+#     echo "${result}"
+# done
+echo "${results}"
