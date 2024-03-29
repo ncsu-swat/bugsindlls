@@ -40,5 +40,4 @@ We used the following method to analyze issues of DNN libraries and create corre
 		-  1 - reproduction failed (e.g., this should not happen)
 		-  2 - assumption broken (e.g., expecting to run the test on linux but attempting to run on macos)<!--	Try to reproduce the bug using a conda enviornment if there is no CUDA dependency. For 
 -->
-- Add the details of the bug in the spreadsheet ```bug_dataset.xlsx```
-
+- Add the details of the bug in the spreadsheets of each library (e.g. ```bug_dataset_jax.csv```)
