@@ -1,0 +1,13 @@
+,Filter:,is:issue is:closed created:2024-03-18..2024-03-27 linked:pr,,,,
+Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks
+122594,,There is a comment error in test_transformers.py,No,,,Did not attempt
+122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,,,Did not attempt
+122445,,allow storage to be created for ort,No,,,Did not attempt
+122427,,MPS: Implement index_select() on complex value,No,,,Did not attempt
+122407,,Mergebot should send a cleaner message when [no ci] message added to the PR commit,No,,,Did not attempt
+122296,122298,torch compile item() cannot convert symbols to int error,Yes,"torch/_inductor/compile_fx.py,torch/_inductor/graph.py","fx_codegen_and_compile(),run_node()",
+122283,,[inductor][cpu] pyhpc_equation_of_state fp32 static shape default/cpp wrapper multiple thread performance test crashed,No,,,Did not attempt
+122181,,[dort][dynamo_export] Wrong model for phi backward graph,No,,,Did not attempt
+122166,,[ONNX] Dispatcher does not handle list correctly when the first element is None,No,,,Did not attempt
+122126,122149,split_with_sizes with unbacked SymInt results in buffers that cannot be materialized for extern calls,Yes,"torch/_inductor/ir.py,torch/_inductor/lowering.py","SliceView.create(),slice_()",
+122085,,CUDA Being Initiated Early After Importing Certain Libraries on Nightly Build,,,,

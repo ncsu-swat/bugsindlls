@@ -1,0 +1,39 @@
+,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:bug linked:pr,,,,
+Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks
+20267,,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,No,,,Did not attempt
+20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,,,Did not attempt
+20082,,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",No,,,Did not attempt
+19992,,Executing genrule @tsl//tsl/cuda:cudnn_stub_gen failed,No,,,Did not attempt
+19978,,"jax.vmap(jax.pure_callback(...), in_axes=1) is broken",No,,,Did not attempt
+19753,,sin results are incorrect on complex inputs with small absolute value,No,,,Did not attempt: mathematical operator specific bug
+19663,,[shmap] shard_map doesn't support multiple axes,No,,,Did not attempt: data structure specific bug
+19490,19518,log_softmax and softmax are not numerically stable with where argument inside vmap,Yes,jax/_src/nn/functions.py,log_softmax(),
+19459,,shard_alike ignores single-device shardings,No,,,Did not attempt: data structure specific bug
+19440,,BUG: shard_alike requires newer jaxlib,No,,,Did not attempt: data structure specific bug
+19362,,Concatenation error in jax.numpy.diff,No,,,Did not attempt: data structure specific bug
+19356,,Array any and all methods missing where parameter in type signature,No,,,Did not attempt: data structure specific bug
+19334,,broadcast_to raise Disallowed host-to-device transfer when used inside jax.jit,No,,,Did not attempt
+19150,,Unexpected behavior of jax.scipy.stats.binom.pmf,No,,,Did not attempt
+19134,,Testing __cuda_array_interface__ attribute of a CPU array throws an exception,No,,,Did not attempt
+19076,,Default lowering pass for lu_p has accuracy issue,No,,,Did not attempt
+19059,,float() argument TypeError in a scan,No,,,Did not attempt: data structure specific bug
+19035,,GPU memory allocation not working as expected,No,,,Did not attempt
+19011,,jnp.min or jnp.max returns nan if input array dtype is fp8,No,,,Did not attempt: general non-dnn bug
+18937,,[jax_dynamic_shapes] specifying shapes with floating point abstract values does not raise a TypeError,No,,,Did not attempt
+18852,,JAX hangs when allocating array of at least 2^19 bytes on CPU in subprocess,No,,,Did not attempt
+18851,,shard_map throws a NotImplementedError: No replication rule for erf_inv,No,,,Did not attempt: data structure specific bug
+18802,,debug.print looks strange in jaxpr representation,No,,,Did not attempt: debug specific bug
+18737,,Add replication rules for convolutions,No,,,Did not attempt
+18686,,AOT path doesn't typecheck DCE'd arguments,No,,,Did not attempt
+18680,18682,NaN Error only in combination of disable_jit and debug_nans,Yes,jax/_src/lax/lax.py,_canonicalize_float_for_sort(),
+18542,,Array indexing: boolean mask after newaxis leads to error,No,,,Did not attempt: data structure specific bug
+18455,,"Template class in extern ""C"" block causes failure of compilation under MSVC on Windows",No,,,Did not attempt
+18453,,Large multi-channel inverse FFTs give wrong results,No,,,Did not attempt: mathematical operator specific bug
+18442,,Cannot take gradient of VJP function involving new-style RNG key,No,,,Did not attempt
+18361,,[Pallas] GPU: CUDA error when kernel launch dimensions >= 65536 in Y or Z,No,,,Did not attempt
+18348,,[jax2tf] InconclusiveDimensionOperation for scatter op with leading vmapped symbolic dimension,No,,,Did not attempt
+18252,,Repeatedly building JAX causes string substitution failures,No,,,Did not attempt
+18245,,BCOO.fromdense is not compatible with jax.vmap,No,,,Did not attempt
+18226,,jnp.linalg.eig errors for invalid inputs instead of returning nan,No,,,Did not attempt: mathematical operator specific bug
+18219,,Constant factor error in JAX 101 docs,No,,,Did not attempt
+18218,6501,PyTreeDef.num_leaves returns the wrong result when composed,Yes,Force pushed,Force pushed,

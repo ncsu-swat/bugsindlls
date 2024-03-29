@@ -1,0 +1,11 @@
+,Filter:,is:issue is:closed created:2023-12-01..2024-03-27 label:type:bug linked:pr,,,,
+Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks
+63037,63092,tf.raw_ops.UnravelIndex can leads to eigen assertion failure,No,tensorflow/core/kernels/unravel_index_op.cc,UnravelIndexOp.Compute(),Did not attempt: general non-dnn bug
+63036,63091,tf.raw_ops.Substr can lead to eigen assertion failure,No,tensorflow/core/kernels/substr_op.cc,SubstrOp.Compute(),Did not attempt: general non-dnn bug
+63031,63050,Confusing result of tf.argsort/argmax/argmin/ given a boolean axis,No,tensorflow/python/ops/math_ops.py,argmax_v2(),Did not attempt: general non-dnn bug
+63012,63083,Unit test failures with Python 3.12 and gcc,No,tensorflow/python/client/tf_session_wrapper.cc,PyGraphData.Clear(),Did not attempt: data structure specific bug specific bug
+62981,63105,tf.raw_ops.DrawBoundingBoxesV2 aborts with inappropriate input,No,tensorflow/core/kernels/image/draw_bounding_box_op.cc,DrawBoundingBoxesOp.Compute(),Did not attempt: general non-dnn bug
+62977,62990,tf.raw_ops.RecordInput aborts with negative batch_size,No,tensorflow/core/kernels/record_input_op.cc,RecordInputOp.GETATTR(),Did not attempt: general non-dnn bug
+62882,62897,remapper_test fails on AARCH64 with --config=mkl_aarch64_threadpool,No,"tensorflow/core/grappler/optimizers/mkl_remapper_test.cc,tensorflow/core/grappler/optimizers/remapper_test.cc",Tests,Did not attempt: fixing tests
+62835,62876,mkl_remapper_test fails with TF_ENABLE_ONEDNN_OPTS=1,No,"tensorflow/core/grappler/optimizers/mkl_remapper_test.c,tensorflow/core/grappler/optimizers/remapper_test.cc",Tests,Did not attempt: fixing tests
+62549,7899,Inconsistency in XLA Cotionmpila with Operand Order Swap in tf.add with Specific Operators on GPU,Yes,https://github.com/openxla/xla/tree/main/xla/service/gpu/ir_emission_utils.cc,"FindTransposeHero, transpose",Reproduced: bug originates from the XLA compiler (not tensorflow repo)
