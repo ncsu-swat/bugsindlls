@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:type:bug linked:pr,,,,,,
+,Filter:,is:issue is:closed created:2023-03-01..2024-03-27 label:type:bug linked:pr ,,,,,,
 Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 63037,63092,tf.raw_ops.UnravelIndex can leads to eigen assertion failure,No,tensorflow/core/kernels/unravel_index_op.cc,UnravelIndexOp.Compute(),Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/63037,https://github.com/tensorflow/tensorflow/pull/63092
 63036,63091,tf.raw_ops.Substr can lead to eigen assertion failure,No,tensorflow/core/kernels/substr_op.cc,SubstrOp.Compute(),Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/63036,https://github.com/tensorflow/tensorflow/pull/63091
@@ -14,3 +14,21 @@ Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link
 62091,62139,NNAPI delegate crashes on kTfLiteBuiltinCos in TF Lite 2.14,No,tensorflow/lite/delegates/nnapi/nnapi_delegate.cc,TransformCosIntoSupportedOps(),Did not attempt: Requires a mobile device,https://github.com/tensorflow/tensorflow/issues/62091,https://github.com/tensorflow/tensorflow/pull/62139
 62072,62112,tf.math.is_non_decreasing outputs incorrect result when input is an uint tensor,No,tensorflow/python/ops/check_ops.py,_get_results_for_monotonic_comparison(),Did not attempt: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/62072,https://github.com/tensorflow/tensorflow/pull/62112
 61974,61981,AttributeError: module 'tensorflow.python.distribute.input_lib' has no attribute 'DistributedDatasetInterface',Yes,tensorflow/python/keras/engine/data_adapter.py,_is_distributed_dataset(),Reproduced: bug originates from reference to legacy code,https://github.com/tensorflow/tensorflow/issues/61974,https://github.com/tensorflow/tensorflow/pull/61981
+61872,,Fails to build on AARCH64,No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/61872,
+61761,,No quantized type support for Enter/Exit Op,No,,,Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/61761,
+61677,,Unit test failure when built with clang,No,,,Did not attempt: bug originates from unit test failures,https://github.com/tensorflow/tensorflow/issues/61677,
+61668,,TF Quantizer breaks pip package,No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/61668,
+61598,,AttributeError: module 'tensorflow.python.pywrap_mlir' has no attribute 'experimental_convert_saved_model_v1',No,,,Did not attempt: could not find code to reproduce bug,https://github.com/tensorflow/tensorflow/issues/61598,
+61584,,Build failure on AARCH64 - undeclared identifier 'memset',No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/61584,
+61163,,assert_shapes does not return anything and cannot be used as control dependency,No,,,Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/61163,
+61116,,//tensorflow/python/data/kernel_tests:snapshot_test is flaky,No,,,Did not attempt: related to flaky test,https://github.com/tensorflow/tensorflow/issues/61116,
+61068,,XLA unit tests fail to build on gcc,No,,,Did not attempt: related to building tests,https://github.com/tensorflow/tensorflow/issues/61068,
+60932,,get_file raises exception if the content-length is unknown,No,,,Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/60932,
+60836,,Image Segmenter | tflite-suuport | AttributeError: type object 'SegmentationOptions' has no attribute 'OutputType',No,,,Did not attempt: Typo in instructions,https://github.com/tensorflow/tensorflow/issues/60836,
+60827,,wrong output shape with tf.experimental.numpy.vander when parameter N=0,No,,,Did not attempt: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/60827,
+60724,,mkl_aarch64_threadpool build broken by recent commit,No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/60724,
+60506,,Memory Leak in mkl_graph_util.h,No,,,Did not attempt: related to memory leak in c code,https://github.com/tensorflow/tensorflow/issues/60506,
+60457,,error message of tf.eye is inconsistent with doc,No,,,Did not attempt: changes in doc,https://github.com/tensorflow/tensorflow/issues/60457,
+60397,,"segment_reduction_ops_gpu.cu.h error: no instance of overloaded function ""tensorflow::min""/""tensorflow::max"" matches the argument list",No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/60397,
+60223,,Null pointer dereference in lmhlo_to_cpu_runtime.cc,No,,,Did not attempt: found by static analysis,https://github.com/tensorflow/tensorflow/issues/60223,
+60220,,Null pointer dereference in conv_ops_fused_int8.cc,No,,,Did not attempt: found by static analysis,https://github.com/tensorflow/tensorflow/issues/60220,
