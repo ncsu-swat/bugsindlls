@@ -11,4 +11,4 @@ def test_f():
         torch._dynamo.config.capture_scalar_outputs = True
         fn = torch.compile(foo, fullgraph=True, dynamic=True)
         fn(torch.tensor(5))
-    print(e_info)
+    print(e_info.value)

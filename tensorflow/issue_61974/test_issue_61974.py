@@ -36,5 +36,6 @@ def test_f():
                         Dense(units=16, activation='sigmoid'),
                         Dense(units=1, activation='sigmoid')])
     model.compile(loss=BinaryCrossentropy())
-    with pytest.raises(AttributeError):
+    with pytest.raises(AttributeError) as e_info:
         model.fit(X_train, y_train, epochs=150) # bug appears this line
+    print(e_info.value)
