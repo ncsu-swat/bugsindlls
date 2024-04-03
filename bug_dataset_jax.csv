@@ -1,6 +1,6 @@
 ,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:bug linked:pr,,,,,,
 Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
-20267,,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,No,,,Did not attempt,https://github.com/google/jax/issues/20267,
+20267,,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,,,,https://github.com/google/jax/issues/20267,
 20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,,,Did not attempt,https://github.com/google/jax/issues/20135,
 20082,,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",No,,,Did not attempt,https://github.com/google/jax/issues/20082,
 19992,,Executing genrule @tsl//tsl/cuda:cudnn_stub_gen failed,No,,,Did not attempt,https://github.com/google/jax/issues/19992,

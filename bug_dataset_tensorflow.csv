@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2023-03-01..2024-03-27 label:type:bug linked:pr ,,,,,,
+,Filter:,is:issue is:closed created:2023-01-01..2024-03-27 label:type:bug linked:pr,,,,,,
 Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 63037,63092,tf.raw_ops.UnravelIndex can leads to eigen assertion failure,No,tensorflow/core/kernels/unravel_index_op.cc,UnravelIndexOp.Compute(),Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/63037,https://github.com/tensorflow/tensorflow/pull/63092
 63036,63091,tf.raw_ops.Substr can lead to eigen assertion failure,No,tensorflow/core/kernels/substr_op.cc,SubstrOp.Compute(),Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/63036,https://github.com/tensorflow/tensorflow/pull/63091
@@ -32,3 +32,13 @@ Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link
 60397,,"segment_reduction_ops_gpu.cu.h error: no instance of overloaded function ""tensorflow::min""/""tensorflow::max"" matches the argument list",No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/60397,
 60223,,Null pointer dereference in lmhlo_to_cpu_runtime.cc,No,,,Did not attempt: found by static analysis,https://github.com/tensorflow/tensorflow/issues/60223,
 60220,,Null pointer dereference in conv_ops_fused_int8.cc,No,,,Did not attempt: found by static analysis,https://github.com/tensorflow/tensorflow/issues/60220,
+60183,,Please update/fix the tutorial of how to automatically add cuda/dnn path into environment when activate conda environment,No,,,Did not attempt: changes in doc,https://github.com/tensorflow/tensorflow/issues/60183,
+60114,,LSTMBlockCell validation error,No,,,Did not attempt: found from source code,https://github.com/tensorflow/tensorflow/issues/60114,
+59927,,A crash due to check-fail can be triggered in QuantizedConv2D,No,,,Attempted but could not reproduce: the nightly build isn't available,https://github.com/tensorflow/tensorflow/issues/59927,
+59680,,Unit test //tensorflow/tsl/framework/convolution:spatial_convolutions_test fails to build,No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/59680,
+59643,,protobuf 4 causes segmentation fault on Python 3.8 in unit test,No,,,Did not attempt: related to building,https://github.com/tensorflow/tensorflow/issues/59643,
+59123,,Check failure when running tensorflow.python.ops.gen_data_flow_ops.record_input,No,,,Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/59123,
+59115,,TFDefaultLogSink::Send() uses buffered writes leading to delays writing to log file,No,,,Did not attempt: general non-dnn bug,https://github.com/tensorflow/tensorflow/issues/59115,
+59114,,Segmentation fault when running gen_ragged_array_ops.ragged_cross,No,,,Did not attempt: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/59114,
+59084,,Check failure when running tensorflow.python.ops.gen_ragged_conversion_ops.ragged_tensor_to_variant,No,,,Did not attempt: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/59084,
+59076,,Issue created for Rollback of PR #58358: Fix unigram assert,No,,,Did not attempt: rollback of a PR,https://github.com/tensorflow/tensorflow/issues/59076,
