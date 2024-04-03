@@ -1,10 +1,10 @@
 ,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:bug linked:pr,,,,,,
 Issue #,PR #,Title,Reproduced,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
-20267,,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,,,,https://github.com/google/jax/issues/20267,
-20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,,,Did not attempt,https://github.com/google/jax/issues/20135,
-20082,,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",No,,,Did not attempt,https://github.com/google/jax/issues/20082,
-19992,,Executing genrule @tsl//tsl/cuda:cudnn_stub_gen failed,No,,,Did not attempt,https://github.com/google/jax/issues/19992,
-19978,,"jax.vmap(jax.pure_callback(...), in_axes=1) is broken",No,,,Did not attempt,https://github.com/google/jax/issues/19978,
+20267,20270,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,jax/_src/pjit.py,_pjit_partial_eval(),,https://github.com/google/jax/issues/20267,https://github.com/google/jax/pull/20270
+20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,,,Did not attempt: general non-dnn bug,https://github.com/google/jax/issues/20135,
+20082,,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",No,,,Did not attempt: general non-dnn bug,https://github.com/google/jax/issues/20082,
+19992,,Executing genrule @tsl//tsl/cuda:cudnn_stub_gen failed,No,,,Did not attempt: related to building,https://github.com/google/jax/issues/19992,
+19978,19986,"jax.vmap(jax.pure_callback(...), in_axes=1) is broken",Yes,jax/_src/callback.py,pure_callback_batching_rule(),,https://github.com/google/jax/issues/19978,https://github.com/google/jax/pull/19986
 19753,,sin results are incorrect on complex inputs with small absolute value,No,,,Did not attempt: mathematical operator specific bug,https://github.com/google/jax/issues/19753,
 19663,,[shmap] shard_map doesn't support multiple axes,No,,,Did not attempt: data structure specific bug,https://github.com/google/jax/issues/19663,
 19490,19518,log_softmax and softmax are not numerically stable with where argument inside vmap,Yes,jax/_src/nn/functions.py,log_softmax(),,https://github.com/google/jax/issues/19490,https://github.com/google/jax/pull/19518
