@@ -2,9 +2,7 @@ conda init
 conda create --name issue_18218 python==3.11 pip -y
 eval "$(conda shell.bash hook)"
 conda activate issue_18218
-pip install jax==0.4.18 -f https://storage.googleapis.com/jax-releases/jax_releases.html
-pip install jaxlib==0.4.18 -f https://storage.googleapis.com/jax-releases/jax_releases.html
-pip install -U pytest
+pip install -r requirements.txt
 pytest -sx
 returncode=$?
 conda deactivate
