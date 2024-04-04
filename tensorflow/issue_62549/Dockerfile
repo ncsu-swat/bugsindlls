@@ -7,8 +7,8 @@ ENV cuda_version=cuda12.2
 
 RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
-RUN pip install --no-cache-dir tensorflow==2.15.0
-RUN pip install -U pytest
 COPY test_issue_62549.py app/
+COPY requirements.txt app/
 WORKDIR /app
+RUN pip install -r requirements.txt
 CMD ["pytest", "-sx"]
