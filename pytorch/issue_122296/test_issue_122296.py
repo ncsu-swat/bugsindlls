@@ -7,6 +7,7 @@ def foo(x):
     return torch.ones(a, a)
 
 def test_f():
+    torch.utils.collect_env.main()
     with pytest.raises(torch._dynamo.exc.BackendCompilerFailed) as e_info:
         torch._dynamo.config.capture_scalar_outputs = True
         fn = torch.compile(foo, fullgraph=True, dynamic=True)
