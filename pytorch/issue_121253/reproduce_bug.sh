@@ -15,6 +15,7 @@ minor=$(echo "$driver_version" | cut -d. -f2)
 patch=$(echo "$driver_version" | cut -d. -f3)
 
 nvidiadrivermsg="Broken assumption: Script requires an nvidia driver with a version >=${reqmajor}.${reqminor}.${reqpatch}"
+re='^[0-9]+$'
 
 if ! [[ "$major" =~ $re ]]
 then
