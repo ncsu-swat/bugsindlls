@@ -10,7 +10,5 @@ RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
 COPY test_issue_122296.py app/
 COPY requirements.txt app/
 WORKDIR /app
-RUN pip install torch==2.4.0.dev20240317 -i https://download.pytorch.org/whl/nightly/cu121
-RUN pip install numpy
-RUN pip install pytest
+RUN pip install -r requirements.txt
 CMD ["pytest", "-sx"]
