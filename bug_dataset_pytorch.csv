@@ -38,3 +38,4 @@ Issue #,PR #,Title,Reproduced,Device,API,Buggy File(s),Buggy Function(s),Remarks
 121126,,The recorded step number in profiler is wrong,No,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/121126,
 121100,,torch.onnx.dynamo_export complex number error,No,,,,,Did not attempt,https://github.com/pytorch/pytorch/issues/121100,
 121093,121298,Segmentation Fault in torch._C._nn.replication_pad2d with Incorrect Inputs,Yes,GPU,CUDA,aten/src/ATen/native/ReplicationPadding.cpp,"replication_pad1d(),replication_pad2d(),replication_pad3d()",,https://github.com/pytorch/pytorch/issues/121093,https://github.com/pytorch/pytorch/pull/121298
+120998,121786,torch.compile fails with .view(dtype),Yes,GPU,CUDA,torch/_inductor/lowering.py,to_dtype_bitcast(),,https://github.com/pytorch/pytorch/issues/120998,https://github.com/pytorch/pytorch/pull/121786
