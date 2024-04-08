@@ -28,9 +28,10 @@ for library in "${libraries[@]}"; do
                     # avoid verbose output on screen (make it optional later)
                     ./reproduce_bug.sh >> $LOG_FILE 2>&1
                     
-                    if [ $? -eq 0 ]; then
+                    returncode=$?
+                    if [ $returncode -eq 0 ]; then
                         msg="Bug reproduction successful" 
-                    elif [ $? -eq 2 ]; then
+                    elif [ $returncode -eq 2 ]; then
                         msg="Bug reproduction unsat prereqs" 
                     else
                         msg="Bug reproduction failed" 
