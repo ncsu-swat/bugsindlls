@@ -15,10 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up python
         uses: actions/setup-python@v2
         with:
           python-version: '3.11'
 
-      - name: Run Python script
+      - name: Run bash script (reproduce_all.sh)
         run: bash reproduce_all.sh
