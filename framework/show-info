@@ -77,7 +77,7 @@ fi
 # bug_id must exit
 if ! ls $home_location/$library_name | cut -d\_ -f2 | grep $bug_id > /dev/null ; then
     usage
-    echo "not found"
+    echo "could not found find bug-id $bug_id for $library_name"
 fi
 
 
@@ -87,4 +87,22 @@ fi
 (
     grep Issue ../bug_dataset_${library_name}.csv # column names
     grep $bug_id ../bug_dataset_${library_name}.csv # bug row
-) | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | perl -0007 -MJSON -ne 'print to_json(from_json($_, {allow_nonref=>1}), {pretty=>1}), "\n";'
+) | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | \
+    # remove spaces before comma    
+    sed 's/, /,/g' | \
+    # remove first two chars        
+    cut -c 3- | \
+    # revert string        
+    rev | \
+    # remore first two chars on reversed string (i.e., last two)        
+    cut -c 3- | \
+    # reverse back        
+    rev | \
+    # print all columns (using comma as separator)        
+    awk -F\, '{ for (i = 1; i <= NF; i++) print $i }'
+
+
+
+
+
+ 
