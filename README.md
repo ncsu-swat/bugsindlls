@@ -47,15 +47,13 @@ cd jax/issue_18218
 
 - Help to use command show-info: 
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```
+```Shell
 $> show-info --help
 ```
 
-
 - Request info about ```jax``` bug ```18218```:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```
+```Shell
 $> show-info --library-name jax --bug-id 18218
 ```
 
