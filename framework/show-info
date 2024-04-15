@@ -85,8 +85,8 @@ fi
 # (2) generate json from csv
 # (3) pretty-print json 
 (
-    grep Issue ../bug_dataset_${library_name}.csv # column names
-    grep $bug_id ../bug_dataset_${library_name}.csv # bug row
+    grep Issue ${home_location}/bug_dataset_${library_name}.csv # column names
+    grep $bug_id ${home_location}/bug_dataset_${library_name}.csv # bug row
 ) | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | \
     # remove spaces before comma    
     sed 's/, /,/g' | \
