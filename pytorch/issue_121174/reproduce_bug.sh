@@ -1,5 +1,5 @@
 conda init
-conda create --name issue_121174 python==3.9 pip -y
+conda create --name issue_121174 python==3.10 pip -y
 eval "$(conda shell.bash hook)"
 conda activate issue_121174
 pip install -r requirements.txt
