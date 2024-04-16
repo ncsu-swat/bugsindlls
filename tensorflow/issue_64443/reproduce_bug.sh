@@ -1,3 +1,4 @@
+#!/bin/bash
 conda init
 conda create --name issue_64443 python==3.11 pip -y
 eval "$(conda shell.bash hook)"
