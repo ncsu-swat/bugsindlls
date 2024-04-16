@@ -52,3 +52,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 64415,,Saving a model defined by model subclassing can not be saved,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64415,
 64396,,Conv2D computes wrongly in Windows OS,No,Open,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64396,
 64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,,,,,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
+64392,19388,CategoryEncoding layer lacks consideration of 0-dimension inputs,Yes,Closed,CPU,,,,PR in Keras,https://github.com/tensorflow/tensorflow/issues/64392,https://github.com/keras-team/keras/pull/19388,
