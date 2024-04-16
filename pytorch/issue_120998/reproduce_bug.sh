@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo "Broken assumption: Script was tested only on Linux."
     exit 2
