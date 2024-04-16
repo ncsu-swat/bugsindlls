@@ -49,3 +49,6 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 64507,,protobuf fatal error in Tensorflow 2.16.1 on macos M1,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64507,
 64476,,WARNING:tensorflow:Your input ran out of data; interrupting training always occuring after 80% of total epochs,No,Open,,,,,Did not attempt: did not find minimal reproducible code,https://github.com/tensorflow/tensorflow/issues/64476,
 64443,,TF 2.16 Incorrect model with TextVectorization in SavedModel format contains float input type instead of string type,Yes,Closed,CPU,,,,More details: https://github.com/keras-team/keras/issues/19396,https://github.com/tensorflow/tensorflow/issues/64443,
+64415,,Saving a model defined by model subclassing can not be saved,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64415,
+64396,,Conv2D computes wrongly in Windows OS,No,Open,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64396,
+64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,,,,,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
