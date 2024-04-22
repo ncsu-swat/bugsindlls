@@ -1,4 +1,8 @@
 import tensorflow as tf
+import sys
+
+print('Using tensorflow', tf.__version__)
+print('Using python', sys.version)
 
 tf.raw_ops.RecordInput(
     file_pattern="a",

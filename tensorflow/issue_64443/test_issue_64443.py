@@ -3,8 +3,12 @@ import tensorflow as tf
 from tensorflow.keras.layers import Input, TextVectorization
 from tensorflow.keras.models import Model
 import pytest
+import sys
 
 def test_f():
+    print('Using tensorflow', tf.__version__)
+    print('Using python', sys.version)
+
     vocabulary = ['hello', 'there', 'random', 'vocab', 'check']
     length = 64
 
