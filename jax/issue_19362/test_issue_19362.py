@@ -7,7 +7,7 @@ def f():
     z = jnp.diff(x, prepend=x[0])
 
 def test_f():
-    issue_no = '19326'
+    issue_no = '19362'
     print('Jax issue no.', issue_no)
     jax.print_environment_info()
     with pytest.raises(ValueError) as e_info:
