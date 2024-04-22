@@ -49,7 +49,7 @@ done
 # reporting results
 ###
 printf "\n---- %s ----\n" "Summary"
-printf "%-10s | %-5s | %-5s | %-5s | %-10s\n" "Library" "Total" "Pass" "Fail" "Broken"
+printf "%-10s | %-5s | %-5s | %-5s | %-10s\n" "Library" "Total" "Pass" "Fail" "Vio-Pre"
 for library in "${libraries[@]}"; do
     passcount=`grep "Bug reproduction successful" ${LOG_DIR}/$library/issue* | wc -l | sed 's/ //g'`
     failcount=`grep "Bug reproduction failed" ${LOG_DIR}/$library/issue* | wc -l | sed 's/ //g'`
