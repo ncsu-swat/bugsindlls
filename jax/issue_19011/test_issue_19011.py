@@ -1,4 +1,5 @@
 import jax
+import pytest
 from jax import numpy as jnp
 from jax import lax as lax
 
@@ -11,5 +12,7 @@ def test_f():
     jax.print_environment_info()
     test = f((2,))
     # The value shouldn't be nan
-    assert not jnp.isnan(jnp.min(test.astype(jnp.float8_e4m3fn)))
-    assert not jnp.isnan(jnp.max(test.astype(jnp.float8_e4m3fn)))
+    with pytest.raises(AssertionError) as e_info:
+        assert not jnp.isnan(jnp.min(test.astype(jnp.float8_e4m3fn)))
+        assert not jnp.isnan(jnp.max(test.astype(jnp.float8_e4m3fn)))
+    print(e_info.value)
