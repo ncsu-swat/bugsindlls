@@ -1,4 +1,5 @@
 import jax
+import pytest
 from jax import numpy as jnp
 
 def test_f():
@@ -10,4 +11,6 @@ def test_f():
     x = jnp.linspace(-1, 10, 1000)
     xxf = jax.scipy.stats.binom.pmf(k=x, n=n, p=p)
     outside_range = (x < 0) | (x > n)
-    assert jnp.all(xxf[outside_range] == 0), "PMF is not zero outside of its range"
+    with pytest.raises(AssertionError) as e_info:
+        assert jnp.all(xxf[outside_range] == 0), "PMF is not zero outside of its range"
+    print(e_info.value)
