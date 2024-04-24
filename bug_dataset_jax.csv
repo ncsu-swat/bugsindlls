@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:bug linked:pr,Total Reproduced:,12,,,,,,,
+,Filter:,is:issue is:closed created:2023-10-20..2024-03-27 label:bug linked:pr,Total Reproduced:,13,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 20267,20270,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,Closed,CPU,,jax/_src/pjit.py,_pjit_partial_eval(),,https://github.com/google/jax/issues/20267,https://github.com/google/jax/pull/20270
 20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,Closed,,,,,Could not reproduced: requires a TPU,https://github.com/google/jax/issues/20135,
@@ -8,7 +8,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 19753,19823,sin results are incorrect on complex inputs with small absolute value,Yes,Closed,CPU,,"jax/_src/lax/lax.py,tests/filecheck/shapes.filecheck.py","_sin_complex(),_cos_complex(),_sin_lowering(),_cos_lowering()",,https://github.com/google/jax/issues/19753,https://github.com/google/jax/pull/19823
 19663,19601,[shmap] shard_map doesn't support multiple axes,Yes,Closed,CPU,,jax/experimental/shard_map.py,_standard_collective_rewrite(),,https://github.com/google/jax/issues/19663,https://github.com/google/jax/pull/19601
 19490,19518,log_softmax and softmax are not numerically stable with where argument inside vmap,Yes,Closed,CPU,,jax/_src/nn/functions.py,log_softmax(),,https://github.com/google/jax/issues/19490,https://github.com/google/jax/pull/19518
-19459,,shard_alike ignores single-device shardings,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/google/jax/issues/19459,
+19459,19475,shard_alike ignores single-device shardings,Yes,Closed,CPU,,jax/_src/interpreters/pxla.py,"get_gspmd_shardings_from_executable(),_gspmd_to_positional_sharding(),_gspmd_to_single_device_sharding(),finalize_out_shardings()","Note: used nightly builds 0.4.24.dev20240123, can become unavailable",https://github.com/google/jax/issues/19459,https://github.com/google/jax/pull/19475
 19440,,BUG: shard_alike requires newer jaxlib,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/google/jax/issues/19440,
 19362,,Concatenation error in jax.numpy.diff,Yes,Closed,,,,,Skipped: data structure specific bug,https://github.com/google/jax/issues/19362,
 19356,,Array any and all methods missing where parameter in type signature,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/google/jax/issues/19356,
