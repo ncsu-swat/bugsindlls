@@ -1,8 +1,15 @@
 import torch
+import torch.backends
 import pytest
 import os
+import sys
 
 def test_f():
+    # Check whether cuurent os is MacOS with MPS supported
+    if sys.platform != 'darwin' or not torch.backends.mps.is_available():
+        pytest.skip('This test is only for MacOS with MPS enabled')
+        exit(2)
+
     os.system('python -m torch.utils.collect_env')
     sdxl_latent_rgb_factors = torch.tensor(
         [
