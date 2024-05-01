@@ -32,7 +32,7 @@ rsa==4.9
 six==1.16.0
 tensorboard==2.13.0
 tensorboard-data-server==0.7.2
-tensorflow-cpu==2.13.0
+tensorflow==2.13.0
 tensorflow-estimator==2.13.0
 tensorflow-io-gcs-filesystem==0.36.0
 termcolor==2.4.0
