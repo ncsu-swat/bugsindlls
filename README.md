@@ -3,8 +3,9 @@ A benchmark of reproducible bugs in DNN libraries
 
 ## Prerequisites
 - [Docker](https://docs.docker.com/engine/install/)
-- [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) (To use Nvidia GPUS. If your system does not have one, you can skip it)
 - Conda ([Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html)/[Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/))
+- [Only if you have an NVIDIA GPU] [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 
+
 
 ## How to reproduce
 
