@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+home_location=${framework_location}/..
+
+
+(cd $home_location;
+
+ for x in "jax" "pytorch" "tensorflow";
+ do
+
+     str=$(ls $x | cut -f2 -d\_ | xargs)
+     num=$(echo $str | wc -w | xargs)
+     echo "=== ${x} ($num bugs) ==="
+     echo $str
+     echo ""
+ done
+
+)

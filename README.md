@@ -7,13 +7,13 @@ A benchmark of reproducible bugs in DNN libraries
 - [Only if you have an NVIDIA GPU] [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 
 
 
-## Steps to reproduce
+## Steps to configure
 1. Clone this repository: ```$> git clone https://github.com/ncsu-swat/dnnbugs.git```
 2. Add dnnbugs to your PATH: ```$> export PATH=$PATH:<dnnbugs_path>/framework```
-3. Run one of the commands below
 
 
 ## Commands
+
 | Command  | Description |
 | -------- | ------- |
 | list-tests  | List the tests available on this dataset |
