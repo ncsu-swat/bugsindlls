@@ -23,7 +23,7 @@ jobs:
       - name: Setup
         run: |
           PWD=$(pwd)
-          export PATH=$PATH:$PWD/framework
+          echo "$PWD/framework" >> $GITHUB_PATH
 
       - name: Run bash script 
         run:
