@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+home_location=${framework_location}/..
+
+usage="
+-l library-name (mandatory)
+  The id of the library for which the information shall be printed. Options: jax, pytorch, tensorflow
+-i bug-id (mandatory)
+  The bug number of the library-name for which the information shall be printed.
+"
+
+
+function usage {
+cat <<-____HALP
+Usage: ${0##*/} [ --help ]
+$usage
+____HALP
+}
+
+## show options if user selected -h
+case $1 in
+ -[h?] | --help)
+     usage
+     exit 0;;
+esac
+
+
+# before running through `getopts`, translate out convenient long-versions
+for opt in "$@"; do
+    shift
+    case "${opt}" in
+      '--library-name')    set -- "$@" '-l' ;;
+      '--bug-id')          set -- "$@" '-i' ;;
+      *)                   set -- "$@" "${opt}" ;;
+    esac
+done
+
+### read the flag and assign values to corresponding variables
+while getopts :l:i: flag
+do
+    case "${flag}" in
+        l) library_name=${OPTARG};;
+        i) bug_id=${OPTARG};;
+        \?) echo "invalid option: -$OPTARG."
+            usage
+            exit 1
+            ;;
+        :)  echo "option -$OPTARG requires an argument."
+            usage
+            exit 1
+            ;;            
+    esac
+done
+
+### library_name is mandatory
+if [ "$library_name" == "" ]; then 
+    echo "Please provide library name (-l)"
+    usage    
+    exit
+fi
+
+# library_name must be one of ours
+if ! [[ "$library_name" =~ ^(jax|pytorch|tensorflow)$ ]]; then
+    echo "library $library_name is not in the list"
+    usage    
+    exit    
+fi
+
+
+### bug_id is mandatory
+if [ "$bug_id" == "" ]; then 
+    usage
+    exit
+fi
+
+# bug_id must exit
+if ! ls $home_location/$library_name | cut -d\_ -f2 | grep $bug_id > /dev/null ; then
+    usage
+    echo "not found"
+fi
+
+
+# (1) generate csv from csv file with only the relevant information
+# (2) generate json from csv
+# (3) pretty-print json 
+(
+    grep Issue ../bug_dataset_${library_name}.csv # column names
+    grep $bug_id ../bug_dataset_${library_name}.csv # bug row
+) | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | perl -0007 -MJSON -ne 'print to_json(from_json($_, {allow_nonref=>1}), {pretty=>1}), "\n";'

@@ -7,6 +7,23 @@ A benchmark of reproducible bugs in DNN libraries
 - [Only if you have an NVIDIA GPU] [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 
 
 
+## Steps to reproduce
+1. Clone this repository: ```$> git clone https://github.com/ncsu-swat/dnnbugs.git```
+2. Add dnnbugs to your PATH: ```$> export PATH=$PATH:<dnnbugs_path>/framework```
+3. Run one of the commands below
+
+
+## Commands
+| Command  | Description |
+| -------- | ------- |
+| list-tests  | List the tests available on this dataset |
+| run-test | Runs one test |
+| run-tests | Runs several tests |
+| show-info | Shows information about the tests available on this benchmark |
+
+
+<!---
+>>>>>>> f880b48 (organizing framework)
 ## How to reproduce
 
 - Change the current directory to the specific bug's directory. For example:
@@ -23,6 +40,24 @@ cd jax/issue_18218
 
 - Upon successful reproduction, the test should pass. Look for "1
   passed in" towards the end of the output.
+  
+-->
+
+## Example usage
+
+- Help to use command show-info: 
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```
+$> show-info --help
+```
+
+
+- Request info about ```jax``` bug ```18218```:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```
+$> show-info --library-name jax --bug-id 18218
+```
 
 ## Methodology
 
