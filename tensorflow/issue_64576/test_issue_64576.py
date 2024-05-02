@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense
 import pytest
+import sys
 
 args = {"activation": "relu",
         "batch_norm": True}
@@ -57,6 +58,9 @@ class CustomModel3(Model):
         return {m.name: m.result() for m in self.metrics}
 
 def test_f():
+    print('Using tensorflow', tf.__version__)
+    print('Using python', sys.version)
+
     # Instantiate the model
     model = CustomModel3()
 

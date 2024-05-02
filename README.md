@@ -1,11 +1,15 @@
 # dnnbugs
 A benchmark of reproducible bugs in DNN libraries
 
-## Steps to reproduce
-1. Clone this repository: ```$> git clone https://github.com/soarsmu/BugsInPy.git```
+## Prerequisites
+- [Docker](https://docs.docker.com/engine/install/)
+- Conda ([Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html)/[Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/))
+- [Only if you have an NVIDIA GPU] [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 
+
+## Configuration
+1. Clone this repository: ```$> git clone https://github.com/ncsu-swat/dnnbugs```
 2. Add dnnbugs to your PATH: ```$> export PATH=$PATH:<dnnbugs_path>/framework```
 3. Run one of the commands below
-
 
 ## Commands
 | Command  | Description |
@@ -15,8 +19,7 @@ A benchmark of reproducible bugs in DNN libraries
 | run-tests | Runs several tests |
 | show-info | Shows information about the tests available on this benchmark |
 
-
-<!---
+<!--
 ## How to reproduce
 
 - Change the current directory to the specific bug's directory. For example:

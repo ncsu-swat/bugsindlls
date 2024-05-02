@@ -1,5 +1,5 @@
 iniconfig==2.0.0
-jax==0.4.25
+jax[cpu]==0.4.25
 jaxlib==0.4.25
 ml-dtypes==0.4.0
 numpy==1.25.2
