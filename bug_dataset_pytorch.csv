@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2024-03-01..2024-03-27 linked:pr,Total Reproduced:,8,,,,,,,
+,Filter:,is:issue is:closed created:2024-03-01..2024-03-27 linked:pr,Total Reproduced:,10,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 122594,,There is a comment error in test_transformers.py,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/122594,
 122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,Closed,,,,,"Skipped: bug describes a warning, not an exception",https://github.com/pytorch/pytorch/issues/122521,
@@ -10,7 +10,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 122181,,[dort][dynamo_export] Wrong model for phi backward graph,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/122181,
 122166,,[ONNX] Dispatcher does not handle list correctly when the first element is None,No,Closed,,,,,Skipped: could not find code to reproduce bug,https://github.com/pytorch/pytorch/issues/122166,
 122126,122149,split_with_sizes with unbacked SymInt results in buffers that cannot be materialized for extern calls,Yes,Closed,CPU,,"torch/_inductor/ir.py,torch/_inductor/lowering.py","SliceView.create(),slice_()",,https://github.com/pytorch/pytorch/issues/122126,https://github.com/pytorch/pytorch/pull/122149
-122085,,CUDA Being Initiated Early After Importing Certain Libraries on Nightly Build,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/122085,
+122085,122815,CUDA Being Initiated Early After Importing Certain Libraries on Nightly Build,Yes,Closed,GPU,CUDA,torch/cuda/__init__.py,device_count(),,https://github.com/pytorch/pytorch/issues/122085,https://github.com/pytorch/pytorch/pull/122815
 122026,,Memory violation in chunk_cat_cuda_kernel in test_out__chunk_cat_cuda_float32 on A100 and H100,No,Closed,,,,,Skipped: mentions specific gpu models and internally discovered,https://github.com/pytorch/pytorch/issues/122026,
 122008,,DISABLED test_hparams_string (__main__.TestTensorBoardSummary),No,Closed,,,,,Skipped: related to dependency mismatch,https://github.com/pytorch/pytorch/issues/122008,
 121986,,[ONNX] ONNX model has mismatching data type when Torch model and checkpoint dtype mismatches,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121986,
@@ -25,11 +25,11 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 121647,,torch._int_mm on CPU,No,Closed,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121647,
 121593,,reduce_on_plateau_scheduler.h missing from optim.h in libtorch ?,No,Closed,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/121593,
 121591,,Running lintrunner init under Python3.8 got error: No matching distribution found for torchfix==0.4.0,No,Closed,,,,,Skipped: related to dependencies,https://github.com/pytorch/pytorch/issues/121591,
-121583,,RuntimeError: Undefined type BFloat16 from matmul above certain sizes (maybe MPS only),Yes,Closed,GPU,Metal,,,,https://github.com/pytorch/pytorch/issues/121583,
+121583,123289,RuntimeError: Undefined type BFloat16 from matmul above certain sizes (maybe MPS only),Yes,Closed,GPU,Metal,"aten/src/ATen/native/mps/OperationUtils.mm, aten/src/ATen/native/mps/operations/LinearAlgebra.mm","scalarToMetalTypeString(), dot_product(), compileLinalgOpLibrary()",,https://github.com/pytorch/pytorch/issues/121583,https://github.com/pytorch/pytorch/pull/123289
 121558,,Investigate NaNs in FlashAttention,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121558,
 121507,,Make builds repeatable multiple times from same git checkout,No,Closed,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/121507,
 121479,,device_resource_id is missing in FunctionEvent,No,Closed,,,,,Skipped: found from source code,https://github.com/pytorch/pytorch/issues/121479,
-121320,,h2d non-blocking copy with type conversion doesn't respect stream semantics,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/121320,
+121320,121341,h2d non-blocking copy with type conversion doesn't respect stream semantics,Yes,Closed,GPU,CUDA,aten/src/ATen/native/cuda/Copy.cu,copy_kernel_cuda(),,https://github.com/pytorch/pytorch/issues/121320,https://github.com/pytorch/pytorch/pull/121341
 121300,,torch.set_default_dtype(d) outdated?,No,Closed,,,,,Skipped: related to documentation,https://github.com/pytorch/pytorch/issues/121300,
 121289,,cpu_fallback for aten::triu_indices on custom device crashed,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121289,
 121253,121953,[torch.compile][freezing] addmm results in a significant decrease in accuracy,Yes,Closed,GPU,CUDA,torch/_inductor/fx_passes/mkldnn_fusion.py,_is_packable_linear(),,https://github.com/pytorch/pytorch/issues/121253,https://github.com/pytorch/pytorch/pull/121953
