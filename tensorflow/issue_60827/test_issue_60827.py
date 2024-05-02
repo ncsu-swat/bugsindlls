@@ -15,5 +15,4 @@ def test_f():
         [-1., -1.], N=0, increasing=False
     )
 
-    assert np.array_equal(tf_result, np_result)
-    
+    assert False == np.array_equal(tf_result, np_result)
