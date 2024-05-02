@@ -57,6 +57,12 @@ $> show-info --help
 $> show-info --library-name jax --bug-id 18218
 ```
 
+- Reproduce bug ```18218``` from ```jax```:
+
+```Shell
+$> run-test --library-name jax --bug-id 18218
+```
+
 ## Methodology
 
 We used the following method to analyze issues of DNN libraries and create corresponding reproduction scripts. For each DNN library:
