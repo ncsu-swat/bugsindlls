@@ -20,5 +20,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run bash script (reproduce_all.sh)
-        run: bash reproduce_all.sh
+      - name: Setup
+        run: |
+          PWD=$(pwd)
+          export PYTHONPATH=$PWD/framework
+          echo $PYTHONPATH
+
+      - name: Run bash script 
+        run:
+          run-tests
