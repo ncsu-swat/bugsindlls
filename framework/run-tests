@@ -1,4 +1,5 @@
 #!/bin/bash
+debug=${1:-0}
 
 framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 home_location=${framework_location}/..
@@ -7,6 +8,10 @@ home_location=${framework_location}/..
 libraries=(jax pytorch tensorflow)
 NOW=$(date +"%m-%d-%Y-%T")
 LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XXX || exit 1)
+
+if [ $debug -eq 1 ]; then
+    echo "Running in debug mode"
+fi
 
 ###
 # reproducing bugs
@@ -43,6 +48,10 @@ LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XXX || exit 1)
                    msg="Bug reproduction unsat prereqs" 
                else
                    msg="Bug reproduction failed" 
+                   if [ $debug -eq 1 ]; then
+                        echo "Printing log for $bug_id:"
+                        cat $LOG_FILE
+                   fi
                fi
                echo "End bug id $bug_id: $msg" | tee -a $LOG_FILE
               ) 
