@@ -1,12 +1,12 @@
-,Filter:,is:issue is:closed created:2024-03-01..2024-03-27 linked:pr,Total Reproduced:,10,,,,,,,
+,Filter:,is:issue is:closed created:2024-03-01..2024-03-27 linked:pr,Total Reproduced:,11,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
-122594,,There is a comment error in test_transformers.py,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/122594,
+122594,,There is a comment error in test_transformers.py,No,Closed,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122594,
 122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,Closed,,,,,"Skipped: bug describes a warning, not an exception",https://github.com/pytorch/pytorch/issues/122521,
 122445,,allow storage to be created for ort,No,Closed,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122445,
 122427,,MPS: Implement index_select() on complex value,No,Closed,GPU,Metal,,,Could not reproduce: requires a mac,https://github.com/pytorch/pytorch/issues/122427,
-122407,,Mergebot should send a cleaner message when [no ci] message added to the PR commit,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/122407,
+122407,,Mergebot should send a cleaner message when [no ci] message added to the PR commit,No,Closed,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122407,
 122296,122298,torch compile item() cannot convert symbols to int error,Yes,Closed,GPU,CUDA,"torch/_inductor/compile_fx.py,torch/_inductor/graph.py","fx_codegen_and_compile(),run_node()",,https://github.com/pytorch/pytorch/issues/122296,https://github.com/pytorch/pytorch/pull/122298
-122283,,[inductor][cpu] pyhpc_equation_of_state fp32 static shape default/cpp wrapper multiple thread performance test crashed,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/122283,
+122283,,[inductor][cpu] pyhpc_equation_of_state fp32 static shape default/cpp wrapper multiple thread performance test crashed,No,Closed,,,,,Skipped: generated based on test failure,https://github.com/pytorch/pytorch/issues/122283,
 122181,,[dort][dynamo_export] Wrong model for phi backward graph,No,Closed,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/122181,
 122166,,[ONNX] Dispatcher does not handle list correctly when the first element is None,No,Closed,,,,,Skipped: could not find code to reproduce bug,https://github.com/pytorch/pytorch/issues/122166,
 122126,122149,split_with_sizes with unbacked SymInt results in buffers that cannot be materialized for extern calls,Yes,Closed,CPU,,"torch/_inductor/ir.py,torch/_inductor/lowering.py","SliceView.create(),slice_()",,https://github.com/pytorch/pytorch/issues/122126,https://github.com/pytorch/pytorch/pull/122149
@@ -36,6 +36,10 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 121174,122083,[torch.compile] fuse_attention returns inconsistent value for the model,Yes,Closed,CPU,,torch/_inductor/lowering.py,sdpa_constraint(),,https://github.com/pytorch/pytorch/issues/121174,https://github.com/pytorch/pytorch/pull/122083
 121138,121156,Memory leak when attempting to turn ascii-encoded data from an hdf5 file into a torch tensor in a try-except block,Yes,Closed,CPU,,torch/csrc/utils/tensor_numpy.cpp,tensor_from_numpy(),,https://github.com/pytorch/pytorch/issues/121138,https://github.com/pytorch/pytorch/pull/121156
 121126,,The recorded step number in profiler is wrong,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/pytorch/pytorch/issues/121126,
-121100,,torch.onnx.dynamo_export complex number error,No,Closed,,,,,Did not attempt,https://github.com/pytorch/pytorch/issues/121100,
+121100,,torch.onnx.dynamo_export complex number error,No,Closed,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121100,
 121093,121298,Segmentation Fault in torch._C._nn.replication_pad2d with Incorrect Inputs,Yes,Closed,GPU,CUDA,aten/src/ATen/native/ReplicationPadding.cpp,"replication_pad1d(),replication_pad2d(),replication_pad3d()",,https://github.com/pytorch/pytorch/issues/121093,https://github.com/pytorch/pytorch/pull/121298
 120998,121786,torch.compile fails with .view(dtype),Yes,Closed,GPU,CUDA,torch/_inductor/lowering.py,to_dtype_bitcast(),,https://github.com/pytorch/pytorch/issues/120998,https://github.com/pytorch/pytorch/pull/121786
+120922,,DISABLED test_dispatch_meta_outplace_nn_functional_scaled_dot_product_attention_cuda_float32 (__main__.TestMetaCUDA),No,Closed,,,,,Skipped: disabled tests,https://github.com/pytorch/pytorch/issues/120922,
+120921,,DISABLED test_dispatch_symbolic_meta_outplace_all_strides_nn_functional_scaled_dot_product_attention_cuda_float32 (__main__.TestMetaCUDA),No,Closed,,,,,Skipped: disabled tests,https://github.com/pytorch/pytorch/issues/120921,
+120918,,[ONNX] test_fx_op_consistency.py some cases success without running,No,Closed,,,,,Skipped: found from source code,https://github.com/pytorch/pytorch/issues/120918,
+120903,120987,INTERNAL ASSERT FAILED,Yes,Closed,CPU,,aten/src/ATen/native/quantized/FakeQuantPerChannelAffine.cpp,fake_quantize_per_channel_affine_cachemask(),,https://github.com/pytorch/pytorch/issues/120903,https://github.com/pytorch/pytorch/pull/120987
