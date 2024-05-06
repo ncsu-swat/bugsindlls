@@ -1,8 +1,12 @@
 #!/bin/bash
-
+debug=${1:-0}
 libraries=(jax pytorch tensorflow)
 NOW=$(date +"%m-%d-%Y-%T")
 LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XXX || exit 1)
+
+if [ $debug -eq 1 ]; then
+    echo "Running in debug mode"
+fi
 
 ###
 # reproducing bugs
@@ -34,7 +38,11 @@ for library in "${libraries[@]}"; do
                     elif [ $returncode -eq 2 ]; then
                         msg="Bug reproduction unsat prereqs" 
                     else
-                        msg="Bug reproduction failed" 
+                        msg="Bug reproduction failed"
+                        if [ $debug -eq 1 ]; then
+                            echo "Detailed log for $bug_id: "
+                            cat $LOG_FILE
+                        fi
                     fi
                     echo "End bug id $bug_id: $msg" | tee -a $LOG_FILE
                 ) 
