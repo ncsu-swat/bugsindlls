@@ -3,6 +3,8 @@
 framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 home_location=${framework_location}/..
 
+hash conda 2>/dev/null || { echo >&2 "I require conda but it's not installed.  Aborting."; exit 1; }
+
 usage="
 -l library-name (mandatory)
   The id of the library for which the information shall be printed. Options: jax, pytorch, tensorflow
