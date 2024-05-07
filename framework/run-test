@@ -78,8 +78,8 @@ fi
 
 # bug_id must exit
 if ! ls $home_location/$library_name | cut -d\_ -f2 | grep $bug_id > /dev/null ; then
-    usage
-    echo "could not found find bug-id $bug_id for $library_name"
+    echo "could not find bug-id $bug_id for $library_name"
+    exit
 fi
 
 
