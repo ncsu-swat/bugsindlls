@@ -1,5 +1,4 @@
 #!/bin/bash
-debug=${1:-0}
 
 framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 home_location=${framework_location}/..
@@ -9,9 +8,76 @@ libraries=(jax pytorch tensorflow)
 NOW=$(date +"%m-%d-%Y-%T")
 LOG_DIR=$(mktemp -d -q /tmp/dnnbugs.$NOW.XXX || exit 1)
 
-if [ $debug -eq 1 ]; then
-    echo "Running in debug mode"
+# Abid, we are handling parameters below
+#
+# debug=${1:-0}
+# if [ $debug -eq 1 ]; then  
+#     echo "Running in debug mode"
+# fi
+
+###
+# processing parameters
+###
+
+
+usage="
+-l log-directory (optional)
+  where to store logs
+-d debug (optional)
+  generate more debugging information
+"
+
+
+function usage {
+cat <<-____HALP
+Usage: ${0##*/} [ --help ]
+$usage
+____HALP
+}
+
+## show options if user selected -h
+case $1 in
+ -[h?] | --help)
+     usage
+     exit 0;;
+esac
+
+
+# before running through `getopts`, translate out convenient long-versions
+for opt in "$@"; do
+    shift
+    case "${opt}" in
+        '--log-directory')    set -- "$@" '-l' ;;
+        '--debug')            set -- "$@" '-d' ;;        
+        *)                    set -- "$@" "${opt}" ;;
+    esac
+done
+
+### read the flag and assign values to corresponding variables
+debug=0
+while getopts :l:d flag
+do
+    case "${flag}" in
+        l) LOG_DIR=${OPTARG};;
+        d) debug=1;;        
+        \?) echo "invalid option: -$OPTARG."
+            usage
+            exit 1
+            ;;
+        :)  echo "option -$OPTARG requires an argument."
+            usage
+            exit 1
+            ;;            
+    esac
+done
+
+### library_name is mandatory
+if [ ! -d "$LOG_DIR" ]; then 
+    echo "Invalid path associated with parameter log-directory (-d): $LOG_DIR"
+    usage    
+    exit
 fi
+
 
 ###
 # reproducing bugs
