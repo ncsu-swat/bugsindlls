@@ -45,22 +45,34 @@ cd jax/issue_18218
 
 ## Example usage
 
+- Show all reproducible bugs (tests) on this dataset: 
+
+```Shell
+$> list-tests
+```
+
 - Help to use command show-info: 
 
 ```Shell
 $> show-info --help
 ```
 
-- Request info about ```jax``` bug ```18218```:
+- Show information about bug 120903 from pytorch (id obtained from command above): 
 
 ```Shell
-$> show-info --library-name jax --bug-id 18218
+$> show-info --library-name pytorch --bug-id 120903
 ```
 
-- Reproduce bug ```18218``` from ```jax```:
+- Reproduce that bug:
 
 ```Shell
-$> run-test --library-name jax --bug-id 18218
+$> run-test --library-name pytorch --bug-id 120903
+```
+
+- Reproduce tests, saving logs in the provided directory:
+
+```Shell
+$> run-tests --log-directory ~/dnn-logs
 ```
 
 ## Methodology
