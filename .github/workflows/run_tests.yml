@@ -27,4 +27,4 @@ jobs:
 
       - name: Run bash script 
         run:
-          run-tests 1
+          run-tests -d
