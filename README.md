@@ -98,3 +98,11 @@ We used the following method to analyze issues of DNN libraries and create corre
 		-  2 - assumption broken (e.g., expecting to run the test on linux but attempting to run on macos)<!--	Try to reproduce the bug using a conda enviornment if there is no CUDA dependency. For 
 -->
 - Add the details of the bug in the spreadsheets of each library (e.g. ```bug_dataset_jax.csv```)
+
+## Known Issues
+- Packages outside conda environments are being accessed and it says "requirement already satisfied" while referencing the package installed outside the conda environment:
+	- Solution: [StackOverflow](https://stackoverflow.com/questions/59044844/local-pip-in-conda-environment-checks-globally-and-says-requirement-already-sati)
+	  ```Shell
+	  pip freeze --user > packages.txt
+	  pip uninstall -r packages.txt
+   	  ```
