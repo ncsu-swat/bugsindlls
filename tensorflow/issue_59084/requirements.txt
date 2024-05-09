@@ -34,7 +34,8 @@ six==1.16.0
 tensorboard==2.11.2
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
-tensorflow==2.11.0
+tensorflow-cpu==2.11.0; sys_platform == 'linux'
+tensorflow-macos==2.11.0; sys_platform == 'darwin'
 tensorflow-estimator==2.11.0
 tensorflow-io-gcs-filesystem==0.37.0
 termcolor==2.4.0
