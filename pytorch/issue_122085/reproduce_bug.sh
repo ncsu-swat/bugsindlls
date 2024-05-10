@@ -41,6 +41,6 @@ then
     fi
 fi
 
-docker build -t issue_120998 .
-docker run -it --rm --gpus all issue_120998
+docker build -t issue_120085 .
+docker run -it --rm --gpus all issue_120085
 exit $?
