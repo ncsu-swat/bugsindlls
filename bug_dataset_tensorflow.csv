@@ -1,5 +1,16 @@
-,Filter:,is:issue is:closed created:2023-01-01..2024-03-27 label:type:bug linked:pr,,,,,,,,,
+,Filter:,is:issue is:closed created:2023-01-01..2024-03-27 label:type:bug linked:pr,Total Reproduced:,18,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
+64576,,Calling submodels in train_step throws ValueError when saving and loading error.,Yes,Open,CPU,,,,,https://github.com/tensorflow/tensorflow/issues/64576,
+64548,,tf.cast does not preserve requested precision for Python types of float64/int64/complex128 etc,Yes,Closed,CPU,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/64548,
+64536,,tensorflow=2.16 cant use GPU,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64536,
+64507,,protobuf fatal error in Tensorflow 2.16.1 on macos M1,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64507,
+64443,,TF 2.16 Incorrect model with TextVectorization in SavedModel format contains float input type instead of string type,Yes,Closed,CPU,,,,More details: https://github.com/keras-team/keras/issues/19396,https://github.com/tensorflow/tensorflow/issues/64443,
+64415,,Saving a model defined by model subclassing can not be saved,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64415,
+64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,CPU,,,,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
+64392,19388,CategoryEncoding layer lacks consideration of 0-dimension inputs,Yes,Closed,CPU,,,,PR in Keras,https://github.com/tensorflow/tensorflow/issues/64392,https://github.com/keras-team/keras/pull/19388
+64284,,"Allocating all memory, CUDA OOM",No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64284,
+64273,,tflite converter crashes with version 2.16.1,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64273,
+64256,64587,"tf.raw_ops.ApproximateEqual/Erfinv fail support a few data types, inconsistent with the documentation",Yes,Open,CPU,,tensorflow/core/kernels/cwise_op_equal_to_1.cc,ApproximateEqual(),PR open at the time of writing,https://github.com/tensorflow/tensorflow/issues/64256,https://github.com/tensorflow/tensorflow/pull/64587
 63037,63092,tf.raw_ops.UnravelIndex can leads to eigen assertion failure,No,Closed,,,tensorflow/core/kernels/unravel_index_op.cc,UnravelIndexOp.Compute(),Skipped: debug build specific bug,https://github.com/tensorflow/tensorflow/issues/63037,https://github.com/tensorflow/tensorflow/pull/63092
 63036,63091,tf.raw_ops.Substr can lead to eigen assertion failure,No,Closed,,,tensorflow/core/kernels/substr_op.cc,SubstrOp.Compute(),Skipped: debug build specific bug,https://github.com/tensorflow/tensorflow/issues/63036,https://github.com/tensorflow/tensorflow/pull/63091
 63031,63050,Confusing result of tf.argsort/argmax/argmin/ given a boolean axis,No,Closed,,,tensorflow/python/ops/math_ops.py,argmax_v2(),Skipped: related to documentation,https://github.com/tensorflow/tensorflow/issues/63031,https://github.com/tensorflow/tensorflow/pull/63050
@@ -20,12 +31,12 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 61668,,TF Quantizer breaks pip package,No,Closed,,,,,Skipped: related to building,https://github.com/tensorflow/tensorflow/issues/61668,
 61598,,AttributeError: module 'tensorflow.python.pywrap_mlir' has no attribute 'experimental_convert_saved_model_v1',No,Closed,,,,,Skipped: could not find code to reproduce bug,https://github.com/tensorflow/tensorflow/issues/61598,
 61584,,Build failure on AARCH64 - undeclared identifier 'memset',No,Closed,,,,,Skipped: related to building,https://github.com/tensorflow/tensorflow/issues/61584,
-61163,,assert_shapes does not return anything and cannot be used as control dependency,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/61163,
+61163,61276,assert_shapes does not return anything and cannot be used as control dependency,Yes,Closed,CPU,,tensorflow/python/ops/check_ops.py,assert_shapes_v2(),,https://github.com/tensorflow/tensorflow/issues/61163,https://github.com/tensorflow/tensorflow/pull/61276
 61116,,//tensorflow/python/data/kernel_tests:snapshot_test is flaky,No,Closed,,,,,Skipped: related to flaky test,https://github.com/tensorflow/tensorflow/issues/61116,
 61068,,XLA unit tests fail to build on gcc,No,Closed,,,,,Skipped: related to building tests,https://github.com/tensorflow/tensorflow/issues/61068,
-60932,,get_file raises exception if the content-length is unknown,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/60932,
-60836,,Image Segmenter | tflite-suuport | AttributeError: type object 'SegmentationOptions' has no attribute 'OutputType',No,Closed,,,,,Skipped: Typo in instructions,https://github.com/tensorflow/tensorflow/issues/60836,
-60827,,wrong output shape with tf.experimental.numpy.vander when parameter N=0,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/60827,
+60932,18248,get_file raises exception if the content-length is unknown,Yes,Closed,CPU,,keras/utils/data_utils.py,__call__(),,https://github.com/tensorflow/tensorflow/issues/60932,https://github.com/tensorflow/tensorflow/pull/18248
+60836,,Image Segmenter | tflite-suuport | AttributeError: type object 'SegmentationOptions' has no attribute 'OutputType',No,Closed,,,,,Skipped: typo in instructions,https://github.com/tensorflow/tensorflow/issues/60836,
+60827,61079,wrong output shape with tf.experimental.numpy.vander when parameter N=0,Yes,Closed,CPU,,tensorflow/python/ops/numpy_ops/np_array_ops.py,vander(),,https://github.com/tensorflow/tensorflow/issues/60827,https://github.com/tensorflow/tensorflow/pull/61079
 60724,,mkl_aarch64_threadpool build broken by recent commit,No,Closed,,,,,Skipped: related to building,https://github.com/tensorflow/tensorflow/issues/60724,
 60506,,Memory Leak in mkl_graph_util.h,No,Closed,,,,,Skipped: related to memory leak in c code,https://github.com/tensorflow/tensorflow/issues/60506,
 60457,,error message of tf.eye is inconsistent with doc,No,Closed,,,,,Skipped: changes in doc,https://github.com/tensorflow/tensorflow/issues/60457,
@@ -37,24 +48,8 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Buggy File(s),Buggy Functi
 59927,,A crash due to check-fail can be triggered in QuantizedConv2D,No,Closed,,,,,Could not reproduce: the nightly build isn't available,https://github.com/tensorflow/tensorflow/issues/59927,
 59680,,Unit test //tensorflow/tsl/framework/convolution:spatial_convolutions_test fails to build,No,Closed,,,,,Skipped: related to building,https://github.com/tensorflow/tensorflow/issues/59680,
 59643,,protobuf 4 causes segmentation fault on Python 3.8 in unit test,No,Closed,,,,,Skipped: related to building,https://github.com/tensorflow/tensorflow/issues/59643,
-59123,,Check failure when running tensorflow.python.ops.gen_data_flow_ops.record_input,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/59123,
-59115,,TFDefaultLogSink::Send() uses buffered writes leading to delays writing to log file,No,Closed,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/59115,
-59114,,Segmentation fault when running gen_ragged_array_ops.ragged_cross,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/59114,
-59084,,Check failure when running tensorflow.python.ops.gen_ragged_conversion_ops.ragged_tensor_to_variant,No,Closed,,,,,Skipped: data structure specific bug,https://github.com/tensorflow/tensorflow/issues/59084,
+59123,59661,Check failure when running tensorflow.python.ops.gen_data_flow_ops.record_input,Yes,Closed,CPU,,tensorflow/core/kernels/record_input_op.cc,RecordInputOp(),,https://github.com/tensorflow/tensorflow/issues/59123,https://github.com/tensorflow/tensorflow/pull/59661
+59115,,TFDefaultLogSink::Send() uses buffered writes leading to delays writing to log file,No,Closed,,,,,Skipped: related to logging,https://github.com/tensorflow/tensorflow/issues/59115,
+59114,59658,Segmentation fault when running gen_ragged_array_ops.ragged_cross,Yes,Closed,CPU,,tensorflow/core/kernels/ragged_cross_op.cc,BuildOutputTensors(),,https://github.com/tensorflow/tensorflow/issues/59114,https://github.com/tensorflow/tensorflow/pull/59658
+59084,59660,Check failure when running tensorflow.python.ops.gen_ragged_conversion_ops.ragged_tensor_to_variant,Yes,Closed,CPU,,tensorflow/core/kernels/ragged_tensor_to_variant_op.cc,UnbatchRaggedZerothDim(),"PR is closed due to inactivity at the time of writing, but the bug is fixed in the latest build (tensorflow==2.16.1)",https://github.com/tensorflow/tensorflow/issues/59084,https://github.com/tensorflow/tensorflow/pull/59660
 59076,,Issue created for Rollback of PR #58358: Fix unigram assert,No,Closed,,,,,Skipped: rollback of a PR,https://github.com/tensorflow/tensorflow/issues/59076,
-64576,,Calling submodels in train_step throws ValueError when saving and loading error.,Yes,Open,CPU,,,,,https://github.com/tensorflow/tensorflow/issues/64576,
-64552,,ImportError when using tensorflow 2.8.0 and python 3.9.16 undefined symbol: PyCMethod_New,No,Open,,,,,Skipped: potentially incorrect usage,https://github.com/tensorflow/tensorflow/issues/64552,
-64548,,tf.cast does not preserve requested precision for Python types of float64/int64/complex128 etc,No,Open,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/64548,
-64536,,tensorflow=2.16 cant use GPU,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64536,
-64507,,protobuf fatal error in Tensorflow 2.16.1 on macos M1,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64507,
-64476,,WARNING:tensorflow:Your input ran out of data; interrupting training always occuring after 80% of total epochs,No,Open,,,,,Did not attempt: did not find minimal reproducible code,https://github.com/tensorflow/tensorflow/issues/64476,
-64443,,TF 2.16 Incorrect model with TextVectorization in SavedModel format contains float input type instead of string type,Yes,Closed,CPU,,,,More details: https://github.com/keras-team/keras/issues/19396,https://github.com/tensorflow/tensorflow/issues/64443,
-64415,,Saving a model defined by model subclassing can not be saved,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64415,
-64396,,Conv2D computes wrongly in Windows OS,No,Open,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64396,
-64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,CPU,,,,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
-64392,19388,CategoryEncoding layer lacks consideration of 0-dimension inputs,Yes,Closed,CPU,,,,PR in Keras,https://github.com/tensorflow/tensorflow/issues/64392,https://github.com/keras-team/keras/pull/19388
-64372,,Improper use of PluggableDevice data pointer,No,Open,,,,,Skipped: non-dnn bug,https://github.com/tensorflow/tensorflow/issues/64372,
-64349,,how to solve this error ? : AttributeError: module 'keras._tf_keras.keras.layers' has no attribute 'experimental',No,Open,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64349,
-64284,,"Allocating all memory, CUDA OOM",No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64284,
-64273,,tflite converter crashes with version 2.16.1,No,Closed,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64273,
-64256,64587,"tf.raw_ops.ApproximateEqual/Erfinv fail support a few data types, inconsistent with the documentation",Yes,Open,,,tensorflow/core/kernels/cwise_op_equal_to_1.cc,ApproximateEqual(),PR open at the time of writing,https://github.com/tensorflow/tensorflow/issues/64256,https://github.com/tensorflow/tensorflow/pull/64587
