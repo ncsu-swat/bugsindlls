@@ -1,8 +1,15 @@
 import pytest
 import tensorflow as tf
 import sys
+import os
+
 
 def test_f():
+
+    if sys.platform == 'darwin':
+        pytest.skip('This bug is Linux-specific.')
+        exit(2)
+
     print('Using tensorflow', tf.__version__)
     print('Using python', sys.version)
 
