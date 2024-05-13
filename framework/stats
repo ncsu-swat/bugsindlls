@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+(cd $framework_location;
+
+ python stats.py 'jax'
+ python stats.py 'pytorch'
+ python stats.py 'tensorflow'
+
+)

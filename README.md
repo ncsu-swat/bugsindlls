@@ -20,6 +20,7 @@ A benchmark of reproducible bugs in DNN libraries
 | run-test | Runs one test |
 | run-tests | Runs several tests |
 | show-info | Shows information about the tests available on this benchmark |
+| stats | Shows statistics about this dataset (e.g., number of tests that require GPU, number of tests that reproduce bugs in C or Python code, etc.) |
 
 
 <!---
