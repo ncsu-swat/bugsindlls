@@ -35,10 +35,10 @@ def process_file(libname):
                 elif ".py" in row["Buggy File(s)"]:
                     num_py += 1
 
-        print(f'  # Require GPU: {num_gpus} ({num_gpus/(num_gpus+num_cpus):.2f}%)')
-        print(f'  # Require CPU: {num_cpus} ({num_cpus/(num_gpus+num_cpus):.2f}%)')        
-        print(f'  # C: {num_c} ({num_c/(num_c+num_py):.2f}%)')
-        print(f'  # Python: {num_py} ({num_py/(num_c+num_py):.2f}%)')                
+        print(f'  # Require GPU: {num_gpus} ({num_gpus*100/(num_gpus+num_cpus):.2f}%)')
+        print(f'  # Require CPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
+        print(f'  # C: {num_c} ({num_c*100/(num_c+num_py):.2f}%)')
+        print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py):.2f}%)')                
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
