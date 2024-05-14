@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+    echo "Broken assumption: Bug reproducible only on Linux."
+    exit 2
+fi
+
 conda init
 conda create --name issue_120803 python==3.8 pip -y
 eval "$(conda shell.bash hook)"
