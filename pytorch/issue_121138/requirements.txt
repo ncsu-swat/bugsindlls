@@ -8,5 +8,5 @@ psutil==5.9.8
 pytest==8.2.0
 tomli==2.0.1
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==1.12.1+cpu
+torch==1.12.1
 typing_extensions==4.9.0
