@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2024-02-25..2024-03-27 linked:pr ,Total Reproduced:,12,,,,,,,,,,
+,Filter:,is:issue is:closed created:2024-02-25..2024-03-27 linked:pr ,Total Reproduced:,13,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 122594,,There is a comment error in test_transformers.py,No,Closed,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122594,
 122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,Closed,,,,,,,,"Skipped: bug describes a warning, not an exception",https://github.com/pytorch/pytorch/issues/122521,
@@ -48,7 +48,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 120875,121803,The result of torch.all is inconsistent between CPU and GPU,Yes,Closed,GPU,CUDA,02/28/2024,2.2.0,No,"aten/src/ATen/native/Copy.cpp, c10/util/TypeCast.h","copy_impl(), apply()",TODO,https://github.com/pytorch/pytorch/issues/120875,https://github.com/pytorch/pytorch/pull/121803
 120869,,[inductor][cpu] quantization QAT/PTQ accuracy test meets crash,No,Closed,CPU,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/120869,
 120810,,Scaled-Dot-Product-Attention Has Broadcastable Mask,No,Closed,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/120810,
-120803,,Floating Point Exception on Empty Input Tensor with torch.batch_norm_update_stats,No,Closed,CPU,,,,,,,"TODO (Note: ""The issue is reproducible on Linux (Ubuntu), but not on the Mac M1."" - comment in issue)",https://github.com/pytorch/pytorch/issues/120803,
+120803,120882,Floating Point Exception on Empty Input Tensor with torch.batch_norm_update_stats,Yes,Closed,CPU,,02/28/2024,torch-2.3.0.dev20240220,Yes,"aten/src/ATen/native/Normalization.cpp,aten/src/ATen/native/cuda/Normalization.cu",batch_norm_update_stats_cuda(),"Note: ""The issue is reproducible on Linux (Ubuntu), but not on the Mac M1."" - comment in issue",https://github.com/pytorch/pytorch/issues/120803,https://github.com/pytorch/pytorch/pull/120882
 120794,,prod() is broken on ROCM when used on tensors of int type on gfx908,No,Closed,,,,,,,,Skipped: multiple AMD gpu of specific model required with complicated steps,https://github.com/pytorch/pytorch/issues/120794,
 120788,,Operator performance plummets on PyTorch 2.2.1 Windows platform,No,Closed,,,,,,,,Skipped: a specific build of windows and an amd cpu required,https://github.com/pytorch/pytorch/issues/120788,
 120762,,Segmentation Fault due to Invalid out_dim Type in torch.tensor.flatten,No,Closed,CPU,,,,,,,TODO (Note: it was reported on a nightly build that is not available anymore. Please try with a stable build e.g. 2.2.1 to see if it can be reproduced),https://github.com/pytorch/pytorch/issues/120762,
