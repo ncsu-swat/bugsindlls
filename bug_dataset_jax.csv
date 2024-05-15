@@ -30,7 +30,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 18737,,Add replication rules for convolutions,No,Closed,,,,,,,,Skipped: reproducible code not given,https://github.com/google/jax/issues/18737,
 18686,,AOT path doesn't typecheck DCE'd arguments,No,Closed,,,,,,,,Skipped: related to better typechecks,https://github.com/google/jax/issues/18686,
 18680,18682,NaN Error only in combination of disable_jit and debug_nans,Yes,Closed,CPU,,11/27/2023,0.4.20,No,jax/_src/lax/lax.py,_canonicalize_float_for_sort(),,https://github.com/google/jax/issues/18680,https://github.com/google/jax/pull/18682
-18542,,Array indexing: boolean mask after newaxis leads to error,No,Closed,,,,,,,,TODO,https://github.com/google/jax/issues/18542,
+18542,18546,Array indexing: boolean mask after newaxis leads to error,No,Closed,CPU,,11/15/2023,0.4.20,No,jax/_src/numpy/lax_numpy.py,_expand_bool_indices(),,https://github.com/google/jax/issues/18542,https://github.com/google/jax/pull/18546
 18455,,"Template class in extern ""C"" block causes failure of compilation under MSVC on Windows",No,Closed,,,,,,,,Skipped: related to building,https://github.com/google/jax/issues/18455,
 18453,,Large multi-channel inverse FFTs give wrong results,No,Closed,,,,,,,,Could not reproduce: requires 80gb gpu memory,https://github.com/google/jax/issues/18453,
 18442,18444,Cannot take gradient of VJP function involving new-style RNG key,Yes,Closed,CPU,,11/08/2023,0.4.20,No,"jax/_src/interpreters/ad.py,jax/_src/prng.py","instantiate_zeros(),instantiate_zeros_aval(),make_tangent(),KeyTangentTy._rules(),KeyTangentTy.name()",,https://github.com/google/jax/issues/18442,https://github.com/google/jax/pull/18444
