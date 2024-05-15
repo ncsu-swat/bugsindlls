@@ -30,7 +30,7 @@ class Trie(object):
 
     def __repr__(self):
         def recur(node, indent):
-            return "".join(indent + key + " (" + str(child.visited) + ") " + (" <--|" if child.is_end else "") 
+            return "".join(indent + "|-- " + key + " (" + str(child.visited) + ") "
                                   + recur(child, indent + "  ") 
                 for key, child in node.children.items())
 
@@ -64,6 +64,7 @@ def process_file(libname, print_fmt):
 
                 if row["Buggy File(s)"] > "":
                     for file in row["Buggy File(s)"].split(","):
+                        file = file.strip()
                         tr.insert(file.split("/"))
 
                 ## cpu/gpu
