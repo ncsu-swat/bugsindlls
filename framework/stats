@@ -2,10 +2,66 @@
 
 framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+usage="
+-p print-format (optional)
+  Format in which the stats about buggy files shall be printed. Options: trie, rows, both, none
+"
+
+function usage {
+cat <<-____HALP
+Usage: ${0##*/} [ --help ]
+$usage
+____HALP
+}
+
+## show options if user selected -h
+case $1 in
+ -[h?] | --help)
+     usage
+     exit 0;;
+esac
+
+
+# before running through `getopts`, translate out convenient long-versions
+for opt in "$@"; do
+    shift
+    case "${opt}" in
+      '--print-format')    set -- "$@" '-p' ;;
+      *)                   set -- "$@" "${opt}" ;;
+    esac
+done
+
+### read the flag and assign values to corresponding variables
+while getopts :p: flag
+do
+    case "${flag}" in
+        p) print_format=${OPTARG};;        
+        \?) echo "invalid option: -$OPTARG."
+            usage
+            exit 1
+            ;;
+        :)  echo "option -$OPTARG requires an argument."
+            usage
+            exit 1
+            ;;            
+    esac
+done
+
+# print_format trie by default
+if [ "$print_format" == "" ]; then 
+    echo "defaulting print format to trie"
+    print_format='trie'
+fi
+
+if ! [[ "$print_format" =~ ^(trie|rows|both|none)$ ]]; then
+    echo "option $print_format is not in the list, defaulting to trie"
+    print_format='trie'
+fi
+
 (cd $framework_location;
 
- python stats.py 'jax'
- python stats.py 'pytorch'
- python stats.py 'tensorflow'
+ python stats.py 'jax' $print_format
+ python stats.py 'pytorch' $print_format
+ python stats.py 'tensorflow' $print_format
 
 )
