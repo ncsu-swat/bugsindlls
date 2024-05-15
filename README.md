@@ -75,3 +75,9 @@ $> run-test --library-name pytorch --bug-id 120903
 ```Shell
 $> run-tests --log-directory ~/dnn-logs
 ```
+
+- Show statistics about the dataset with the buggy files in a trie format
+
+```Shell
+$> stats --print-format trie
+```
