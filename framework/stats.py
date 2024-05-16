@@ -80,7 +80,7 @@ def process_file(libname, print_fmt):
                     num_py += 1
 
         print(f'  # Require GPU: {num_gpus} ({num_gpus*100/(num_gpus+num_cpus):.2f}%)')
-        print(f'  # Require CPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
+        print(f'  # Do NOT Require GPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
         print(f'  # C: {num_c} ({num_c*100/(num_c+num_py):.2f}%)')
         print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py):.2f}%)')
     
