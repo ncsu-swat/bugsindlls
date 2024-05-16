@@ -53,16 +53,12 @@ def process_file(libname, print_fmt):
         num_gpus = 0
         ##
         num_c = 0
-        num_py = 0        
+        num_py = 0      
+        num_cuda = 0  
         for row in csv_reader:
             if row["Reproduced"] == "Yes":
                 if (print_fmt == "rows") or (print_fmt == "both"):
                     print(f'\t{row["Issue #"]} {row["Device"]} {row["Buggy File(s)"]}')
-
-                if row["Buggy File(s)"] > "":
-                    for file in row["Buggy File(s)"].split(","):
-                        file = file.strip()
-                        tr.insert(file.split("/"))
 
                 ## cpu/gpu
                 device = row["Device"].strip()
@@ -70,17 +66,25 @@ def process_file(libname, print_fmt):
                     num_cpus += 1
                 elif device == "GPU":
                     num_gpus += 1
+                
+                if row["Buggy File(s)"] > "":
+                    for file in row["Buggy File(s)"].split(","):
+                        file = file.strip()
+                        tr.insert(file.split("/"))
 
-                # c/python
-                if ".c" in row["Buggy File(s)"] or ".cc" in row["Buggy File(s)"] or ".h" in row["Buggy File(s)"]:
-                    num_c += 1
-                elif ".py" in row["Buggy File(s)"]:
-                    num_py += 1
+                        # c/cuda native/python
+                        if ".cu" in file:
+                            num_cuda += 1
+                        elif ".c" in file or ".cc" in file or ".h" in file or ".mm" in file:
+                            num_c += 1
+                        elif ".py" in file or ".pyi" in file:
+                            num_py += 1                        
 
         print(f'  # Require GPU: {num_gpus} ({num_gpus*100/(num_gpus+num_cpus):.2f}%)')
         print(f'  # Do NOT Require GPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
-        print(f'  # C: {num_c} ({num_c*100/(num_c+num_py):.2f}%)')
-        print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py):.2f}%)')
+        print(f'  # C/CPP: {num_c} ({num_c*100/(num_c+num_py+num_cuda):.2f}%)')
+        print(f'  # CUDA Native: {num_cuda} ({num_cuda*100/(num_c+num_py+num_cuda):.2f}%)')
+        print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py+num_cuda):.2f}%)')
     
     if (print_fmt == "trie") or (print_fmt == "both"):
         print('----------------------------')
