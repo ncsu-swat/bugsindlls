@@ -55,9 +55,6 @@ def process_file(libname, print_fmt):
         num_c = 0
         num_py = 0        
         for row in csv_reader:
-            if first:
-                first = False
-                continue
             if row["Reproduced"] == "Yes":
                 if (print_fmt == "rows") or (print_fmt == "both"):
                     print(f'\t{row["Issue #"]} {row["Device"]} {row["Buggy File(s)"]}')
@@ -68,9 +65,10 @@ def process_file(libname, print_fmt):
                         tr.insert(file.split("/"))
 
                 ## cpu/gpu
-                if row["Device"] == "CPU":
+                device = row["Device"].strip()
+                if device == "CPU":
                     num_cpus += 1
-                elif row["Device"] == "GPU":
+                elif device == "GPU":
                     num_gpus += 1
 
                 # c/python
