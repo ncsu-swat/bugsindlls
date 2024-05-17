@@ -47,4 +47,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 18004,18017,Issue with JAX's frompyfunc and at methods when compared to NumPy,Yes,Closed,CPU,,10/08/2023,0.4.16,No,jax/_src/numpy/ufunc_api.py,_at_via_scan(),,https://github.com/google/jax/issues/18004,https://github.com/google/jax/pull/18017
 17972,,lax.clz and lax.population_count are not documented,No,Closed,,,,,,,,Skipped: related to documentation,https://github.com/google/jax/issues/17972,
 17958,,lax.abs crashes on unsigned ints,No,Closed,CPU,,,,,,,Skipped: api misuse,https://github.com/google/jax/issues/17958,
-17922,,random.dirichlet sometimes samples nan for sparse alpha,No,Closed,CPU,,,,,,,TODO,https://github.com/google/jax/issues/17922,
+17922,17925,random.dirichlet sometimes samples nan for sparse alpha,Yes,Closed,CPU,,10/04/2023,0.4.17,No,jax/_src/random.py,_gamma_one(),,https://github.com/google/jax/issues/17922,https://github.com/google/jax/pull/17925
