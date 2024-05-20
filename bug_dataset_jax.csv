@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2023-10-01..2024-03-27 label:bug linked:pr ,Total Reproduced:,20,,,,,,,,,,
+,Filter:,is:issue is:closed created:2023-10-01..2024-03-27 label:bug linked:pr ,Total Reproduced:,21,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Remarks,Issue Link,PR Link
 20455,,Install failed when using pip for JAX and CUDA,No,Closed,,,,,,,,Skipped: related to installation,https://github.com/google/jax/issues/20455,
 20453,,Error: 'apple_common' value has no field or method 'multi_arch_split',No,Closed,,,,,,,,Skipped: related to building,https://github.com/google/jax/issues/20453,
@@ -20,9 +20,9 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 19334,19511,broadcast_to raise Disallowed host-to-device transfer when used inside jax.jit,Yes,Closed,CPU,,01/12/2024,0.4.21,No,jax/_src/lax/lax.py,asarray(),,https://github.com/google/jax/issues/19334,https://github.com/google/jax/pull/19511
 19150,19166,Unexpected behavior of jax.scipy.stats.binom.pmf,Yes,Closed,CPU,,01/01/2024,0.4.23,No,jax/_src/scipy/stats/binom.py,logpmf(),,https://github.com/google/jax/issues/19150,https://github.com/google/jax/pull/19166
 19134,,Testing __cuda_array_interface__ attribute of a CPU array throws an exception,No,Closed,,,,,,,,Skipped: api misuse,https://github.com/google/jax/issues/19134,
-19076,19086,Default lowering pass for lu_p has accuracy issue,Yes,Closed,CPU,,12/20/2023,0.4.20,No,jax/jax/experimental/jax2tf/jax2tf.py,_lu_unblocked(),,https://github.com/google/jax/issues/19076,https://github.com/google/jax/pull/19086																
+19076,19086,Default lowering pass for lu_p has accuracy issue,Yes,Closed,CPU,,12/20/2023,0.4.20,No,jax/_src/lax/linalg.py,_lu_unblocked(),,https://github.com/google/jax/issues/19076,https://github.com/google/jax/pull/19086
 19059,19061,float() argument TypeError in a scan,Yes,Closed,CPU,,12/19/2023,0.4.16,No,jax/_src/lax/lax.py,_convert_elt_type_folding_rule(),,https://github.com/google/jax/issues/19059,https://github.com/google/jax/pull/19061
-19035,,GPU memory allocation not working as expected,No,Closed,,,,,,,,Skipped: non-dnn bug,https://github.com/google/jax/issues/19035,
+19035,,GPU memory allocation not working as expected,No,Closed,,,,,,,,TODO,https://github.com/google/jax/issues/19035,
 19011,19034,jnp.min or jnp.max returns nan if input array dtype is fp8,Yes,Closed,CPU,,12/15/2023,0.4.22,No,"jax/_src/dtypes.py, jax/_src/lax/lax.py, jax/_src/numpy/reductions.py","supports_inf(), _get_max_identity(), _get_min_identity(), _reduction_init_val()",,https://github.com/google/jax/issues/19011,https://github.com/google/jax/pull/19034
 18937,18946,[jax_dynamic_shapes] specifying shapes with floating point abstract values does not raise a TypeError,Yes,Closed,CPU,,12/12/2023,0.4.21,No,jax/_src/core.py,"_canonicalize_dimension(), _invalid_shape_error()",,https://github.com/google/jax/issues/18937,https://github.com/google/jax/pull/18946
 18852,,JAX hangs when allocating array of at least 2^19 bytes on CPU in subprocess,No,Closed,,,,,,,,Skipped: It's a compatible issue not a bug.,https://github.com/google/jax/issues/18852,
@@ -47,4 +47,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 18004,18017,Issue with JAX's frompyfunc and at methods when compared to NumPy,Yes,Closed,CPU,,10/08/2023,0.4.16,No,jax/_src/numpy/ufunc_api.py,_at_via_scan(),,https://github.com/google/jax/issues/18004,https://github.com/google/jax/pull/18017
 17972,,lax.clz and lax.population_count are not documented,No,Closed,,,,,,,,Skipped: related to documentation,https://github.com/google/jax/issues/17972,
 17958,,lax.abs crashes on unsigned ints,No,Closed,CPU,,,,,,,Skipped: api misuse,https://github.com/google/jax/issues/17958,
-17922,,random.dirichlet sometimes samples nan for sparse alpha,No,Closed,CPU,,,,,,,TODO,https://github.com/google/jax/issues/17922,
+17922,17925,random.dirichlet sometimes samples nan for sparse alpha,Yes,Closed,CPU,,10/04/2023,0.4.17,No,jax/_src/random.py,_gamma_one(),,https://github.com/google/jax/issues/17922,https://github.com/google/jax/pull/17925
