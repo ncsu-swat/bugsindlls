@@ -4,7 +4,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 20453,,Error: 'apple_common' value has no field or method 'multi_arch_split',No,Closed,,,,,,,,Skipped: related to building,https://github.com/google/jax/issues/20453,
 20430,20528,jax.scipy.special.ndtri edge case behavior,Yes,Closed,CPU,,03/26/2024,0.4.23,No,jax/_src/scipy/special.py,_ndtri(),,https://github.com/google/jax/issues/20430,https://github.com/google/jax/pull/20528
 20428,,pmap of expm causes kernel to die if matrix dimension >= 100,No,Closed,CPU,,,,,,,TODO,https://github.com/google/jax/issues/20428,
-20392,,jit(pmap) on key arrays raises an error in pmap lowering,No,Closed,CPU,,,,,,,TODO,https://github.com/google/jax/issues/20392,
+20392,21216,jit(pmap) on key arrays raises an error in pmap lowering,Yes,Closed,CPU,,3/22/2024,0.4.28,No,jax/_src/interpreters/pxla.py,_hlo_shard(),Value Error,https://github.com/google/jax/issues/20392,https://github.com/google/jax/pull/21216																
 20267,20270,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,Closed,CPU,,03/15/2024,0.4.25,No,jax/_src/pjit.py,_pjit_partial_eval(),,https://github.com/google/jax/issues/20267,https://github.com/google/jax/pull/20270
 20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,Closed,,,,,,,,Could not reproduce: requires a TPU,https://github.com/google/jax/issues/20135,
 20082,20083,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",Yes,Closed,CPU,,03/05/2024,0.4.25,No,jax/experimental/attrs.py,_ensure_tracked(),,https://github.com/google/jax/issues/20082,https://github.com/google/jax/pull/20083
