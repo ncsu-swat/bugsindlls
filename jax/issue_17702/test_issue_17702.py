@@ -4,7 +4,12 @@ import jax.numpy as jnp
 import os, psutil
 import pytest
 
-def f():
+def test_f():
+    issue_no = '17922'
+    print('Jax issue no.', issue_no)
+    jax.print_environment_info()
+
+
     process = psutil.Process(os.getpid())
 
     baseline_memory = process.memory_info().rss / 1e9  # 0.1 GB
@@ -18,18 +23,5 @@ def f():
     expected_increase = memory_np - baseline_memory  
     actual_increase = memory_jax - memory_np
     
-    assert actual_increase <= expected_increase + tolerance, (
-            f"Unexpected memory increase detected! Expected increase: {expected_increase} GB, "
-            f"but got an increase of {actual_increase} GB after converting to JAX array."
-    ) # make sure memory does not increase
-
-def test_f():
-    issue_no = '17922'
-    print('Jax issue no.', issue_no)
-    jax.print_environment_info()
-
-    with pytest.raises(AssertionError) as e_info:
-        f()
-
-    print(e_info.value)
+    assert actual_increase > expected_increase + tolerance # memory should increase by same amount, but does increase
 
