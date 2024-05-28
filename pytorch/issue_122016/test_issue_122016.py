@@ -11,6 +11,10 @@ def f():
 def test_f():
     issue_no = '122016'
     print('PyTorch issue no.', issue_no)
+
+    # Check the MPS support
+    if not torch.backends.mps.is_available():
+        pytest.skip('MPS is not available')
     
     result = f()
 
