@@ -117,4 +117,8 @@ if __name__ == "__main__":
         print("Printing in trie format by default")
         sys.argv.append("trie")
     
-    process_file(sys.argv[1], sys.argv[2])
+    if sys.argv[1] == 'all':
+        for libname in ['jax', 'pytorch', 'tensorflow']:
+            process_file(libname, sys.argv[2])
+    else:
+        process_file(sys.argv[1], sys.argv[2])

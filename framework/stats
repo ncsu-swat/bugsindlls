@@ -3,8 +3,10 @@
 framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 usage="
+-l library-name (optional)
+  The name of the library for which the information shall be printed. Options: jax, pytorch, tensorflow, all. Default: all.
 -p print-format (optional)
-  Format in which the stats about buggy files shall be printed. Options: trie, rows, both, none
+  Format in which the stats about buggy files shall be printed. Options: trie, rows, both, none. Default: trie.
 "
 
 function usage {
@@ -26,15 +28,17 @@ esac
 for opt in "$@"; do
     shift
     case "${opt}" in
+      '--library-name')    set -- "$@" '-l' ;;
       '--print-format')    set -- "$@" '-p' ;;
       *)                   set -- "$@" "${opt}" ;;
     esac
 done
 
 ### read the flag and assign values to corresponding variables
-while getopts :p: flag
+while getopts :l:p: flag
 do
     case "${flag}" in
+        l) library_name=${OPTARG};;
         p) print_format=${OPTARG};;        
         \?) echo "invalid option: -$OPTARG."
             usage
@@ -58,10 +62,19 @@ if ! [[ "$print_format" =~ ^(trie|rows|both|none)$ ]]; then
     print_format='trie'
 fi
 
+# library_name all by default
+if [ "$library_name" == "" ]; then 
+    echo "defaulting library name to all"
+    library_name='all'
+fi
+
+if ! [[ "$library_name" =~ ^(jax|pytorch|tensorflow|all)$ ]]; then
+    echo "option $library_name is not in the list, defaulting to all"
+    library_name='all'
+fi
+
 (cd $framework_location;
 
- python stats.py 'jax' $print_format
- python stats.py 'pytorch' $print_format
- python stats.py 'tensorflow' $print_format
+ python stats.py $library_name $print_format
 
 )
