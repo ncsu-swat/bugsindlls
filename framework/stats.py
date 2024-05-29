@@ -77,7 +77,7 @@ def process_file(libname, print_fmt):
                 
                 if row["Buggy File(s)"] > "":
                     for file in row["Buggy File(s)"].split(","):
-                        file = file.strip()
+                        file = file.strip().lower()
                         tr.insert(file.split("/"))
 
                         # c/cuda native/python
