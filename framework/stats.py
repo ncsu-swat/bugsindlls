@@ -1,6 +1,6 @@
 import csv
 import sys
-import os 
+import os
 
 ## Trie (Implementation taken from https://stackoverflow.com/questions/67769308/how-to-print-trie-in-tree-structure-in-python)
 
@@ -46,8 +46,9 @@ def process_file(libname, print_fmt):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     with open(f'{dir_path}/../bug_dataset_{libname}.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(filter(lambda row: not row.startswith(",Filter"), csv_file))
-        line_count = 0
-        first = True
+        
+        ##
+        bug_manifest_type = {}
         ##
         num_cpus = 0
         num_gpus = 0
@@ -59,6 +60,12 @@ def process_file(libname, print_fmt):
             if row["Reproduced"] == "Yes":
                 if (print_fmt == "rows") or (print_fmt == "both"):
                     print(f'\t{row["Issue #"]} {row["Device"]} {row["Buggy File(s)"]}')
+                
+                ## bug types
+                if row["Type"].strip() not in bug_manifest_type:
+                    bug_manifest_type[row["Type"].strip()] = 1
+                else:
+                    bug_manifest_type[row["Type"].strip()] += 1
 
                 ## cpu/gpu
                 device = row["Device"].strip()
@@ -85,6 +92,10 @@ def process_file(libname, print_fmt):
         print(f'  # C/CPP: {num_c} ({num_c*100/(num_c+num_py+num_cuda):.2f}%)')
         print(f'  # CUDA Native: {num_cuda} ({num_cuda*100/(num_c+num_py+num_cuda):.2f}%)')
         print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py+num_cuda):.2f}%)')
+        print('----------------------------')
+        print(f'  # Bug manifestation types:') 
+        for bug_m_type in bug_manifest_type.keys():
+            print('    ', bug_m_type, ':', bug_manifest_type[bug_m_type])
     
     if (print_fmt == "trie") or (print_fmt == "both"):
         print('----------------------------')
