@@ -28,4 +28,4 @@ def test_f():
     jax.print_environment_info()
     with pytest.raises(NotImplementedError) as e_info:
         shmap(jnp.arange(64).reshape((8, 8)))
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

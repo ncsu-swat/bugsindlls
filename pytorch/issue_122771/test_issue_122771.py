@@ -22,4 +22,4 @@ def test_f():
   with pytest.raises(torch._dynamo.exc.Unsupported) as e_info:  
     output = comp_model(input)
 
-  print(e_info.value)
+  print(f'{e_info.type.__name__}: {e_info.value}')

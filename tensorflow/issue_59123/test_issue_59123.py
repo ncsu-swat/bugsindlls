@@ -23,4 +23,4 @@ def test_f():
             file_random_seed=file_random_seed,
             compression_type=compression_type
         )
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

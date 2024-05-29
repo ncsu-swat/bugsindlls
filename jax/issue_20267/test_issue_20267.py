@@ -14,5 +14,5 @@ def test_f():
     jax.print_environment_info()
     with pytest.raises(IndexError) as e_info:
         jax.grad(f)(1.)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')
     # IndexError: list index out of range

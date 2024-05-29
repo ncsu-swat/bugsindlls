@@ -16,4 +16,4 @@ def test_f():
     with pytest.raises(ValueError) as e_info:
         x = jax.pmap(lambda x: x, in_axes=0, out_axes=None)(jnp.arange(jax.device_count()))
         jnp.array(x) # ValueError as pmap must have at least one non-None value in in_axes
-    print(e_info)
+    print(f'{e_info.type.__name__}: {e_info.value}')

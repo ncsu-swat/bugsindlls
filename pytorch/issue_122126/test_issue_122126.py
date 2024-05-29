@@ -17,4 +17,4 @@ def test_f():
         S1 = N - S0
 
         f(torch.tensor([S0, S1]), torch.randn(N))
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')
