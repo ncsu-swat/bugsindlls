@@ -13,4 +13,4 @@ def test_f():
 
     with pytest.raises(TypeError) as e_info:
         f([1, 2])
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

@@ -32,4 +32,4 @@ def test_f():
             loss = tf.reduce_sum(res)
         
         grads = tape.gradient(loss, x)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

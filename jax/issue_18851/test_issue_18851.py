@@ -58,4 +58,4 @@ def test_f():
     with pytest.raises(NotImplementedError) as e_info:
         f()
     
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

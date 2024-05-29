@@ -38,4 +38,4 @@ def test_f():
     model.compile(loss=BinaryCrossentropy())
     with pytest.raises(AttributeError) as e_info:
         model.fit(X_train, y_train, epochs=150) # bug appears this line
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

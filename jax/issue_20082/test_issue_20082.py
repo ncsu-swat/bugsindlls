@@ -34,4 +34,4 @@ def test_f():
     with pytest.raises(AssertionError) as e_info:
         jax.jit(jitted)()
 
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

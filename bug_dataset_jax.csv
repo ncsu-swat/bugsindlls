@@ -4,7 +4,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 20453,,Error: 'apple_common' value has no field or method 'multi_arch_split',No,Closed,,,,,,,,,Skipped: related to building,https://github.com/google/jax/issues/20453,
 20430,20528,jax.scipy.special.ndtri edge case behavior,Yes,Closed,CPU,,03/26/2024,0.4.23,No,jax/_src/scipy/special.py,_ndtri(),Incorrect output,,https://github.com/google/jax/issues/20430,https://github.com/google/jax/pull/20528
 20428,,pmap of expm causes kernel to die if matrix dimension >= 100,No,Closed,CPU,,,,,,,,TODO,https://github.com/google/jax/issues/20428,
-20392,,jit(pmap) on key arrays raises an error in pmap lowering,No,Closed,CPU,,,,,,,,TODO,https://github.com/google/jax/issues/20392,
+20392,21216,jit(pmap) on key arrays raises an error in pmap lowering,Yes,Closed,CPU,,,3/22/2024,0.4.28,No,jax/_src/interpreters/pxla.py,_hlo_shard(),Value Error,https://github.com/google/jax/issues/20392,https://github.com/google/jax/pull/21216																
 20267,20270,grad(jit(f)) can fail when an output which is a forwarded input precedes an output which is also a residual,Yes,Closed,CPU,,03/15/2024,0.4.25,No,jax/_src/pjit.py,_pjit_partial_eval(),Index error,,https://github.com/google/jax/issues/20267,https://github.com/google/jax/pull/20270
 20135,,MLIRError raised when using jax.lax.shift_right_logical in pallas,No,Closed,,,,,,,,,Could not reproduce: requires a TPU,https://github.com/google/jax/issues/20135,
 20082,20083,"jax.experimental.attrs: Spurious ""AssertionError: a jaxpr variable must be created only once per tracer""",Yes,Closed,CPU,,03/05/2024,0.4.25,No,jax/experimental/attrs.py,_ensure_tracked(),Internal exception,,https://github.com/google/jax/issues/20082,https://github.com/google/jax/pull/20083
@@ -48,3 +48,6 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 17972,,lax.clz and lax.population_count are not documented,No,Closed,,,,,,,,,Skipped: related to documentation,https://github.com/google/jax/issues/17972,
 17958,,lax.abs crashes on unsigned ints,No,Closed,CPU,,,,,,,,Skipped: api misuse,https://github.com/google/jax/issues/17958,
 17922,17925,random.dirichlet sometimes samples nan for sparse alpha,Yes,Closed,CPU,,10/04/2023,0.4.17,No,jax/_src/random.py,_gamma_one(),Incorrect output,,https://github.com/google/jax/issues/17922,https://github.com/google/jax/pull/17925
+17758,17768,jax.random.wrap_key_data(impl=key.impl) problems,Yes,Closed,CPU	,,09/25/2023,0.4.17,No,jax/_src/random.py,wrap_key_data() resolve_prng_impl(),Implementation Error,https://github.com/google/jax/issues/17758,https://github.com/google/jax/pull/17768
+17702,17721,jnp.asarray making copies in latest jax,Yes,Closed,CPU,,09/21/2023,0.4.16,No,Force PUSHED,Force Pushed,Memory Error,https://github.com/google/jax/issues/17702,https://github.com/google/jax/pull/17721
+17690,17696,Copying a pmap replicated array gives an error.,Yes,Closed,CPU,,09/21/2023,0.4.14,No,Force Pushed,Force Pushed,Value Error,,https://github.com/google/jax/issues/17690,https://github.com/google/jax/pull/17696
