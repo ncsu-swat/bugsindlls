@@ -1,12 +1,12 @@
 ,Filter:,is:issue is:closed created:2023-01-01..2024-03-27 label:type:bug linked:pr,Total Reproduced:,17,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
-64576,,Calling submodels in train_step throws ValueError when saving and loading error.,Yes,Open,CPU,,03/27/2024,2.15.0,No,,,Internal exception,,https://github.com/tensorflow/tensorflow/issues/64576,
+64576,,Calling submodels in train_step throws ValueError when saving and loading error.,Yes,Open,CPU,,03/27/2024,2.15.0,No,,,Value Error,,https://github.com/tensorflow/tensorflow/issues/64576,
 64548,,tf.cast does not preserve requested precision for Python types of float64/int64/complex128 etc,Yes,Closed,CPU,,03/26/2024,2.16.1,No,,,Incorrect output,,https://github.com/tensorflow/tensorflow/issues/64548,
 64536,,tensorflow=2.16 cant use GPU,No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64536,
 64507,,protobuf fatal error in Tensorflow 2.16.1 on macos M1,No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64507,
-64443,,TF 2.16 Incorrect model with TextVectorization in SavedModel format contains float input type instead of string type,Yes,Closed,CPU,,03/25/2024,2.16.1,No,,,Type error,More details: https://github.com/keras-team/keras/issues/19396,https://github.com/tensorflow/tensorflow/issues/64443,
+64443,,TF 2.16 Incorrect model with TextVectorization in SavedModel format contains float input type instead of string type,Yes,Closed,CPU,,03/25/2024,2.16.1,No,,,Value Error,More details: https://github.com/keras-team/keras/issues/19396,https://github.com/tensorflow/tensorflow/issues/64443,
 64415,,Saving a model defined by model subclassing can not be saved,No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64415,
-64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,CPU,,03/25/2024,2.16.1,No,,,Type error,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
+64393,,ValueError occurred when building cascaded model with loaded sub-model,Yes,Closed,CPU,,03/25/2024,2.16.1,No,,,Value Error,More details: https://github.com/keras-team/keras/issues/19374,https://github.com/tensorflow/tensorflow/issues/64393,
 64392,19388,CategoryEncoding layer lacks consideration of 0-dimension inputs,Yes,Closed,CPU,,03/25/2024,2.16.1,No,,,Inconsistent output,PR in Keras,https://github.com/tensorflow/tensorflow/issues/64392,https://github.com/keras-team/keras/pull/19388
 64284,,"Allocating all memory, CUDA OOM",No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64284,
 64273,,tflite converter crashes with version 2.16.1,No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64273,

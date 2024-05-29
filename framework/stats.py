@@ -62,10 +62,11 @@ def process_file(libname, print_fmt):
                     print(f'\t{row["Issue #"]} {row["Device"]} {row["Buggy File(s)"]}')
                 
                 ## bug types
-                if row["Type"].strip() not in bug_manifest_type:
-                    bug_manifest_type[row["Type"].strip()] = 1
+                bug_m_type = row["Type"].strip().lower()
+                if bug_m_type not in bug_manifest_type:
+                    bug_manifest_type[bug_m_type] = 1
                 else:
-                    bug_manifest_type[row["Type"].strip()] += 1
+                    bug_manifest_type[bug_m_type] += 1
 
                 ## cpu/gpu
                 device = row["Device"].strip()
@@ -93,9 +94,10 @@ def process_file(libname, print_fmt):
         print(f'  # CUDA Native: {num_cuda} ({num_cuda*100/(num_c+num_py+num_cuda):.2f}%)')
         print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py+num_cuda):.2f}%)')
         print('----------------------------')
-        print(f'  # Bug manifestation types:') 
+        print(f'  # Bug manifestation types:')
+        bug_manifest_type = dict(sorted(bug_manifest_type.items(), key=lambda item: item[1], reverse=True)) # sort by number of occurance
         for bug_m_type in bug_manifest_type.keys():
-            print('    ', bug_m_type, ':', bug_manifest_type[bug_m_type])
+            print(f'    {bug_m_type}: {bug_manifest_type[bug_m_type]}')
     
     if (print_fmt == "trie") or (print_fmt == "both"):
         print('----------------------------')
