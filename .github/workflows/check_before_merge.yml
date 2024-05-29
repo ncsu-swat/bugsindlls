@@ -1,4 +1,4 @@
-name: dnnbugs
+name: Run on pull request
 
 on:
   pull_request:
