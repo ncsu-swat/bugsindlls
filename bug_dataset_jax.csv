@@ -48,6 +48,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 17972,,lax.clz and lax.population_count are not documented,No,Closed,,,,,,,,Skipped: related to documentation,https://github.com/google/jax/issues/17972,
 17958,,lax.abs crashes on unsigned ints,No,Closed,CPU,,,,,,,Skipped: api misuse,https://github.com/google/jax/issues/17958,
 17922,17925,random.dirichlet sometimes samples nan for sparse alpha,Yes,Closed,CPU,,10/04/2023,0.4.17,No,jax/_src/random.py,_gamma_one(),,https://github.com/google/jax/issues/17922,https://github.com/google/jax/pull/17925
+17761,17766,jax.random.key(0).itemsize crashes,Yes,Closed,CPU,,09/25/2023,0.4.16,No,jax/_src/prng.py,itemsize(),Not Implemented Error,,https://github.com/google/jax/issues/17761,https://github.com/google/jax/pull/17766
 17758,17768,jax.random.wrap_key_data(impl=key.impl) problems,Yes,Closed,CPU	,,09/25/2023,0.4.17,No,jax/_src/random.py,wrap_key_data() resolve_prng_impl(),Implementation Error,https://github.com/google/jax/issues/17758,https://github.com/google/jax/pull/17768
 17702,17721,jnp.asarray making copies in latest jax,Yes,Closed,CPU,,09/21/2023,0.4.16,No,Force PUSHED,Force Pushed,Memory Error,https://github.com/google/jax/issues/17702,https://github.com/google/jax/pull/17721
 17690,17696,Copying a pmap replicated array gives an error.,Yes,Closed,CPU,,09/21/2023,0.4.14,No,Force Pushed,Force Pushed,Value Error,,https://github.com/google/jax/issues/17690,https://github.com/google/jax/pull/17696
