@@ -39,7 +39,7 @@ jobs:
           num_count=$(echo "$issueid" | wc -l)
           if [ "$num_count" -ne 1 ]; then 
             echo "Could not find issue id. Ignore if not a bug reproduction PR."
-          elif [ "$libname" =~ ^(jax|pytorch|tensorflow)$ ]; then 
+          elif [[ "$libname" =~ ^(jax|pytorch|tensorflow)$ ]]; then 
             echo "Could not find library name. Ignore if not a bug reproduction PR."
           else 
             run-test -l $libname -i $issueid
