@@ -23,5 +23,5 @@ def test_f():
     expected_increase = memory_np - baseline_memory  
     actual_increase = memory_jax - memory_np
     
-    assert actual_increase > 0 # should not increase by same amount, but increases more
+    assert actual_increase > 0 # should not increase
 
