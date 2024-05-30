@@ -46,6 +46,6 @@ jobs:
             returncode=$?
             if [ $returncode -ne 0 ] || [ $returncode -ne 2 ]; then
                 echo "Test did not pass. Make sure the pull request follows the standard format and the reproduction script is correct."
+                exit $returncode
             fi
-            exit $returncode
           fi
