@@ -12,4 +12,4 @@ def test_f():
     
     with pytest.raises(IndexError) as e_info:
         x[jnp.newaxis, mask] #boolean index did not match shape of indexed array in index 1: got (2,), expected (3,)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

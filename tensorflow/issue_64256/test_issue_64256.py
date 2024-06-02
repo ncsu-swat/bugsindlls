@@ -24,10 +24,10 @@ def test_f():
         y = tf.constant(np.random.randint(-50, 50, ()), dtype=dtype)
         with pytest.raises(NotFoundError) as e_info:
             out = tf.raw_ops.ApproximateEqual(x=x,y=y)
-        print(e_info.value)
+        print(f'{e_info.type.__name__}: {e_info.value}')
 
     for dtype in dtype_list_erfinv_not_found_error:
         x = tf.constant(np.random.randint(-50, 50, ()), dtype=dtype)
         with pytest.raises(NotFoundError) as e_info:
             out = tf.raw_ops.Erfinv(x=x)
-        print(e_info.value)
+        print(f'{e_info.type.__name__}: {e_info.value}')

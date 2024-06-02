@@ -42,4 +42,4 @@ def test_f():
             out_values_type=out_values_type,
             out_row_splits_type=out_row_splits_type
         )
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

@@ -27,4 +27,4 @@ def test_f():
 
     with pytest.raises(ValueError) as e_info:
         model = create_cascaded_model(loaded_child_model)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

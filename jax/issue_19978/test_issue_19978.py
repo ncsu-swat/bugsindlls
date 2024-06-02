@@ -27,4 +27,4 @@ def test_f():
         s = jnp.ones((2,3,4))
         vmap_fun = jax.vmap(my_jax_fun, in_axes=1, out_axes=1)
         vmap_fun(s)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')
