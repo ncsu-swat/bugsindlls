@@ -19,8 +19,7 @@ def test_f():
     memory_jax = process.memory_info().rss / 1e9  # 1.7 GB
 
     tolerance = 0.1
-
-    expected_increase = memory_np - baseline_memory  
+    
     actual_increase = memory_jax - memory_np
     
     assert actual_increase > 0 # should not increase
