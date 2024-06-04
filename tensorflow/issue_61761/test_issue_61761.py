@@ -11,4 +11,4 @@ def test_f():
     x = tf.constant(np.ones((5, 6)), dtype=tf.qint8)
     with pytest.raises(NotFoundError) as e_info:
         enter = tf.raw_ops.Enter(data=x, frame_name="test", is_constant=True)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

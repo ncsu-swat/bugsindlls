@@ -12,4 +12,4 @@ def test_f():
     # The value shouldn't be nan
     with pytest.raises(TypeError) as e_info:
         f(1.0)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

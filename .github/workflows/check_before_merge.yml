@@ -1,0 +1,51 @@
+name: Run on pull request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: dnnbugs-build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Setup
+        run: |
+          PWD=$(pwd)
+          echo "$PWD/framework" >> $GITHUB_PATH
+      
+      - name: Clear pip cache
+        run: 
+          pip cache purge
+
+      - name: Run single test
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          issueid=$(echo "$TITLE" | awk '{for (i=1; i<=NF; i++) if ($i ~ /^[0-9]+$/) print $i}')
+          libname=$(echo "$TITLE" | awk -F ' - ' '{print $2}')
+          num_count=$(echo "$issueid" | wc -l)
+          if [ "$num_count" -ne 1 ]; then
+            echo "Could not find issue id. Ignore if not a bug reproduction PR."
+          elif ! [[ "$libname" =~ ^(jax|pytorch|tensorflow)$ ]]; then
+            echo "Could not find library name. Ignore if not a bug reproduction PR."
+          else
+            run-test -l $libname -i $issueid
+            returncode=$?
+            if [ $returncode -ne 0 ] || [ $returncode -ne 2 ]; then
+                echo "Test did not pass. Make sure the pull request follows the standard format and the reproduction script is correct."
+                exit $returncode
+            fi
+          fi

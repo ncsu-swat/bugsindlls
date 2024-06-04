@@ -10,4 +10,4 @@ def test_f():
     with pytest.raises(ValueError) as e_info:
         jax.random.wrap_key_data(jax.random.key_data(b), impl=b.impl)
     
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

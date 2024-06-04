@@ -28,4 +28,4 @@ def test_f():
     )
     with pytest.raises(RuntimeError) as e_info:
         x = torch.matmul(samples2, sdxl_latent_rgb_factors)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

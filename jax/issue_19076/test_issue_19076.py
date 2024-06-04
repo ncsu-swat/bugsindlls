@@ -19,4 +19,4 @@ def test_f():
         jtu.check_grads(jnp.linalg.det, (x,), order=1)
 
     
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

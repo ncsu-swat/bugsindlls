@@ -15,4 +15,4 @@ def test_f():
     with pytest.raises(AssertionError) as e_info:
         assert not jnp.isnan(jnp.min(test.astype(jnp.float8_e4m3fn)))
         assert not jnp.isnan(jnp.max(test.astype(jnp.float8_e4m3fn)))
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

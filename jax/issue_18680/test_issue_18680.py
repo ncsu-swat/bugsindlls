@@ -27,4 +27,4 @@ def test_f():
         print('Jax issue no.', issue_no)
         jax.print_environment_info()
         f(x, xp)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

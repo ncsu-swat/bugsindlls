@@ -32,4 +32,4 @@ def test_f():
     with pytest.raises(ValueError) as e_info:
         jax.jit(pmap_batched_fn)(key)
     
-    print(e_info)
+    print(f'{e_info.type.__name__}: {e_info.value}')

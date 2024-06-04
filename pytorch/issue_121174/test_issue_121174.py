@@ -56,4 +56,4 @@ def test_f():
 
         with pytest.raises(AssertionError) as e_info:
             torch.testing.assert_close(func(x.clone()), func1(x.clone()))
-        print(e_info.value)
+        print(f'{e_info.type.__name__}: {e_info.value}')

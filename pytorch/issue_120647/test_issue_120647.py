@@ -13,4 +13,4 @@ def test_f():
 
     with pytest.raises(torch._dynamo.exc.InternalTorchDynamoError) as e_info:
         print(f(torch.rand(3), "print('Hello World')"))
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

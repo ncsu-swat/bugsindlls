@@ -22,4 +22,4 @@ def test_f():
 
     with pytest.raises(RuntimeError) as e_info:
         output = torch.fake_quantize_per_channel_affine(input_data, torch.from_numpy(scale), zero_point, axis, quant_min, quant_max)
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

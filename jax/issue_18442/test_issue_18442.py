@@ -26,4 +26,4 @@ def test_f():
     with pytest.raises(ValueError) as e_info:
         grad(fixed_point_using_while_of_theta)(3.0)
     
-    print(e_info.value)
+    print(f'{e_info.type.__name__}: {e_info.value}')

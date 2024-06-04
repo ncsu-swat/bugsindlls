@@ -1,4 +1,4 @@
-name: dnnbugs
+name: Run all tests
 
 on:
   workflow_dispatch:
