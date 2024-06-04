@@ -22,5 +22,5 @@ def test_f():
     
     actual_increase = memory_jax - memory_np
     
-    assert actual_increase > 0 # should not increase
+    assert actual_increase > 0 # memory should not increase
 
