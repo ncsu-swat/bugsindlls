@@ -25,6 +25,4 @@ def test_f():
     with pytest.raises(jax.errors.TracerBoolConversionError) as e_info:
         jit(lambda _: m_sparse[0])(None) # Throws TracerBoolConversionError
 
-    print(e_info.value)
-
-test_f()
+    print(f'{e_info.type.__name__}: {e_info.value}')
