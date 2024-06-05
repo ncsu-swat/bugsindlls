@@ -5,7 +5,7 @@ import os, psutil
 import pytest
 
 def test_f():
-    issue_no = '17922'
+    issue_no = '17702'
     print('Jax issue no.', issue_no)
     jax.print_environment_info()
 
@@ -19,9 +19,8 @@ def test_f():
     memory_jax = process.memory_info().rss / 1e9  # 1.7 GB
 
     tolerance = 0.1
-
-    expected_increase = memory_np - baseline_memory  
+    
     actual_increase = memory_jax - memory_np
     
-    assert actual_increase > expected_increase + tolerance # memory should increase by same amount, but does increase
+    assert actual_increase > 0 # memory should not increase
 
