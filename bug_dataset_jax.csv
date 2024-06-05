@@ -58,4 +58,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 17690,17696,Copying a pmap replicated array gives an error.,Yes,Closed,CPU,,09/21/2023,0.4.14,No,Force Pushed,Force Pushed,Value Error,,https://github.com/google/jax/issues/17690,https://github.com/google/jax/pull/17696
 17664,,Tfrt logging before absl::InitilalizeLog(),No,Closed,,,,,,,,,Skipped: related to logging,https://github.com/google/jax/issues/17664,
 17497,,JAX uses the first CUDA libraries found in LD_LIBRARY_PATH instead of the bundled CUDA libraries installed by pip,No,Closed,,,,,,,,,Skipped: related to installtion,https://github.com/google/jax/issues/17497,
-17448,,BCOO matrix shape behaves differently than dense matrices,No,Closed,,,,,,,,,TODO,https://github.com/google/jax/issues/17448,
+17448,18714,BCOO matrix shape behaves differently than dense matrices,Yes,Closed,CPU,,09/05/2023,0.4.14,No,jax/experimental/sparse/_base.py,__init__(),Internal Exception,https://github.com/google/jax/issues/17448,https://github.com/google/jax/pull/18714																
