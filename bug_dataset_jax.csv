@@ -1,7 +1,9 @@
 ,Filter:,is:issue is:closed created:2023-09-01..2024-03-27 label:bug linked:pr ,Total Reproduced:,27,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
 20864,20884,Unbound axis names within scan within custom partitioning,Yes,Open,CPU,,04/22/2024,0.4.26,No,jax/experimental/custom_partitioning.py,def _custom_partitioning_partition(),Internal exception,,https://github.com/google/jax/issues/20864,https://github.com/google/jax/pull/20884																
+20856,,jax.nn.softmax is inconsistent under jax.jit,Yes,Open,CPU,,04/21/2024,0.4.26,No,,,Incorrect output,No PR found,https://github.com/google/jax/issues/20856,
 20624,20637,Tracer's imag method returns float; crashes with the Array API,Yes,Open,CPU,,08/04/2024,0.4.26,No,"jax/experimental/array_api/_data_type_functions.py, jax/experimental/array_api/_elementwise_functions.py","result_type(), _promote_dtypes()",Attribute Error,,https://github.com/google/jax/issues/20624,https://github.com/google/jax/pull/20637
+20620,130,Arrays having dtype float0 are broken with the Array API,Yes,Open,CPU,,07/04/2024,0.4.25,No,array_api_compat/common/_helpers.py,is_numpy_array(),Incorrect ouput,,https://github.com/google/jax/issues/20620,https://github.com/data-apis/array-api-compat/pull/130																
 20455,,Install failed when using pip for JAX and CUDA,No,Closed,,,,,,,,,Skipped: related to installation,https://github.com/google/jax/issues/20455,
 20453,,Error: 'apple_common' value has no field or method 'multi_arch_split',No,Closed,,,,,,,,,Skipped: related to building,https://github.com/google/jax/issues/20453,
 20430,20528,jax.scipy.special.ndtri edge case behavior,Yes,Closed,CPU,,03/26/2024,0.4.23,No,jax/_src/scipy/special.py,_ndtri(),Incorrect output,,https://github.com/google/jax/issues/20430,https://github.com/google/jax/pull/20528
