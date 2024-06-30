@@ -5,6 +5,10 @@ from scipy.special import sph_harm
 import pytest
 
 def test_f():
+    issue_no = '20624'
+    print('Jax issue no.', issue_no)
+    jax.print_environment_info()
+
     # Generate 200 3D points
     seed = 23
     key = jax.random.PRNGKey(seed)
