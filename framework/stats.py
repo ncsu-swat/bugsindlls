@@ -38,7 +38,7 @@ class Trie(object):
     
 #####################################
 
-def process_file(libname, print_fmt):
+def process_file(libname, print_fmt, total_bugs):
     tr = Trie()
     print('----------------------------')
     print(libname)
@@ -58,6 +58,7 @@ def process_file(libname, print_fmt):
         num_cuda = 0  
         for row in csv_reader:
             if row["Reproduced"] == "Yes":
+                total_bugs += 1
                 if (print_fmt == "rows") or (print_fmt == "both"):
                     print(f'\t{row["Issue #"]} {row["Device"]} {row["Buggy File(s)"]}')
                 
@@ -103,6 +104,8 @@ def process_file(libname, print_fmt):
         print('----------------------------')
         print(tr)             
         print('\n----------------------------\n')
+    
+    return total_bugs
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -117,8 +120,11 @@ if __name__ == "__main__":
         print("Printing in trie format by default")
         sys.argv.append("trie")
     
+    total_bugs = 0
     if sys.argv[1] == 'all':
         for libname in ['jax', 'pytorch', 'tensorflow']:
-            process_file(libname, sys.argv[2])
+            total_bugs = process_file(libname, sys.argv[2], total_bugs)
     else:
-        process_file(sys.argv[1], sys.argv[2])
+        total_bugs = process_file(sys.argv[1], sys.argv[2], total_bugs)
+    
+    print(f"\nTotal bugs: {total_bugs}")
