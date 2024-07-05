@@ -10,7 +10,7 @@ def test_f():
     n = 5
     x = jnp.linspace(-1, 10, 1000)
     xxf = jax.scipy.stats.binom.pmf(k=x, n=n, p=p)
-    outside_range = (x < 0) | (x > n)
+    outside_range = (x < 0) | (x >= n+1)
     with pytest.raises(AssertionError) as e_info:
         assert jnp.all(xxf[outside_range] == 0), "PMF is not zero outside of its range"
     print(f'{e_info.type.__name__}: {e_info.value}')
