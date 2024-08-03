@@ -52,17 +52,9 @@ def test_f():
     with Mesh(jax.devices(backend='cpu'), axis_names=('x',)) as mesh:
         array = jnp.ones([4, 4])
         assert int(my_func(array)) == 16
-        array = jax.device_put(array, NamedSharding(mesh, P(None, 'x')))
-        
+        array = jax.device_put(array, NamedSharding(mesh, P(None, 'x')))        
         
         with pytest.raises(jaxlib.xla_extension.XlaRuntimeError) as e_info:
             assert int(my_func(array)) == 16
 
         print(f'{e_info.type.__name__}: {e_info.value}')
-
-
-    
-
-
-
-
