@@ -1,6 +1,7 @@
 ,Filter:,is:issue is:closed created:2023-01-01..2024-03-27 label:type:bug linked:pr,Total Reproduced:,17,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
-65629,65729,Check failed in tf.raw_ops.CropAndResize when boxes and box_ind are empty.,Yes,Closed,CPU,,04/13/2024,2.15.0,No,tensorflow/core/kernels/image/crop_and_resize_op.cc,ComputeAsync(),Crash,,https://github.com/tensorflow/tensorflow/issues/65629,https://github.com/tensorflow/tensorflow/pull/65726																
+65869,65936,Check failed in tf.raw_ops.GatherV2 when the value of axis is too large.,Yes,Closed,CPU,,04/16/2025,2.16.1,No,tensorflow/core/kernels/gather_op.cc,Compute(),Crash,,https://github.com/tensorflow/tensorflow/issues/65869,https://github.com/tensorflow/tensorflow/pull/65936																
+65629,65729,Check failed in tf.raw_ops.CropAndResize when boxes and box_ind are empty.,Yes,Closed,CPU,,04/13/2024,2.15.0,No,tensorflow/core/kernels/image/crop_and_resize_op.cc,ComputeAsync(),Crash,,https://github.com/tensorflow/tensorflow/issues/65629,https://github.com/tensorflow/tensorflow/pull/65726
 64576,,Calling submodels in train_step throws ValueError when saving and loading error.,Yes,Open,CPU,,03/27/2024,2.15.0,No,,,Value Error,,https://github.com/tensorflow/tensorflow/issues/64576,
 64548,,tf.cast does not preserve requested precision for Python types of float64/int64/complex128 etc,Yes,Closed,CPU,,03/26/2024,2.16.1,No,,,Incorrect output,,https://github.com/tensorflow/tensorflow/issues/64548,
 64536,,tensorflow=2.16 cant use GPU,No,Closed,,,,,,,,,Skipped: incorrect usage,https://github.com/tensorflow/tensorflow/issues/64536,
