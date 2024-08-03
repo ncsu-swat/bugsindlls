@@ -11,5 +11,3 @@ def test_f():
         assert err.returncode == SIGABRT_PROCESS_RETURNCODE
     else:
         assert False
-
-test_f()
