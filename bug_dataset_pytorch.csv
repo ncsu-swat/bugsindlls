@@ -21,7 +21,6 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 130087,,Calling id function on model param causes error or graph break for compile,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130087,
 129927,,Error when exporting a module without input,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129927,
 129742,129743,hasattr tracing for torch tensor is unsupported,Yes,Closed,CPU,,06/28/2024,2.3.1,No,torch/_dynamo/variables/tensor.py,call_hasattr(),Internal Exception,,https://github.com/pytorch/pytorch/issues/129742,https://github.com/pytorch/pytorch/pull/129743
-129742,,hasattr tracing for torch tensor is unsupported,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129742,
 128557,,MaskedTensor do not support _is_any_true`,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128557,
 128429,,"taking upper triangular of ""-inf"" matrix results in nan values",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128429,
 128202,,Wrong result for Inplace tensor update on transpose for some devices with torch 2.3.0,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128202,
