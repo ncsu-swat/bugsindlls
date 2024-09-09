@@ -1,6 +1,7 @@
 ,Filter:,is:issue is:closed created:2024-02-25..2024-03-27 linked:pr ,Total Reproduced:,23,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
 120188,120136,[aot autograd] partitioner error when an input is mutated inplace and another input is a tensor subclass,Yes,Closed,CPU,,02/19/2024,2.3.0.dev20240215,Yes,torch/_functorch/_aot_autograd/collect_metadata_analysis.py,"inner(), view_avoid_dupes_with_primals()",Assertion Error,,https://github.com/pytorch/pytorch/issues/120188,https://github.com/pytorch/pytorch/pull/120136
+120387,120390,Dynamo guard failure if calling torch.jit.script_if_tracing wrapped function with default arguments,Yes,Closed,CPU,,02/22/2024,2.2.0,No,torch/_dynamo/utils.py,"unwrap_if_wrapper(), unwrap_with_attr_name_if_wrapper()",Internal Exception,,https://github.com/pytorch/pytorch/issues/120387,https://github.com/pytorch/pytorch/pull/120390
 122594,,There is a comment error in test_transformers.py,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122594,
 122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,Closed,,,,,,,,,"Skipped: bug describes a warning, not an exception",https://github.com/pytorch/pytorch/issues/122521,
 122445,,allow storage to be created for ort,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122445,
