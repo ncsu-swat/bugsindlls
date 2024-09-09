@@ -80,3 +80,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 121258,,Integrate with ONNX 1.16.0 release branch,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121258,
 121671,,empty_like on sparse compressed tensors fails when specifying different device,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121671,
 122056,,"Error ""module compiled against ABI version"" when using a device on MacBook Pro M2 with MacOS Sonoma 14.4",No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122056,
+123288,123368,Dynamo full graph export fails on 'print' and 'logger',Yes,Closed,CPU,,04/04/2024,2.2.2,No,torch/onnx/_internal/exporter.py,export(),Internal Exception,,https://github.com/pytorch/pytorch/issues/123288,https://github.com/pytorch/pytorch/pull/123368
