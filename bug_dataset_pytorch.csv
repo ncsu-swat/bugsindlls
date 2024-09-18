@@ -1,45 +1,93 @@
-,Filter:,is:issue is:closed created:2024-02-25..2024-03-27 linked:pr ,Total Reproduced:,23,,,,,,,,,,,
+,Filter:,is:issue is:closed created:2024-02-25..2024-03-27 linked:pr ,Total Reproduced:,31,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
-120188,120136,[aot autograd] partitioner error when an input is mutated inplace and another input is a tensor subclass,Yes,Closed,CPU,,02/19/2024,2.3.0.dev20240215,Yes,torch/_functorch/_aot_autograd/collect_metadata_analysis.py,"inner(), view_avoid_dupes_with_primals()",Assertion Error,,https://github.com/pytorch/pytorch/issues/120188,https://github.com/pytorch/pytorch/pull/120136
-120387,120390,Dynamo guard failure if calling torch.jit.script_if_tracing wrapped function with default arguments,Yes,Closed,CPU,,02/22/2024,2.2.0,No,torch/_dynamo/utils.py,"unwrap_if_wrapper(), unwrap_with_attr_name_if_wrapper()",Internal Exception,,https://github.com/pytorch/pytorch/issues/120387,https://github.com/pytorch/pytorch/pull/120390
+133671,,Scaled_dot_product_attention CPU flash_attention backend backward result is not the same as math backend,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/133671,
+133267,,torch.ldexp incorrectly returns infinity for float64 inputs larger than float32 max,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/133267,
+133263,,frexp_cuda not implemented for BFloat16,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/133263,
+133176,,[torch.fx] _FunctionalizationMetadataProp.propagate method can't use non-tensor args,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/133176,
+133163,,torch.load with weights_only=True does not allow bytes or bytearray,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/133163,
+132761,,lobpcg doesn't support complex,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/132761,
+131944,,Inconsistency between torch.get_device and torch.Tensor.get_device with __torch_function__,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/131944,
+131292,,Poor scaling of torch.masked.mean,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/131292,
+131025,,[torch.compile][torch.fx] CodeGen is not able to delete unused value if the value doesn't have users,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/131025,
+130930,,"For repeat(), sizes argument doesn't work while repeats argument works against the doc",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130930,
+130653,,torch.autograd.Function does not support kwarg-only kwargs for vmap,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130653,
+130613,,torch.Generator.set_state() does not correctly restore state on MPS,No,Closed,GPU,MPS,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130613,
+130557,,Dynamo set impl. does not support intersection(...) method,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130557,
+130554,,torch dynamo does not support defaultdict(...). ,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130554,
+130394,,[Inductor] Incorrect strides for function containing torch.empty_strided. Causes output to crash. ,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130394,
+130379,,[export] Error when there exists a constant tensor w/ set grad,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130379,
+130225,,vmapping index_put_ doesn't handle scalar values properly (results in device mismatch error). ,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130225,
+130101,,compiling sort throws error: 'tt.broadcast' op requires the same encoding for all operands and results,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130101,
+130087,,Calling id function on model param causes error or graph break for compile,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130087,
+129927,,Error when exporting a module without input,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129927,
+129742,129743,hasattr tracing for torch tensor is unsupported,Yes,Closed,CPU,,06/28/2024,2.3.1,No,torch/_dynamo/variables/tensor.py,call_hasattr(),Internal Exception,,https://github.com/pytorch/pytorch/issues/129742,https://github.com/pytorch/pytorch/pull/129743
+129742,,hasattr tracing for torch tensor is unsupported,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129742,
+128557,,MaskedTensor do not support _is_any_true`,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128557,
+128429,,"taking upper triangular of ""-inf"" matrix results in nan values",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128429,
+128202,,Wrong result for Inplace tensor update on transpose for some devices with torch 2.3.0,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128202,
+127637,,"SyntaxError: unterminated string literal (detected at line 1) (<unknown>, line 1) ",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/127637,
+125078,126878,torch.compile fails with jacfwd when multiplying/dividing float and tensor,Yes,Closed,CPU,,04/27/2024,2.4.0,No,torch/_dynamo/side_effects.py,"is_functorch_tensor(), prune_dead_object_new(),  _get_modified_vars()",Internal Exception,,https://github.com/pytorch/pytorch/issues/125078,https://github.com/pytorch/pytorch/pull/126878
+123288,123368,Dynamo full graph export fails on 'print' and 'logger',Yes,Closed,CPU,,04/04/2024,2.2.2,No,torch/onnx/_internal/exporter.py,export(),Internal Exception,,https://github.com/pytorch/pytorch/issues/123288,https://github.com/pytorch/pytorch/pull/123368
+122842,124765,torch.export.export doesn't capture input argument names from the module's forward(...) function.,Yes,Closed,CPU,,03/28/2024,2.4.0.dev20240324,Yes,torch/export/_trace.py,"_export(), forward()",Incorrect Output,,https://github.com/pytorch/pytorch/issues/122842,https://github.com/pytorch/pytorch/pull/124765
+122833,,[Profiler] Issues in alignment for ExecutionTrace: rf_id and Kineto: external id. ,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/122833,
+122807,,[c10d][NCCL] _coalescing_manager does not produce proper work handle,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/122807,
+122771,123033,torch.nn.ChannelShuffle graph break due to unsupported shape inference,Yes,Closed,CPU,,03/27/2024,2.4.0.dev20240326,Yes,torch/_meta_registrations.py,def meta_channel_shuffle(),Internal exception,,https://github.com/pytorch/pytorch/issues/122771,https://github.com/pytorch/pytorch/pull/123033
+122768,124273,[dynamo] Tracing triton kernel unexpectedly,Yes,Closed,GPU,CUDA,03/27/2024,2.2.0+cu121,No,torch/_dynamo/trace_rules.py,,Runtime Error,,https://github.com/pytorch/pytorch/issues/122768,https://github.com/pytorch/pytorch/pull/124273
+122705,123442,torch.compile is not usable on MacOS out of box,Yes,Closed,CPU,,03/26/2024,2.4.0.dev20240401,Yes,setup.py,_embed_libomp,Incorrect Output,,https://github.com/pytorch/pytorch/issues/122705,https://github.com/pytorch/pytorch/pull/123442
+122692,124927,"""torch._dynamo.exc.Unsupported: torch.* op returned non-Tensor bool call_method is_complex"" error",Yes,Closed,CPU,,03/26/2024,2.3.0.dev20240204,Yes,torch/_dynamo/variables/tensor.py,method_is_complex(),Runtime Error,,https://github.com/pytorch/pytorch/issues/122692,https://github.com/pytorch/pytorch/pull/124927
 122594,,There is a comment error in test_transformers.py,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122594,
 122521,,UserWarning when using Tensor Model Parallel libraries (megatron and fairscale),No,Closed,,,,,,,,,"Skipped: bug describes a warning, not an exception",https://github.com/pytorch/pytorch/issues/122521,
 122445,,allow storage to be created for ort,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/122445,
 122427,122590,MPS: Implement index_select() on complex value,Yes,Closed,GPU,Metal,03/22/2024,2.4.0.dev20240321,Yes,aten/src/ATen/native/mps/operations/Indexing.mm,index_select_out_mps,Runtime error,,https://github.com/pytorch/pytorch/issues/122427,https://github.com/pytorch/pytorch/pull/122590
+122422,,merge -i does not seem to work sometimes,No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122422,
 122407,,Mergebot should send a cleaner message when [no ci] message added to the PR commit,No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122407,
 122296,122298,torch compile item() cannot convert symbols to int error,Yes,Closed,GPU,CUDA,03/20/2024,2.4.0.dev20240317,Yes,"torch/_inductor/compile_fx.py,torch/_inductor/graph.py","fx_codegen_and_compile(),run_node()",Type error,,https://github.com/pytorch/pytorch/issues/122296,https://github.com/pytorch/pytorch/pull/122298
-122283,,[inductor][cpu] pyhpc_equation_of_state fp32 static shape default/cpp wrapper multiple thread performance test crashed,No,Closed,,,,,,,,,Skipped: generated based on test failure,https://github.com/pytorch/pytorch/issues/122283,
+122283,,[inductor][cpu] pyhpc_equation_of_state fp32 static shape default/cpp wrapper multiple thread performance test crashed,No,Closed,,,,,,,,,"Could not reproduce: generated based on test failure, also involves compilation of source code",https://github.com/pytorch/pytorch/issues/122283,
 122181,,[dort][dynamo_export] Wrong model for phi backward graph,No,Closed,,,,,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/122181,
 122166,,[ONNX] Dispatcher does not handle list correctly when the first element is None,No,Closed,,,,,,,,,Skipped: could not find code to reproduce bug,https://github.com/pytorch/pytorch/issues/122166,
 122126,122149,split_with_sizes with unbacked SymInt results in buffers that cannot be materialized for extern calls,Yes,Closed,CPU,,03/18/2024,2.4.0.dev20240320,Yes,"torch/_inductor/ir.py,torch/_inductor/lowering.py","SliceView.create(),slice_()",Internal exception,,https://github.com/pytorch/pytorch/issues/122126,https://github.com/pytorch/pytorch/pull/122149
 122085,122815,CUDA Being Initiated Early After Importing Certain Libraries on Nightly Build,Yes,Closed,GPU,CUDA,03/18/2024,2.4.0.dev20240317,Yes,torch/cuda/__init__.py,device_count(),Incorrect output,,https://github.com/pytorch/pytorch/issues/122085,https://github.com/pytorch/pytorch/pull/122815
+122056,,"Error ""module compiled against ABI version"" when using a device on MacBook Pro M2 with MacOS Sonoma 14.4",No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122056,
 122026,,Memory violation in chunk_cat_cuda_kernel in test_out__chunk_cat_cuda_float32 on A100 and H100,No,Closed,,,,,,,,,Skipped: mentions specific gpu models and internally discovered,https://github.com/pytorch/pytorch/issues/122026,
+122016,123385,[MPS] Regression from macOS 14.3 to 14.4 in PyTorch 2.2.0/2.2.1,Yes,Closed,GPU,,03/16/2024,2.2.1 (MacOS),No,aten/src/ATen/native/mps/operations/ConstantOps.mm,LookUpOrCreateCachedGraph,Incorrect Output,,https://github.com/pytorch/pytorch/issues/122016,https://github.com/pytorch/pytorch/pull/123385
 122008,,DISABLED test_hparams_string (__main__.TestTensorBoardSummary),No,Closed,,,,,,,,,Skipped: related to dependency mismatch,https://github.com/pytorch/pytorch/issues/122008,
 121986,,[ONNX] ONNX model has mismatching data type when Torch model and checkpoint dtype mismatches,No,Closed,,,,,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121986,
+121965,,scatter_reduce method do not support complex number multiplication on CUDA,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121965,
 121950,,DISABLED test_out__chunk_cat_cuda_float32 (__main__.TestCommonCUDA),No,Closed,,,,,,,,,Skipped: auto generated by bot based on test failure,https://github.com/pytorch/pytorch/issues/121950,
 121946,,DISABLED test_hparams_number (__main__.TestTensorBoardSummary),No,Closed,,,,,,,,,Skipped: generated based on test failure,https://github.com/pytorch/pytorch/issues/121946,
 121927,,DISABLED test_hparams_bool (__main__.TestTensorBoardSummary),No,Closed,,,,,,,,,Skipped: generated based on test failure,https://github.com/pytorch/pytorch/issues/121927,
+121861,,[Cudagraph Tree] Add Support for Mutated Inputs which come from a prior cudagraph pool,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121861,
+121831,,fresh_inductor_cache() does not work due to functools.lru_cache,No,Closed,,,,,,,,,Skipped: could not find code to reproduce bug,https://github.com/pytorch/pytorch/issues/121831,
+121799,,[DeviceMesh] Fix hash and eq not match,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121799,
 121798,,"what is the match numpy verison, can not build from source",No,Closed,,,,,,,,,Skipped: build related issues,https://github.com/pytorch/pytorch/issues/121798,
 121783,,The warning message in aten/src/ATen/native/transformers/sdp_utils_cpp.h::check_for_attn_mask is a bit confusing.,No,Closed,,,,,,,,,Skipped: found from source code,https://github.com/pytorch/pytorch/issues/121783,
 121770,,Typo On Torch.Sparse Page,No,Closed,,,,,,,,,Skipped: typo fixing on documentation,https://github.com/pytorch/pytorch/issues/121770,
+121725,121959,torch.logsumexp throws RuntimeError instead of reducing all dimensions when dim=None,Yes,Open,GPU,CUDA,03/12/2024,2.2.1+cu121,No,aten/src/ATen/native/ReduceOps.cpp,logsumexp_out_impl(),Runtime Error,,https://github.com/pytorch/pytorch/issues/121725,https://github.com/pytorch/pytorch/pull/121959
+121671,,empty_like on sparse compressed tensors fails when specifying different device,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121671,
 121654,,"[BE] De-dup run_subtests from common_dtensor.py, common_fsdp.py",No,Closed,,,,,,,,,Skipped: duplicate test removed,https://github.com/pytorch/pytorch/issues/121654,
 121649,,guard on tensor parallelism test examples,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121649,
 121647,,torch._int_mm on CPU,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121647,
 121593,,reduce_on_plateau_scheduler.h missing from optim.h in libtorch ?,No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/121593,
 121591,,Running lintrunner init under Python3.8 got error: No matching distribution found for torchfix==0.4.0,No,Closed,,,,,,,,,Skipped: related to dependencies,https://github.com/pytorch/pytorch/issues/121591,
 121583,123289,RuntimeError: Undefined type BFloat16 from matmul above certain sizes (maybe MPS only),Yes,Closed,GPU,Metal,03/09/2024,2.3.0.dev20240309,Yes,"aten/src/ATen/native/mps/OperationUtils.mm, aten/src/ATen/native/mps/operations/LinearAlgebra.mm","scalarToMetalTypeString(), dot_product(), compileLinalgOpLibrary()",Runtime error,,https://github.com/pytorch/pytorch/issues/121583,https://github.com/pytorch/pytorch/pull/123289
+121577,,Better error message and type checking in ChainedScheduler and SequentialLR,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121577,
 121558,,Investigate NaNs in FlashAttention,No,Closed,,,,,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121558,
 121507,,Make builds repeatable multiple times from same git checkout,No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/121507,
 121479,,device_resource_id is missing in FunctionEvent,No,Closed,,,,,,,,,Skipped: found from source code,https://github.com/pytorch/pytorch/issues/121479,
+121422,,ONNX export is unnecessarily slow (O(N^2)),No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121422,
 121320,121341,h2d non-blocking copy with type conversion doesn't respect stream semantics,Yes,Closed,GPU,CUDA,03/06/2024,2.3.0.dev20240310,Yes,aten/src/ATen/native/cuda/Copy.cu,copy_kernel_cuda(),Incorrect output,,https://github.com/pytorch/pytorch/issues/121320,https://github.com/pytorch/pytorch/pull/121341
 121300,,torch.set_default_dtype(d) outdated?,No,Closed,,,,,,,,,Skipped: related to documentation,https://github.com/pytorch/pytorch/issues/121300,
 121289,,cpu_fallback for aten::triu_indices on custom device crashed,No,Closed,,,,,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121289,
+121258,,Integrate with ONNX 1.16.0 release branch,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121258,
 121253,121953,[torch.compile][freezing] addmm results in a significant decrease in accuracy,Yes,Closed,GPU,CUDA,03/05/2024,2.3.0.dev20240301,Yes,torch/_inductor/fx_passes/mkldnn_fusion.py,_is_packable_linear(),Inconsistent output,,https://github.com/pytorch/pytorch/issues/121253,https://github.com/pytorch/pytorch/pull/121953
+121200,,Make 'torch._C._OutOfMemoryError' more genenral for other devices except CUDA.,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121200,
+121188,121906,Segmentation Fault in torch._C._nn.thnn_conv2d Due to Invalid Padding Argument,Yes,Closed,CPU,,03/05/2024,2.3.0.dev20240301,Yes,aten/src/ATen/native/ConvolutionMM2d.cpp,slow_conv2d_forward_out_cpu(),Crash,,https://github.com/pytorch/pytorch/issues/121188,https://github.com/pytorch/pytorch/pull/121906
 121174,122083,[torch.compile] fuse_attention returns inconsistent value for the model,Yes,Closed,CPU,,03/04/2024,2.4.0.dev20240318,Yes,torch/_inductor/lowering.py,sdpa_constraint(),Inconsistent output,,https://github.com/pytorch/pytorch/issues/121174,https://github.com/pytorch/pytorch/pull/122083
 121138,121156,Memory leak when attempting to turn ascii-encoded data from an hdf5 file into a torch tensor in a try-except block,Yes,Closed,CPU,,03/04/2024,1.12.1,No,torch/csrc/utils/tensor_numpy.cpp,tensor_from_numpy(),Memory leakage,,https://github.com/pytorch/pytorch/issues/121138,https://github.com/pytorch/pytorch/pull/121156
 121126,,The recorded step number in profiler is wrong,No,Closed,,,,,,,,,Could not reproduce,https://github.com/pytorch/pytorch/issues/121126,
 121100,,torch.onnx.dynamo_export complex number error,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121100,
 121093,121298,Segmentation Fault in torch._C._nn.replication_pad2d with Incorrect Inputs,Yes,Closed,GPU,CUDA,03/03/2024,2.3.0.dev20240220,Yes,aten/src/ATen/native/ReplicationPadding.cpp,"replication_pad1d(),replication_pad2d(),replication_pad3d()",Crash,,https://github.com/pytorch/pytorch/issues/121093,https://github.com/pytorch/pytorch/pull/121298
+121072,121324,Correctly handle F.interpolate upsample with amp,Yes,Closed,GPU,,03/02/2024,2.2.1+cu121,No,aten/src/ATen/autocast_mode.cpp,AT_FORALL_FP32(_),Incorrect Output,,https://github.com/pytorch/pytorch/issues/121072,https://github.com/pytorch/pytorch/pull/121324
 120998,121786,torch.compile fails with .view(dtype),Yes,Closed,GPU,CUDA,03/01/2024,2.1.2,No,torch/_inductor/lowering.py,to_dtype_bitcast(),Type error,,https://github.com/pytorch/pytorch/issues/120998,https://github.com/pytorch/pytorch/pull/121786
 120922,,DISABLED test_dispatch_meta_outplace_nn_functional_scaled_dot_product_attention_cuda_float32 (__main__.TestMetaCUDA),No,Closed,,,,,,,,,Skipped: disabled tests,https://github.com/pytorch/pytorch/issues/120922,
 120921,,DISABLED test_dispatch_symbolic_meta_outplace_all_strides_nn_functional_scaled_dot_product_attention_cuda_float32 (__main__.TestMetaCUDA),No,Closed,,,,,,,,,Skipped: disabled tests,https://github.com/pytorch/pytorch/issues/120921,
@@ -48,7 +96,7 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 120899,122785,Inconsistent Behavior of torch.clamp with NaN Values on MPS Device,Yes,Closed,GPU,Metal,02/29/2024,2.2.1,No,aten/src/ATen/native/mps/operations/TensorCompare.mm,clamp_mps_graph(),Inconsistent output,,https://github.com/pytorch/pytorch/issues/120899,https://github.com/pytorch/pytorch/pull/122785
 120889,,"Provide documentation for ""TORCHDYNAMO_EXTENDED_DEBUG""",No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/120889,
 120875,121803,The result of torch.all is inconsistent between CPU and GPU,Yes,Closed,GPU,CUDA,02/28/2024,2.2.0,No,"aten/src/ATen/native/Copy.cpp, c10/util/TypeCast.h","copy_impl(), apply()",Inconsistent output,,https://github.com/pytorch/pytorch/issues/120875,https://github.com/pytorch/pytorch/pull/121803
-120869,,[inductor][cpu] quantization QAT/PTQ accuracy test meets crash,No,Closed,CPU,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/120869,
+120869,,[inductor][cpu] quantization QAT/PTQ accuracy test meets crash,No,Closed,CPU,,,,,,,,Could not reproduce: bug reproduction script is no longer available,https://github.com/pytorch/pytorch/issues/120869,
 120810,,Scaled-Dot-Product-Attention Has Broadcastable Mask,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/120810,
 120803,120882,Floating Point Exception on Empty Input Tensor with torch.batch_norm_update_stats,Yes,Closed,CPU,,02/28/2024,torch-2.3.0.dev20240220,Yes,"aten/src/ATen/native/Normalization.cpp,aten/src/ATen/native/cuda/Normalization.cu",batch_norm_update_stats_cuda(),Crash,"Note: ""The issue is reproducible on Linux (Ubuntu), but not on the Mac M1."" - comment in issue",https://github.com/pytorch/pytorch/issues/120803,https://github.com/pytorch/pytorch/pull/120882
 120794,,prod() is broken on ROCM when used on tensors of int type on gfx908,No,Closed,,,,,,,,,Skipped: multiple AMD gpu of specific model required with complicated steps,https://github.com/pytorch/pytorch/issues/120794,
@@ -60,25 +108,28 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 120651,,"1 Dynamo test are failing with ""type object 'torch.return_types.max' has no attribute '_field_defaults'"".",No,Closed,,,,,,,,,Skipped: auto generated by bot based on test failure,https://github.com/pytorch/pytorch/issues/120651,
 120647,120909,"2 Dynamo test are failing with ""invalid syntax (<unknown"".",Yes,Closed,CPU,,02/27/2024,2.3.0.dev20240227,Yes,torch/_dynamo/guards.py,"EQUALS_MATCH(), CONSTANT_MATCH()",Internal exception,,https://github.com/pytorch/pytorch/issues/120647,https://github.com/pytorch/pytorch/pull/120909
 120646,,"5 Dynamo test are failing with ""No module named 'torch.inference_mode'"".",No,Closed,,,,,,,,,Skipped: auto generated by bot based on test failure,https://github.com/pytorch/pytorch/issues/120646,
-121188,121906,Segmentation Fault in torch._C._nn.thnn_conv2d Due to Invalid Padding Argument,Yes,Closed,CPU,,03/05/2024,2.3.0.dev20240301,Yes,aten/src/ATen/native/ConvolutionMM2d.cpp,slow_conv2d_forward_out_cpu(),Crash,,https://github.com/pytorch/pytorch/issues/121188,https://github.com/pytorch/pytorch/pull/121906
-121422,,ONNX export is unnecessarily slow (O(N^2)),No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121422,
-121799,,[DeviceMesh] Fix hash and eq not match,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121799,
-121965,,scatter_reduce method do not support complex number multiplication on CUDA,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121965,
-122842,124765,torch.export.export doesn't capture input argument names from the module's forward(...) function.,Yes,Closed,CPU,,03/28/2024,2.4.0.dev20240324,Yes,torch/export/_trace.py,"_export(), forward()",Incorrect Output,,https://github.com/pytorch/pytorch/issues/122842,https://github.com/pytorch/pytorch/pull/124765
-122692,124927,"""torch._dynamo.exc.Unsupported: torch.* op returned non-Tensor bool call_method is_complex"" error",Yes,Closed,CPU,,03/26/2024,2.3.0.dev20240204,Yes,torch/_dynamo/variables/tensor.py,method_is_complex(),Runtime Error,,https://github.com/pytorch/pytorch/issues/122692,https://github.com/pytorch/pytorch/pull/124927
-122768,,[dynamo] Tracing triton kernel unexpectedly,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/122768,
-121072,,Correctly handle F.interpolate upsample with amp,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121072,
-121861,,[Cudagraph Tree] Add Support for Mutated Inputs which come from a prior cudagraph pool,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121861,
-121577,,Better error message and type checking in ChainedScheduler and SequentialLR,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121577,
-121200,,Make 'torch._C._OutOfMemoryError' more genenral for other devices except CUDA.,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121200,
-122016,123385,[MPS] Regression from macOS 14.3 to 14.4 in PyTorch 2.2.0/2.2.1,Yes,Closed,GPU,,03/16/2024,2.2.1 (MacOS),No,aten/src/ATen/native/mps/operations/ConstantOps.mm,LookUpOrCreateCachedGraph,Incorrect Output,,https://github.com/pytorch/pytorch/issues/122016,https://github.com/pytorch/pytorch/pull/123385
-122771,123033,torch.nn.ChannelShuffle graph break due to unsupported shape inference,Yes,Closed,CPU,,03/27/2024,2.4.0.dev20240326,Yes,torch/_meta_registrations.py,def meta_channel_shuffle(),Internal exception,,https://github.com/pytorch/pytorch/issues/122771,https://github.com/pytorch/pytorch/pull/123033
-122833,,[Profiler] Issues in alignment for ExecutionTrace: rf_id and Kineto: external id. ,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/122833,
-122705,123442,torch.compile is not usable on MacOS out of box,Yes,Closed,CPU,,03/26/2024,2.4.0.dev20240401,Yes,setup.py,_embed_libomp,Incorrect Output,,https://github.com/pytorch/pytorch/issues/122705,https://github.com/pytorch/pytorch/pull/123442
-122422,,merge -i does not seem to work sometimes,No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122422,
-121831,,fresh_inductor_cache() does not work due to functools.lru_cache,No,Closed,,,,,,,,,Skipped: could not find code to reproduce bug,https://github.com/pytorch/pytorch/issues/121831,
-122807,,[c10d][NCCL] _coalescing_manager does not produce proper work handle,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/122807,
-121258,,Integrate with ONNX 1.16.0 release branch,No,Closed,,,,,,,,,Skipped: not a bug,https://github.com/pytorch/pytorch/issues/121258,
-121671,,empty_like on sparse compressed tensors fails when specifying different device,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/121671,
-122056,,"Error ""module compiled against ABI version"" when using a device on MacBook Pro M2 with MacOS Sonoma 14.4",No,Closed,,,,,,,,,Skipped: related to building,https://github.com/pytorch/pytorch/issues/122056,
-123288,123368,Dynamo full graph export fails on 'print' and 'logger',Yes,Closed,CPU,,04/04/2024,2.2.2,No,torch/onnx/_internal/exporter.py,export(),Internal Exception,,https://github.com/pytorch/pytorch/issues/123288,https://github.com/pytorch/pytorch/pull/123368
+120387,120390,Dynamo guard failure if calling torch.jit.script_if_tracing wrapped function with default arguments,Yes,Closed,CPU,,02/22/2024,2.2.0,No,torch/_dynamo/utils.py,"unwrap_if_wrapper(), unwrap_with_attr_name_if_wrapper()",Internal Exception,,https://github.com/pytorch/pytorch/issues/120387,https://github.com/pytorch/pytorch/pull/120390
+120188,120136,[aot autograd] partitioner error when an input is mutated inplace and another input is a tensor subclass,Yes,Closed,CPU,,02/19/2024,2.3.0.dev20240215,Yes,torch/_functorch/_aot_autograd/collect_metadata_analysis.py,"inner(), view_avoid_dupes_with_primals()",Assertion Error,,https://github.com/pytorch/pytorch/issues/120188,https://github.com/pytorch/pytorch/pull/120136
+120044,,PyTorch 2.2.0 release Triton distribution not found in nightly,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/120044,
+119969,,Also attempt to match weaker conditions when replacing deferred runtime asserts,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119969,
+119763,,Learning rate reduction in ReduceLROnPlateau scheduler occurs one epoch later than expected due to patience parameter comparison,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119763,
+119609,,"Inconsistent error message about tensors on different devices, when one tensor is a scalar",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119609,
+119606,,torch.set_float32_matmul_precision doc issue wrt floating point formats,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119606,
+119588,,Bad error message for aten::_local_scalar_dense on meta tensor,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119588,
+119366,,AttributeError: 'ReduceLROnPlateau' object has no attribute '_last_lr',No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119366,
+119330,,aot_export should support user input mutation,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119330,
+119293,,meta device model .to(cuda) should give an error suggesting .to_empty,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119293,
+119233,,Add a binding for Storage resizable,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119233,
+119210,,"Non-strict export does not support tolist: RuntimeError: .tolist() is not supported for tensor subclasses, got FunctionalTensor",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119210,
+119054,,BackendCompilerFailed: backend=‘inductor’ raised: RuntimeError: Triton Error [CUDA]: device kernel image is invalid,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/119054,
+118990,,torch.jit.freeze fails with RuntimeError on a simple Linear model,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118990,
+118896,,recompiling a model on a subclass then on a plain tensor causes malformed guards,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118896,
+118845,,Placeholder tensor is empty!,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118845,
+118733,,[ONNX] Export wrong dtype for scalar constant in where,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118733,
+118501,,mypy error due to wrong typehints for tensor.cpu / tensor.cuda : missing memory_format,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118501,
+118476,,logging errors for toy model with TORCH_COMPILE_DEBUG,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118476,
+118399,,Dynamo x autograd.Function: stride accesses in backward should cause graph break,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118399,
+118273,,“TypeError” triggered by unused “device” argument in torch.frombuffer(),No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118273,
+118231,,operator.pos does not handle constant inputs but only tensor inputs.,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118231,
+118131,,torch.addmm behavior discrepancy between CPU and GPU,No,Closed,GPU,CUDA,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118131,
+117757,,Wrong result when operator.abs is is called after abs,No,Closed,CPU,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/117757,
