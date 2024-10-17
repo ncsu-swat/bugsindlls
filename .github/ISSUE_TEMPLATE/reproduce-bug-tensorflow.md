@@ -10,7 +10,7 @@ assignees: ''
 ### Library
 Tensorflow
 ### Issue link
-https://github.com/pytorch/pytorch/issues/issue_no
+https://github.com/tensorflow/tensorflow/issues/issue_no
 ### Device
 CPU/GPU
 ### API
