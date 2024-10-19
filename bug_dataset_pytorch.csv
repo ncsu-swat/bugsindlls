@@ -133,3 +133,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 118231,,operator.pos does not handle constant inputs but only tensor inputs.,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118231,
 118131,,torch.addmm behavior discrepancy between CPU and GPU,No,Closed,GPU,CUDA,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118131,
 117757,,Wrong result when operator.abs is is called after abs,No,Closed,CPU,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/117757,
+117033,117310,IndexError from torch._dynamo.export when using module with 2 convolutions,Yes,Closed,CPU,,01/09/2024	2.1.2,No,torch/fx/experimental/symbolic_shapes.py,_print_Symbol() _print_Relational(),IndexError,,https://github.com/pytorch/pytorch/issues/117033,https://github.com/pytorch/pytorch/pull/117310																
