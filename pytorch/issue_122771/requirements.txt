@@ -12,6 +12,5 @@ pluggy==1.5.0
 pytest==8.2.1
 sympy==1.12
 tomli==2.0.1
---extra-index-url https://download.pytorch.org/whl/nightly/cpu
-torch==2.4.0.dev20240326 
+torch @ file:///tmp/torch-2.4.0a0%2Bgita166d4b-cp310-cp310-linux_x86_64.whl#sha256=074fca8e944362982db7dfe5d18de5720c18557e51657a347c908ccd9d37e354
 typing_extensions==4.11.0
