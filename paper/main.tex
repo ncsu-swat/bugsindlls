@@ -1,6 +1,7 @@
 \documentclass[sigconf]{acmart}
 
 \usepackage{multirow}
+\usepackage{xcolor}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -62,6 +63,7 @@
 %%\citestyle{acmauthoryear}
 
 %% macros
+\newcommand{\Fix}[1]{\textbf{[[}\textcolor{red}{#1}\textbf{]]}}
 \newcommand{\tname}{BugsInDLLs}
 \newcommand{\jax}{JAX}
 \newcommand{\torch}{PyTorch}
@@ -252,7 +254,25 @@
 
 \section{Introduction}
 
-Challenges...
+\sloppy Serveral important application domains (e.g., transportation,
+medical diagnosis, software development) use AI to optimize some
+element of their business process. Deep Learning libraries~(DLLs)
+(e.g., \jax, \torch{}, and \tf{}) provide the building blocks for the
+AI components of these applications.  Unfortunately, as any piece of
+software, these libraries contain bugs. An impressive number of
+techniques have been recently proposed to find bugs in these
+libraries~\Fix{cite 10+ fuzzing papers here}, however we observe that
+the evaluation of these techniques do \emph{not} use a reference set
+of reproducible bugs to evaluate their effectiveness. The lack of
+evaluation standards is an obstacle to evaluate progress in this
+important field.
+
+This paper presents \tname, a database of curated reproducible bugs to
+enable credible evaluation of DLL testing techniques.  Our dataset
+currently consists of \numbugs{} environments to reproduce bugs across
+three popular DLL libraries, namely, \jax, \tf, and \torch.
+
+\Fix{...}
 
 
 \begin{enumerate}
