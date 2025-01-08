@@ -1,4 +1,6 @@
 \documentclass[sigconf]{acmart}
+
+\usepackage{multirow}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -130,11 +132,11 @@
 
 \author{Benjamin Wu}
 \affiliation{%
- \institution{?}
+ \institution{Purdue University}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{?}}
-\email{?}
+ \country{USA}}
+\email{wu2059@purdue.edu}
 
 \author{Saikat Dutta}
 \affiliation{%
@@ -249,6 +251,23 @@
 \maketitle
 
 \section{Introduction}
+
+\begin{table}
+  \centering
+  \caption{Characterization of reproducible bugs from \tname.}
+\begin{tabular}{lrrr}
+  \toprule
+  & \multirow{2}{*}{\#} &  \multicolumn{1}{c}{build}          &   \multicolumn{1}{c}{enviroment}  \\
+  &   & release-nightly &  venv-docker  \\
+  \cmidrule(lr){2-4}
+  \jax{} & 44 & 43-1 &  43-1 \\
+  \torch{} & 33 & 15-18 & 19-14 \\
+  \tf{} & 25 & 24-1 & 25-0 \\
+  \midrule
+  \multicolumn{1}{c}{$\Sigma$} & 102 & 82-20 & 87-15 \\
+  \bottomrule
+\end{tabular}
+\end{table}
 
 
 \bibliographystyle{ACM-Reference-Format}
