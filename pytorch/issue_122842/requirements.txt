@@ -13,5 +13,5 @@ pytest==8.2.1
 sympy==1.12
 tabulate==0.9.0
 tomli==2.0.1
-torch @ https://download.pytorch.org/whl/nightly/cpu/torch-2.4.0.dev20240324%2Bcpu-cp310-cp310-linux_x86_64.whl#sha256=519e7e11a4de607dd9af4e2ff9024efcea47d75dec1d61d092a699c7f35d5ed7
+torch @ file:///tmp/torch-2.4.0a0%2Bgit848a2e8-cp310-cp310-linux_x86_64.whl#sha256=4a5803f52412f893fcb68110833bf09e056d4e3f8ebcb555a661c6007ea2e1d2
 typing_extensions==4.11.0
