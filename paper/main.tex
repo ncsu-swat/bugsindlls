@@ -62,13 +62,7 @@
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
 
-%% macros
-\newcommand{\Fix}[1]{\textbf{[[}\textcolor{red}{#1}\textbf{]]}}
-\newcommand{\tname}{BugsInDLLs}
-\newcommand{\jax}{JAX}
-\newcommand{\torch}{PyTorch}
-\newcommand{\tf}{Tensorflow}
-\newcommand{\numbugs}{102}
+\input{macros}
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -280,16 +274,16 @@ and reproduce bug instances.
   \centering
   \label{table:bug-characterization}
   \caption{Characterization of reproducible bugs from \tname.}
-\begin{tabular}{lrrr}
+\begin{tabular}{l|rrr}
   \toprule
-  & \multirow{2}{*}{\#} &  \multicolumn{1}{c}{build}          &   \multicolumn{1}{c}{enviroment}  \\
+  & \multirow{2}{*}{\#} &  \multicolumn{1}{r}{build}          &   \multicolumn{1}{r}{enviroment}  \\
   &   & release-nightly &  venv-docker  \\
   \cmidrule(lr){2-4}
   \jax{} & 44 & 43-1 &  43-1 \\
   \torch{} & 33 & 15-18 & 19-14 \\
   \tf{} & 25 & 24-1 & 25-0 \\
   \midrule
-  \multicolumn{1}{c}{$\Sigma$} & \numbugs{} & 82-20 & 87-15 \\
+  \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 82-20 & 87-15 \\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -348,6 +342,12 @@ version of CUDA to be installed in the system.
 
 
 \section{Related Work} 
+Defects4J\cite{just2014defects4j}
+BugsInPy~\cite{widyasari2020bugsinpy}
+Tests4Py~\cite{smytzek2024tests4py}
+Denchmark~\cite{kim2021denchmark}
+
+
 
 \section{Conclusion and Future Work}
 
