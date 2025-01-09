@@ -1,6 +1,6 @@
 iniconfig==2.0.0
-jax @ https://storage.googleapis.com/jax-releases/nightly/jax/jax-0.4.31.dev20240707-py3-none-any.whl#sha256=ec1670cc829507dc1226ca7ec7b8ef1b4c90a6c0f3e9d480e302116bc0bd3fff
-jaxlib @ https://storage.googleapis.com/jax-releases/nightly/nocuda/jaxlib-0.4.31.dev20240707-cp311-cp311-manylinux2014_x86_64.whl#sha256=4f5b17bef4044ee792eb579d1fbe292d842a90f4816d53c189f3f7ce4cb15bc1
+jax @ file:///tmp/jax-0.4.31.dev20240707%2Bceea8dc3f-py3-none-any.whl#sha256=9806334273522f246dfdb20b39194f16a08580c7f74a29b36f588d3dd67a41ca
+jaxlib==0.4.31
 ml-dtypes==0.4.0
 numpy==2.0.0
 opt-einsum==3.3.0
