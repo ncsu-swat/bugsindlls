@@ -9,8 +9,8 @@ conda init
 conda create --name issue_120803 python==3.8 pip -y
 eval "$(conda shell.bash hook)"
 conda activate issue_120803
-curl -OL https://download.pytorch.org/whl/nightly/cpu/torch-2.3.0.dev20240220%2Bcpu-cp38-cp38-linux_x86_64.whl
-pip install torch-2.3.0.dev20240220%2Bcpu-cp38-cp38-linux_x86_64.whl
+pip install gdown==5.2.0
+gdown --fuzzy https://drive.google.com/file/d/1ombH9bjC3S9U6UybuvmfCZoJJPHx-U_K/view?usp=sharing -O /tmp/
 pip install -r requirements.txt
 if [[ $OSTYPE == 'darwin'* ]]
 then
@@ -21,5 +21,4 @@ pytest -sx
 returncode=$?
 conda deactivate
 conda env remove --name issue_120803 -y
-rm torch-2.3.0.dev20240220%2Bcpu-cp38-cp38-linux_x86_64.whl
 exit ${returncode}

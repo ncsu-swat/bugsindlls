@@ -12,5 +12,5 @@ pluggy==1.5.0
 pytest==8.2.0
 sympy==1.12
 tomli==2.0.1
-torch @ https://download.pytorch.org/whl/nightly/cpu/torch-2.3.0.dev20240227%2Bcpu-cp310-cp310-linux_x86_64.whl#sha256=ef6831bc8e1112afb2ab622e819a1fd357abb96071c003acef87ffe8f677c523
+torch @ file:///tmp/torch-2.3.0a0%2Bgit738f032-cp310-cp310-linux_x86_64.whl#sha256=68ff22751459fbce4553ba938759b65eb8b876d37fa7319d2cd8cce9bb13df04
 typing_extensions==4.11.0
