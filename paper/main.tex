@@ -68,7 +68,7 @@
 \newcommand{\jax}{JAX}
 \newcommand{\torch}{PyTorch}
 \newcommand{\tf}{Tensorflow}
-\newcommand{\numbugs}{115}
+\newcommand{\numbugs}{102}
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -185,9 +185,10 @@
   %% and those bugs can affect a
   %% great deal of applications using those libraries.
   An impressive number of bug-finding techniques to address this
-  problem, but the lack of a curated set of reproducible bugs in DLLs
-  hinders credible evaluation of such techniques. We present \tname, a
-  database of curated reproducible bugs to fill that gap.
+  problem have been proposed, but the lack of a curated set of
+  reproducible bugs in DLLs hinders credible evaluation of these
+  techniques. We present \tname, a database of curated reproducible
+  bugs to fill that gap.
   %% enable credible  evaluation of bug-finding DLL testing techniques.
   Our dataset currently consists of \numbugs{} environments to
   reproduce bugs across three popular DLL libraries, namely, \jax,
@@ -311,7 +312,7 @@ Table~\ref{...}
   \torch{} & 33 & 15-18 & 19-14 \\
   \tf{} & 25 & 24-1 & 25-0 \\
   \midrule
-  \multicolumn{1}{c}{$\Sigma$} & 102 & 82-20 & 87-15 \\
+  \multicolumn{1}{c}{$\Sigma$} & \numbugs{} & 82-20 & 87-15 \\
   \bottomrule
 \end{tabular}
 \end{table}
