@@ -256,52 +256,29 @@
 \section{Introduction}
 
 \sloppy Serveral important application domains (e.g., transportation,
-medical diagnosis, software development) use AI to optimize some
-element of their business process. Deep Learning libraries~(DLLs)
-(e.g., \jax, \torch{}, and \tf{}) provide the building blocks for the
-AI components of these applications.  Unfortunately, as any piece of
-software, these libraries contain bugs. An impressive number of
-techniques have been recently proposed to find bugs in these
-libraries~\Fix{cite 10+ fuzzing papers here}, however we observe that
-the evaluation of these techniques do \emph{not} use a reference set
-of reproducible bugs to evaluate their effectiveness. The lack of
-evaluation standards is an obstacle to evaluate progress in this
-important field.
+medicine, etc.) use AI to optimize some element of their business
+process. Deep Learning libraries~(DLLs), such as \jax, \torch{}, and
+\tf{}, provide the building blocks for the AI components of these
+applications.  Unfortunately, as any piece of software, these
+libraries contain bugs. An impressive number of techniques have been
+recently proposed to find bugs in these libraries~\Fix{cite 10+
+  fuzzing papers here}, however we observe that the evaluation of
+these techniques do \emph{not} use a reference set of reproducible
+bugs to evaluate their effectiveness. The lack of evaluation standards
+is an obstacle to the fair comparison of techniques, hindering
+research progress.
 
 This paper presents \tname, a database of curated reproducible bugs to
-enable credible evaluation of DLL testing techniques.  Our dataset
-currently consists of \numbugs{} environments to reproduce bugs across
-three popular DLL libraries, namely, \jax, \tf, and \torch.
-
-\Fix{...}
+enable credible evaluation of DLL testing techniques. \tname\ is
+equiped with a command-line interface to enable researchers to analyze
+and reproduce bug instances.
 
 
-\begin{enumerate}
-
-\sloppy  
-\item \textbf{Handling bugs from nighly builds require saving wheels.}
-  Many of the reproducible bugs rely on nightly builds since they can
-  not be reproduced with any release builds. These nightly builds have
-  a limited amount of time when they are publicly available, and they
-  are de-indexed and removed after that time. In order to ensure bugs
-  that depend on these nightly builds can be reproduced after these
-  builds disappear, we save the whl files of these builds.
-
-\item \textbf{Handling bugs in specific GPU-CUDA versions require OS
-  changes:} Many of the GPU-related bugs can only be repro
-  duced with
-  specific GPU builds and specific CUDA builds. Changing different
-  virtual environments does not change the CUDA versions of the
-  system. That is why we use Docker when a bug relies on a specific
-  version of CUDA to be installed in the system.
-
-\end{enumerate}
-
-
-Table~\ref{...}
+\section{Methodology}
 
 \begin{table}
   \centering
+  \label{table:bug-characterization}
   \caption{Characterization of reproducible bugs from \tname.}
 \begin{tabular}{lrrr}
   \toprule
@@ -318,10 +295,45 @@ Table~\ref{...}
 \end{table}
 
 
-\section{Methodology}
-\subsection{DLL and Bug Selection}
-\subsection{Reproducing Bugs}
-\subsection{}
+Our dataset currently consists of \numbugs{} instances of reproducible
+bugs representing three popular DLL libraries, namely, \jax, \tf, and
+\torch. Table~\ref{table:bug-characterization} shows the list of bug
+instances for each supported library. Column ``\#'' shows the number
+of bug instances, column ``build'' shows the breakdown of bug
+instances based on releases of the library against those based on
+nightly builds, and column ``environment'' shows the breakdown of bug
+instances that use Python's virtual environment against those that run
+on a Docker container.
+
+\subsection{Selection of Libraries}
+
+\Fix{Abid, explain the rationale for selecting jax, torch, and tf.}
+
+\subsection{Selection of Bugs}
+
+\Fix{Abid, explain the selection criterion for the bugs.}
+
+\subsection{Challenges in Bug Reproduction}
+
+\textbf{Handling bugs from nighly builds require saving wheels.}  Many
+of the reproducible bugs rely on nightly builds since they can not be
+reproduced with any release builds. These nightly builds have a
+limited amount of time when they are publicly available, and they are
+de-indexed and removed after that time. In order to ensure bugs that
+depend on these nightly builds can be reproduced after these builds
+disappear, we save the whl files of these builds.
+
+\textbf{Handling bugs in specific GPU-CUDA versions require OS
+  changes:} Many of the GPU-related bugs can only be repro duced with
+specific GPU builds and specific CUDA builds. Changing different
+virtual environments does not change the CUDA versions of the
+system. That is why we use Docker when a bug relies on a specific
+version of CUDA to be installed in the system.
+
+\subsection{Method}
+
+\Fix{Abid, explain the method we used to create a bug instance}
+
 
 \section{\tname: Database of Bugs in DLLs}
 \subsection{Bug Interface}
