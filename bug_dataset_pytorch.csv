@@ -21,7 +21,6 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 130087,,Calling id function on model param causes error or graph break for compile,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/130087,
 129927,,Error when exporting a module without input,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129927,
 129742,129743,hasattr tracing for torch tensor is unsupported,Yes,Closed,CPU,,06/28/2024,2.3.1,No,torch/_dynamo/variables/tensor.py,call_hasattr(),Internal Exception,,https://github.com/pytorch/pytorch/issues/129742,https://github.com/pytorch/pytorch/pull/129743
-129742,,hasattr tracing for torch tensor is unsupported,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/129742,
 128557,,MaskedTensor do not support _is_any_true`,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128557,
 128429,,"taking upper triangular of ""-inf"" matrix results in nan values",No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128429,
 128202,,Wrong result for Inplace tensor update on transpose for some devices with torch 2.3.0,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/128202,
@@ -130,6 +129,8 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 118476,,logging errors for toy model with TORCH_COMPILE_DEBUG,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118476,
 118399,,Dynamo x autograd.Function: stride accesses in backward should cause graph break,No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118399,
 118273,,“TypeError” triggered by unused “device” argument in torch.frombuffer(),No,Closed,,,,,,,,,For 712,https://github.com/pytorch/pytorch/issues/118273,
-118231,,operator.pos does not handle constant inputs but only tensor inputs.,No,Closed,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118231,
+118231,118251,operator.pos does not handle constant inputs but only tensor inputs.,Yes,Closed,CPU,,01/25/2024,2.1.2,No,torch/_dynamo/variables/builtin.py,call_pos(),Internal Exception,,https://github.com/pytorch/pytorch/issues/118231,https://github.com/pytorch/pytorch/pull/118251
 118131,,torch.addmm behavior discrepancy between CPU and GPU,No,Closed,GPU,CUDA,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/118131,
-117757,,Wrong result when operator.abs is is called after abs,No,Closed,CPU,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/117757,
+117757,11815,Wrong result when operator.abs is is called after abs,Yes,Closed,CPU,,01/18/2024,2.2,No,torch/_inductor/utils.py,sympy_symbol(),Incorrect Output,,https://github.com/pytorch/pytorch/issues/117757,https://github.com/pytorch/pytorch/pull/11815
+117237,118900,torch.nn.Bilinear class: Internal assert failed,Yes,Closed,CPU,,01/11/2024,2.1.2,No,aten/src/ATen/native/Linear.cpp,bilinear(),Internal Exception,,https://github.com/pytorch/pytorch/issues/117237,https://github.com/pytorch/pytorch/pull/118900
+117033,117310,IndexError from torch._dynamo.export when using module with 2 convolutions,Yes,Closed,CPU,,01/09/2024	2.1.2,No,torch/fx/experimental/symbolic_shapes.py,_print_Symbol() _print_Relational(),IndexError,,https://github.com/pytorch/pytorch/issues/117033,https://github.com/pytorch/pytorch/pull/117310
