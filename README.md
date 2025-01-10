@@ -81,3 +81,28 @@ $> run-tests --log-directory ~/dnn-logs
 ```Shell
 $> stats --print-format trie
 ```
+
+# Tool integration
+
+Testing tools can be integrated to the dataset to recreate the environment of a specific bug and execute the tool on that environment to see if it can be reproduced with the tool. To integrate, there are two requirements:
+
+1. A docker container with the environment of the tool
+2. A script that takes the name of the library as an argument and that can trigger the execution of the tool for that library
+
+Once the docker container is built and is running, providing the name of the container and the location of the script that can execute the tool (either absolute path or relative to the root of the repository) to the command `run-tool` in the framework along with the library and bug id will first reproduce the bug seperately and then update the environment inside the docker to run the tool with the script provided.
+
+## Demonstration
+
+A demonstration of this integration is provided with FreeFuzz, a state-of-the-art testing tool. To install and run a container for freefuzz:
+
+```Shell
+$> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
+```
+
+To run the tool in a bug's environment (e.g. pytorch issue_122016)
+
+```Shell
+$> run-tool --container freefuzz --library-name pytorch --bug-id 122016 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
+```
+
+Note: For demonstration purposes, the `run_freefuzz_docker.sh` script uses a demo configuration of freefuzz. For a full run, this script would need to be updated with a different config file. For more instructions, see the [documentation](https://github.com/ise-uiuc/FreeFuzz/blob/main/README.md) of FreeFuzz.

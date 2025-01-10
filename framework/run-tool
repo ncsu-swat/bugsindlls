@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+
+framework_location="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+home_location=${framework_location}/..
+
+hash conda 2>/dev/null || { echo >&2 "I require conda but it's not installed.  Aborting."; exit 1; }
+
+usage="
+-l library-name (mandatory)
+  The id of the library for which the information shall be printed. Options: jax, pytorch, tensorflow
+-i bug-id (mandatory)
+  The bug number of the library-name for which the information shall be printed.
+-c container (mandatory)
+  The docker container that contains the testing tool.
+-r run-script (mandatory)
+  The path to the script relative to the root directory of the repository (or absolute path) that can execute the testing tool.
+"
+
+
+function usage {
+cat <<-____HALP
+Usage: ${0##*/} [ --help ]
+$usage
+____HALP
+}
+
+## show options if user selected -h
+case $1 in
+ -[h?] | --help)
+     usage
+     exit 0;;
+esac
+
+
+# before running through `getopts`, translate out convenient long-versions
+for opt in "$@"; do
+    shift
+    case "${opt}" in
+      '--library-name')    set -- "$@" '-l' ;;
+      '--bug-id')          set -- "$@" '-i' ;;
+      '--container')       set -- "$@" '-c' ;;
+      '--run-script')      set -- "$@" '-r' ;;
+      *)                   set -- "$@" "${opt}" ;;
+    esac
+done
+
+### read the flag and assign values to corresponding variables
+while getopts :l:i:c:r: flag
+do
+    case "${flag}" in
+        l) library_name=${OPTARG};;
+        i) bug_id=${OPTARG};;
+        c) container=${OPTARG};;
+        r) run_script=${OPTARG};;
+        \?) echo "invalid option: -$OPTARG."
+            usage
+            exit 1
+            ;;
+        :)  echo "option -$OPTARG requires an argument."
+            usage
+            exit 1
+            ;;            
+    esac
+done
+
+### library_name is mandatory
+if [ "$library_name" == "" ]; then 
+    echo "Please provide library name (-l)"
+    usage    
+    exit
+fi
+
+# library_name must be one of ours
+if ! [[ "$library_name" =~ ^(jax|pytorch|tensorflow)$ ]]; then
+    echo "library $library_name is not in the list"
+    usage    
+    exit    
+fi
+
+
+### bug_id is mandatory
+if [ "$bug_id" == "" ]; then 
+    usage
+    exit
+fi
+
+### container is mandatory
+if [ "$container" == "" ]; then 
+    usage
+    exit
+fi
+
+# bug_id must exit
+if ! ls $home_location/$library_name | cut -d\_ -f2 | grep $bug_id > /dev/null ; then
+    echo "could not find bug-id $bug_id for $library_name"
+    exit
+fi
+
+
+(
+    cd ${home_location}/${library_name}/issue_${bug_id};
+    echo "Reproducing the bug";
+    bash reproduce_bug.sh;
+    echo "Updating environment in the container of the testing tool"
+    awk '
+    BEGIN { in_block = 0 } 
+    /^conda activate/ { in_block = 1; next } 
+    /^pytest/ { in_block = 0 } 
+    in_block
+    ' "reproduce_bug.sh" > "install_environment.sh";
+    chmod +x "install_environment.sh";
+    cd ${home_location}/${library_name};
+    docker cp issue_${bug_id} ${container}:/tmp/issue_${bug_id};
+    docker exec -it ${container} bash -c "ls /tmp/issue_${bug_id} && cd /tmp/issue_${bug_id} && bash install_environment.sh";
+    echo "Running the testing tool on the environment of the bug";
+    cd ${home_location};
+    bash ${run_script} ${library_name};
+    cd ${home_location}/${library_name}/issue_${bug_id};
+    rm install_environment.sh
+)
