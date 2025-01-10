@@ -23,7 +23,6 @@ packaging==24.1
 pillow==10.2.0
 pluggy==1.5.0
 pytest==8.3.2
-python-apt==2.4.0+ubuntu3
 six==1.16.0
 sympy==1.12
 tomli==2.0.1
