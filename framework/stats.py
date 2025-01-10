@@ -39,6 +39,7 @@ class Trie(object):
 #####################################
 
 def process_file(libname, print_fmt, total_bugs):
+    initial_bugs = total_bugs
     tr = Trie()
     print('----------------------------')
     print(libname)
@@ -56,6 +57,8 @@ def process_file(libname, print_fmt, total_bugs):
         num_c = 0
         num_py = 0      
         num_cuda = 0  
+        ##
+        num_nightly = 0
         for row in csv_reader:
             if row["Reproduced"] == "Yes":
                 total_bugs += 1
@@ -64,6 +67,8 @@ def process_file(libname, print_fmt, total_bugs):
                 
                 ## bug types
                 bug_m_type = row["Type"].strip().lower()
+                if bug_m_type == "":
+                    print(f"\nWARNING: {row['Issue #']} does not have a type")
                 if bug_m_type not in bug_manifest_type:
                     bug_manifest_type[bug_m_type] = 1
                 else:
@@ -71,10 +76,12 @@ def process_file(libname, print_fmt, total_bugs):
 
                 ## cpu/gpu
                 device = row["Device"].strip()
-                if device == "CPU":
+                if device.lower() == "cpu":
                     num_cpus += 1
-                elif device == "GPU":
+                elif device.lower() == "gpu":
                     num_gpus += 1
+                else:
+                    print(f"\nWARNING: {row['Issue #']} has this as the device: {device}\n")
                 
                 if row["Buggy File(s)"] > "":
                     for file in row["Buggy File(s)"].split(","):
@@ -88,17 +95,26 @@ def process_file(libname, print_fmt, total_bugs):
                             num_c += 1
                         elif ".py" in file or ".pyi" in file:
                             num_py += 1                        
+                
+                if row["Nightly"].lower().strip() == "yes":
+                    num_nightly += 1
 
+        print(f'  # Total: {total_bugs - initial_bugs}')
         print(f'  # Require GPU: {num_gpus} ({num_gpus*100/(num_gpus+num_cpus):.2f}%)')
         print(f'  # Do NOT Require GPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
         print(f'  # C/CPP: {num_c} ({num_c*100/(num_c+num_py+num_cuda):.2f}%)')
         print(f'  # CUDA Native: {num_cuda} ({num_cuda*100/(num_c+num_py+num_cuda):.2f}%)')
         print(f'  # Python: {num_py} ({num_py*100/(num_c+num_py+num_cuda):.2f}%)')
+        print(f'  # Release: {total_bugs - initial_bugs - num_nightly} ({(total_bugs - initial_bugs - num_nightly)*100/(total_bugs - initial_bugs):.2f}%)')
+        print(f'  # Nightly: {num_nightly} ({num_nightly*100/(total_bugs - initial_bugs):.2f}%)')
         print('----------------------------')
         print(f'  # Bug manifestation types:')
         bug_manifest_type = dict(sorted(bug_manifest_type.items(), key=lambda item: item[1], reverse=True)) # sort by number of occurance
         for bug_m_type in bug_manifest_type.keys():
-            print(f'    {bug_m_type}: {bug_manifest_type[bug_m_type]}')
+            if bug_m_type.strip() > "":
+                print(f'    {bug_m_type}: {bug_manifest_type[bug_m_type]}')
+            else:
+                print(f'    <undefined>: {bug_manifest_type[bug_m_type]}')
     
     if (print_fmt == "trie") or (print_fmt == "both"):
         print('----------------------------')
