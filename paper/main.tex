@@ -2,6 +2,8 @@
 
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{xspace}
+
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -392,10 +394,28 @@ Table~\ref{table:bug-interface} shows \Fix{...}
 
 
 \section{Related Work} 
-Defects4J\cite{just2014defects4j}
-BugsInPy~\cite{widyasari2020bugsinpy}
-Tests4Py~\cite{smytzek2024tests4py}
-Denchmark~\cite{kim2021denchmark}
+Several bug datasets have been proposed in literature for general software. Some
+popular examples includes software-artifact infrastructure repository
+(SIR)~\cite{do2005supporting} which was one of the bug datasets containing 81
+artificial faults in projects across multiple languages,
+Defects4J~\cite{just2014defects4j} which includes 357 real bugs across five
+large real-world Java projects, BugsInPy~\cite{widyasari2020bugsinpy} containing
+493 real bugs from 17 real-world Python programs, and
+BugsJS~\cite{vancsics2020relationship} containing 453 bugs across 10 Javascript
+projects.
+%
+Google's FuzzBench~\cite{metzman2021fuzzbench} provides an evaluation platform
+for comparing general purpose fuzzers. Magma~\cite{hazimeh2020magma} is another
+fuzzing benchmark built by \emph{front-porting} real bugs in latest version of
+projects. In contrast to these general purpose benchmarks, \tname includes
+reproducible bugs for Deep Learning libraries like PyTorch and TensorFlow, and
+allows systematic benchmarking for DLL fuzzers. 
+
+
+
+% Defects4J\cite{just2014defects4j}
+% BugsInPy~\cite{widyasari2020bugsinpy} Tests4Py~\cite{smytzek2024tests4py}
+% Denchmark~\cite{kim2021denchmark}
 
 
 
