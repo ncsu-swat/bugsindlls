@@ -172,20 +172,20 @@
 %% article.
 \begin{abstract}
   \sloppy
-  AI-enabled applications are prolific today. Deep Learning
-  libraries~(DLLs), such as \torch{} and \tf{}, provide the building
+  AI-enabled applications are prolific today. Deep Learning~(DL)
+  libraries, such as \torch{} and \tf{}, provide the building
   blocks for the AI components of these applications. As any piece of
   software, these libraries can be buggy.
   %% and those bugs can affect a
   %% great deal of applications using those libraries.
   An impressive number of bug-finding techniques to address this
   problem have been proposed, but the lack of a curated set of
-  reproducible bugs in DLLs hinders credible evaluation of these
+  reproducible bugs in DL libraries hinders credible evaluation of these
   techniques. We present \tname, a database of curated reproducible
   bugs to fill that gap.
-  %% enable credible  evaluation of bug-finding DLL testing techniques.
+  %% enable credible  evaluation of bug-finding DL library testing techniques.
   Our dataset currently consists of \numbugs{} environments to
-  reproduce bugs across three popular DLL libraries, namely, \jax,
+  reproduce bugs across three popular DL libraries, namely, \jax,
   \tf, and \torch.
 \end{abstract}
 
@@ -251,20 +251,20 @@
 
 \sloppy Serveral important application domains (e.g., transportation,
 medicine, etc.) use AI to optimize some element of their business
-process. Deep Learning libraries~(DLLs), such as \jax, \torch{}, and
+process. Deep Learning~(DL) libraries, such as \jax, \torch{}, and
 \tf{}, provide the building blocks for the AI components of these
 applications.  Unfortunately, as any piece of software, these
 libraries contain bugs. An impressive number of techniques have been
-recently proposed to find bugs in these libraries~\Fix{cite 10+
-  fuzzing papers here}, however we observe that the evaluation of
+recently proposed to find bugs in these libraries~\cite{wei2022free,xie2022docter,deng2022fuzzing,pham2019cradle,guo2020audee,wang2020deep,gu2022muffin,deng2023large,liu2023nnsmith,liu2023neuri,shi2023acetest,deng2023largeedge}, 
+however we observe that the evaluation of
 these techniques do \emph{not} use a reference set of reproducible
 bugs to evaluate their effectiveness. The lack of evaluation standards
 is an obstacle to the fair comparison of techniques, hindering
 research progress.
 
 This paper presents \tname, a database of curated reproducible bugs to
-enable credible evaluation of DLL testing techniques. \tname\ is
-equiped with a command-line interface to enable researchers to analyze
+enable credible evaluation of DL library testing techniques. \tname\ is
+equipped with a command-line interface to enable researchers to analyze
 and reproduce bug instances.
 
 
@@ -290,7 +290,7 @@ and reproduce bug instances.
 
 
 Our dataset currently consists of \numbugs{} instances of reproducible
-bugs representing three popular DLL libraries, namely, \jax, \tf, and
+bugs representing three popular DL libraries, namely, \jax, \tf, and
 \torch. Table~\ref{table:bug-characterization} shows the list of bug
 instances for each supported library. Column ``\#'' shows the number
 of bug instances, column ``build'' shows the breakdown of bug
@@ -329,14 +329,14 @@ version of CUDA to be installed in the system.
 \Fix{Abid, explain the method we used to create a bug instance}
 
 
-\section{\tname: Database of Bugs in DLLs}
+\section{\tname: Database of Bugs in DL libraries}
 \subsection{Bug Interface}
 \subsection{Test Oracle}
 \subsection{Usage and Setup}
 
 \section{\tname: Use cases}
 
-\subsection{Evaluating DLL testing techniques}
+\subsection{Evaluating DL library testing techniques}
 \subsection{Fault Detection}
 \subsection{Program Repair}
 
