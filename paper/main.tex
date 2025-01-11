@@ -283,7 +283,9 @@ and reproduce bug instances.
 
 \begin{table}
   \centering
-  \caption{\label{table:bug-characterization}Characterization of reproducible bugs from \tname.}
+  \caption{\label{table:bug-characterization}Characterization of
+    reproducible bugs from \tname.\Fix{Is this up to date? I have seen
+  lots of activity recently but these numbers remain the same.}}
 \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
   \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
@@ -308,19 +310,35 @@ based on the kind of build, and column ``environment'' shows the
 breakdown of instances based on the kind of environment to reproduce
 the bug.
 
-\subsection{Selection Criterion}
+\subsection{Selection Criteria}
 \label{sec:selection-criterion}
 
 % \Fix{Abid, explain the rationale for selecting jax, torch, and tf.}
 
-Amongst many DL libraries, the most popular libraries for developing AI-enabled applications and used in testing tools are \torch~and \tf. \jax~is a relatively newer entry to the list of libraries but it is rapidly gaining popularity as well. All three of these libraries are open source with active communities that support the libraries, making them very suitable for developing testing tools around. We chose these three popular datasets in order to enhance the process of developing testing tools around these libraries.
+\textbf{Libraries.}~\torch~and \tf are popular DL libraries
+intensively used in the literature. \jax\ is a newer library that has
+been rapidly gaining popularity. All these libraries are open source
+with active communities supporting their maintenaance.
+
+%% We chose these three popular datasets in order to enhance the process
+%% of developing testing tools around these libraries.
 
 % \Fix{Abid, explain the criterion for selecting the bugs (e.g., it
   % contains test code showing the problem).}
 
-For the bugs from these libraries, we focused on bug reports that have been accepted by the developer community as true bugs. We determine this by checking whether the bugs have appropriate labels and have been fixed with pull requests linked to them. Among these confirmed bug reports, we choose the ones that have enough information to reproduce the bugs i.e. code to reproduce the bug, enviroment required for reproduction, clear description of desired behavior etc. Once we can successfully reproduce the bug by creating the enviroment detailed in the report, we choose the bug to be included in our dataset.
-
-\Fix{Please review and revise}
+\textbf{Bugs.}~We focused on bug reports that have been accepted by
+the developer community as true bugs. We determine this by checking
+whether the bugs have appropriate labels and have been fixed with pull
+requests linked to them. Among these confirmed bug reports, we choose
+the ones that have enough information to reproduce the bugs, i.e.,
+code to reproduce the bug, enviroment required for
+reproduction\Fix{Abid, can you confirm that environment here is not
+  the same as venv-docker that we are using on Table 1? instead it
+  means the version of CUDA, libraries, etc.? If so, avoid using the
+  word environment.}, clear description of the desired behavior,
+etc. Once we can successfully reproduce the bug by creating the
+enviroment detailed in the report, we choose the bug to be included in
+our dataset.
 
 \subsection{Challenges}
 \label{sec:challenges}
