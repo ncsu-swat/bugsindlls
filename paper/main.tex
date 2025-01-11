@@ -261,17 +261,17 @@ of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
 \section{Introduction}
 
 \sloppy Serveral important application domains (e.g., transportation,
-medicine, etc.) use AI to optimize some element of their business
-process. Deep Learning~(DL) libraries, such as \jax, \torch{}, and
-\tf{}, provide the building blocks for the AI components of these
-applications.  Unfortunately, as any piece of software, these
-libraries contain bugs. An impressive number of techniques have been
-recently proposed to find bugs in these libraries~\cite{wei2022free,xie2022docter,deng2022fuzzing,pham2019cradle,guo2020audee,wang2020deep,gu2022muffin,deng2023large,liu2023nnsmith,liu2023neuri,shi2023acetest,deng2023largeedge}, 
-however we observe that the evaluation of
-these techniques do \emph{not} use a reference set of reproducible
-bugs to evaluate their effectiveness. The lack of evaluation standards
-is an obstacle to the fair comparison of techniques, hindering
-research progress.
+medicine, etc.) use AI as part of their business processes. Deep
+Learning~(DL) libraries, such as \jax, \torch{}, and \tf{}, provide
+the building blocks for the AI components of these applications.
+Unfortunately, as any piece of software, these libraries contain
+bugs. An impressive number of techniques have been recently proposed
+to find bugs in these
+libraries~\cite{wei2022free,xie2022docter,deng2022fuzzing,pham2019cradle,guo2020audee,wang2020deep,gu2022muffin,deng2023large,liu2023nnsmith,liu2023neuri,shi2023acetest,deng2023largeedge},
+however we observe that the evaluation of these techniques do
+\emph{not} use a reference set of reproducible bugs to evaluate their
+effectiveness. The lack of evaluation standards is an obstacle to the
+fair comparison of techniques, hindering research progress.
 
 This paper presents \tname, a database of curated reproducible bugs to
 enable credible evaluation of DL library testing techniques. \tname\ is
