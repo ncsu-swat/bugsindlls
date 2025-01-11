@@ -268,29 +268,27 @@ equipped with a command-line interface to enable researchers to analyze
 and reproduce bug instances.
 
 
-\section{Methodology}
+\section{Objects and Methods}
 
 \begin{table}
   \centering
-  \label{table:bug-characterization}
-  \caption{Characterization of reproducible bugs from \tname.}
+  \caption{\label{table:bug-characterization}Characterization of reproducible bugs from \tname.}
 \begin{tabular}{l|rrr}
-  \toprule
-  & \multirow{2}{*}{\#} &  \multicolumn{1}{r}{build}          &   \multicolumn{1}{r}{enviroment}  \\
-  &   & release-nightly &  venv-docker  \\
-  \cmidrule(lr){2-4}
-  \jax{} & 44 & 43-1 &  43-1 \\
-  \torch{} & 33 & 15-18 & 19-14 \\
-  \tf{} & 25 & 24-1 & 25-0 \\
-  \midrule
-  \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 82-20 & 87-15 \\
-  \bottomrule
+  \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
+  \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
+  \\ \cmidrule(lr){2-4} \jax{} & 44 & 43-1 & 43-1 \\ \torch{} & 33 &
+  15-18 & 19-14 \\ \tf{} & 25 & 24-1 & 25-0 \\ \midrule
+  \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 82-20 & 87-15
+  \\ \bottomrule
 \end{tabular}
 \end{table}
 
-
-Our dataset currently consists of \numbugs{} instances of reproducible
-bugs representing three popular DL libraries, namely, \jax, \tf, and
+This section describes the criteria for selecting libraries and bugs
+(Section~\ref{sec:selection-criterion}), the challenges for bug
+reproduction (Section~\ref{sec:challenges}), and the method we
+followed to create bug instances (Section~\ref{sec:method}). The
+\tname\ database consists of \numbugs{} instances of reproducible bugs
+representing three popular DL libraries, namely, \jax, \tf, and
 \torch. Table~\ref{table:bug-characterization} shows the list of bug
 instances for each supported library. Column ``\#'' shows the number
 of bug instances, column ``build'' shows the breakdown of bug
@@ -299,40 +297,78 @@ nightly builds, and column ``environment'' shows the breakdown of bug
 instances that use Python's virtual environment against those that run
 on a Docker container.
 
-\subsection{Selection of Libraries}
+\subsection{Selection Criterion}
+\label{sec:selection-criterion}
 
 \Fix{Abid, explain the rationale for selecting jax, torch, and tf.}
 
-\subsection{Selection of Bugs}
+\Fix{Abid, explain the criterion for selecting the bugs (e.g., it
+  contains test code showing the problem).}
 
-\Fix{Abid, explain the selection criterion for the bugs.}
+\subsection{Challenges}
+\label{sec:challenges}
 
-\subsection{Challenges in Bug Reproduction}
+\textbf{Handling bugs from nighly builds requires saving wheels.}  Many
+of the reproducible bugs rely on nightly builds of the
+libraries. These builds are available for a limited amount of time. In
+order to ensure bugs reported on these builds to remain reproducible,
+it is imperative to save wheel files~\cite{wheels} for the
+correspondind builds.
 
-\textbf{Handling bugs from nighly builds require saving wheels.}  Many
-of the reproducible bugs rely on nightly builds since they can not be
-reproduced with any release builds. These nightly builds have a
-limited amount of time when they are publicly available, and they are
-de-indexed and removed after that time. In order to ensure bugs that
-depend on these nightly builds can be reproduced after these builds
-disappear, we save the whl files of these builds.
-
-\textbf{Handling bugs in specific GPU-CUDA versions require OS
+\textbf{Handling bugs in specific GPU-CUDA versions requires OS
   changes:} Many of the GPU-related bugs can only be repro duced with
-specific GPU builds and specific CUDA builds. Changing different
-virtual environments does not change the CUDA versions of the
+specific GPU builds\Fix{I don't understance GPU builds. do you mean
+  GPU vendor/version? give example} and specific CUDA builds. Changing
+different virtual environments does not change the CUDA
+versions\Fix{Do you mean ``it is not possible to change the CUDA (or
+  GPU) version with Python's virtual environments''?} of the
 system. That is why we use Docker when a bug relies on a specific
 version of CUDA to be installed in the system.
 
+
 \subsection{Method}
+\label{sec:method}
 
-\Fix{Abid, explain the method we used to create a bug instance}
-
+\Fix{Abid, explain the steps you followed to create a bug
+  isntance. For example, (1) selected an issues (according to the
+  criteria defined in 2.1), (2) ...}
 
 \section{\tname: Database of Bugs in DL libraries}
 \subsection{Bug Interface}
+
+\begin{table}
+  \centering
+  \caption{\label{table:bug-interface}\tname's bug interface.}
+\begin{tabular}{lp{6.5cm}}
+\toprule
+list-tests & List the tests available on this dataset\\
+run-test & Runs one test\\
+run-tests & Runs all the tests\\
+show-info & Shows information about the tests available on this benchmark\\
+stats & Shows statistics about this dataset (e.g., number of tests
+that require GPU, number of tests that reproduce bugs in C or Python
+code, etc.)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{table:bug-interface} shows \Fix{...}
+
 \subsection{Test Oracle}
+
+\Fix{explain that the test passes if the bug can be reproduced}
+
 \subsection{Usage and Setup}
+
+\subsubsection{Running one bug instance}
+
+\Fix{walkthrough an example. Show input and part of output. Explain
+  the output.}
+
+\subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}
+
+\Fix{walkthrough an example. Show input and part of output. Explain
+  the output.}
 
 \section{\tname: Use cases}
 
