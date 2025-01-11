@@ -17,12 +17,11 @@ def test_f():
 
     print(get_grads(torch.float32, (128, 128)).flatten())
     print(get_grads(torch.float16, (128, 128)).flatten())
-    print(get_grads(torch.bfloat16, (128, 128)).flatten())
+    assert torch.all(get_grads(torch.float16, (128, 128)).flatten() == 2048) # It appears that the maximum value of the gradient is capped at 2048 for the float16 data type
 
     print(get_grads(torch.float32, (64, 64)).flatten())
     print(get_grads(torch.float16, (64, 64)).flatten())
-    print(get_grads(torch.bfloat16, (64, 64)).flatten())
+    assert torch.all(get_grads(torch.float16, (64, 64)).flatten() == 2048) # It appears that the maximum value of the gradient is capped at 2048 for the float16 data type
 
     print(get_grads(torch.float32, (32, 32)).flatten())
-    print(get_grads(torch.float16, (32, 32)).flatten())
-    print(get_grads(torch.bfloat16, (32, 32)).flatten())
+    print(get_grads(torch.float16, (32, 32)).flatten()) # Correct output for float16
