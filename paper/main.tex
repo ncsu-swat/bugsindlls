@@ -297,16 +297,16 @@ and reproduce bug instances.
 This section describes the criteria for selecting libraries and bugs
 (Section~\ref{sec:selection-criterion}), the challenges for bug
 reproduction (Section~\ref{sec:challenges}), and the method we
-followed to create bug instances (Section~\ref{sec:method}). The
-\tname\ database consists of \numbugs{} instances of reproducible bugs
+followed to create bug instances (Section~\ref{sec:method}).
+
+\tname\ contains \numbugs{} instances of reproducible bugs
 representing three popular DL libraries, namely, \jax, \tf, and
 \torch. Table~\ref{table:bug-characterization} shows the list of bug
 instances for each supported library. Column ``\#'' shows the number
-of bug instances, column ``build'' shows the breakdown of bug
-instances based on releases of the library against those based on
-nightly builds, and column ``environment'' shows the breakdown of bug
-instances that use Python's virtual environment against those that run
-on a Docker container.
+of bug instances, column ``build'' shows the breakdown of instances
+based on the kind of build, and column ``environment'' shows the
+breakdown of instances based on the kind of environment we use to
+reproduce the bug.
 
 \subsection{Selection Criterion}
 \label{sec:selection-criterion}
