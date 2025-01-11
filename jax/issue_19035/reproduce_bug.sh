@@ -45,4 +45,6 @@ fi
 
 docker build -t issue_19035 .
 docker run -it --rm --gpus all issue_19035
+docker rmi -f issue_19035
+docker system prune -f
 exit $?
