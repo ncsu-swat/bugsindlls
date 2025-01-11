@@ -3,7 +3,14 @@
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{xspace}
-
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -395,8 +402,37 @@ The bug reproduction code includes python tests (pytest). The test oracle is sat
 
 \subsubsection{Running one bug instance}
 
-\Fix{walkthrough an example. Show input and part of output. Explain
-  the output.}
+% \Fix{walkthrough an example. Show input and part of output. Explain
+%   the output.}
+
+Let's take the bug from issue no. 120903 from \torch. To make sure the framework is accessible system wide, the "framework" folder in the tool needs to be added to the PATH environment. The command to run a specific test is "run-test". To reproduce this bug, the command line prompt is as the following:
+
+\begin{lstlisting}[language=bash]
+  $> run-test --library-name pytorch --bug-id 120903
+\end{lstlisting}
+
+The output will look like this upon reproducing successfully:
+
+\begin{lstlisting}[language=bash]
+  ...
+  Versions of relevant libraries:
+  [pip3] numpy==1.26.4
+  [pip3] torch==2.2.0+cpu
+  [conda] torch                     2.2.0+cpu                pypi_0    pypi
+  ====== test session starts ======
+  platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
+  rootdir: /home/mnaziri/Documents/DL_Testing/dnnbugs/pytorch/issue_120903
+  collected 1 item                                                                            
+
+  test_issue_120903.py Pytorch issue no. 120903
+  Seed:  120903
+  RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch. 
+  ====== 1 passed in 0.96s ======
+\end{lstlisting}
+
+In this output, the dependencies used in the reproduction of the bug are listed. Then, the pytest is executed and the exception (bug) is caught. Afterwards, the issue id is printed and the exception that has been caught is printed to demonstrate the bug. At the end, the test is shown to be passed, signifying the successful reproduction of the bug.
+
+\Fix{Please review and revise}
 
 \subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}
 
