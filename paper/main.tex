@@ -322,15 +322,23 @@ it is imperative to save wheel files~\cite{wheels} for the
 correspondind builds.
 
 \textbf{Handling bugs in specific GPU-CUDA versions requires OS
-  changes:} Many of the GPU-related bugs can only be repro duced with
-specific GPU builds\Fix{I don't understance GPU builds. do you mean
-  GPU vendor/version? give example} and specific CUDA builds. Changing
-different virtual environments does not change the CUDA
-versions\Fix{Do you mean ``it is not possible to change the CUDA (or
-  GPU) version with Python's virtual environments''?} of the
-system. That is why we use Docker when a bug relies on a specific
-version of CUDA to be installed in the system.
+  changes:} Many of the GPU-related bugs can only be reproduced with
+library versions that are built with specific versions of CUDA.
+These builds require those specific CUDA drivers to be installed on
+the system, and the version of the CUDA driver installed on a system
+can not be changed with Python's virtual enviroments.
+% GPU builds\Fix{I don't understance GPU builds. do you mean
+%   GPU vendor/version? give example} and specific CUDA builds. 
+% Changing different virtual environments does not change the CUDA
+% versions\Fix{Do you mean ``it is not possible to change the CUDA (or
+%   GPU) version with Python's virtual environments''?} of the
+% system. 
+% That is why we use Docker when a bug relies on a specific
+% version of CUDA to be installed in the system.
+That is why we use Docker Containers with specific CUDA drivers to reproduce
+such bugs instead of virtual enviroments.
 
+\Fix{Please review and revise}
 
 \subsection{Method}
 \label{sec:method}
