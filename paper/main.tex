@@ -345,9 +345,22 @@ such bugs instead of virtual enviroments.
 \subsection{Method}
 \label{sec:method}
 
-\Fix{Abid, explain the steps you followed to create a bug
-  isntance. For example, (1) selected an issues (according to the
-  criteria defined in 2.1), (2) ...}
+% \Fix{Abid, explain the steps you followed to create a bug
+%   isntance. For example, (1) selected an issues (according to the
+%   criteria defined in 2.1), (2) ...}
+
+In order to add a bug to the dataset, a series of steps are followed.
+
+\begin{itemize}
+  \item A suitable issue is selected following the criteria defined in \ref{sec:selection-criterion}.
+  \item A list of dependencies to reproduced the bug are written on a requirements text (requirements.txt).
+  \item A python file is created that contains the bug revealing code, along with a test (pytest) that passes upon successfully trigerring the buggy behavior.
+  \item If the bug depends on a CUDA-specific build, a Dockerfile is written that can create a docker container with the required CUDA-driver installed along with the requirements.txt file and the python script copied into it.
+  \item A script is written that can create the virtual environment or the Docker container and execute the python test.
+  \item All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
+\end{itemize}
+
+\Fix{Please review and revise}
 
 \section{\tname: Database of Bugs in DL libraries}
 \subsection{Bug Interface}
@@ -372,7 +385,11 @@ Table~\ref{table:bug-interface} shows \Fix{...}
 
 \subsection{Test Oracle}
 
-\Fix{explain that the test passes if the bug can be reproduced}
+% \Fix{explain that the test passes if the bug can be reproduced}
+
+The bug reproduction code includes python tests (pytest). The test oracle is satisfied when the bug is reproduced successfully. For bugs that throw an unexpected exception, the test catches the exception and reports the exception details along with a pass status. For bugs that result in incorrect output value, assertions are placed in the code to expect the incorrect output value, hence passing the test when the bug occurs. For bugs that crash after raising a signal, the code snippet is placed in a seperate file and executed, while the file contaning the actual test asserts the presence of the signal raised by the code. Upon successful reproduction, the original code crashes raising the proper signla and the assertion passes.
+
+\Fix{Please review and revise}
 
 \subsection{Usage and Setup}
 
