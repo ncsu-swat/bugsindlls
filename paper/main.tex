@@ -343,19 +343,18 @@ our dataset.
 \subsection{Challenges}
 \label{sec:challenges}
 
-\textbf{Handling bugs from nighly builds requires saving wheels.}  Many
-of the reproducible bugs rely on nightly builds of the
-libraries. These builds are available for a limited amount of time. In
-order to ensure bugs reported on these builds to remain reproducible,
-it is imperative to save wheel files~\cite{wheels} for the
-correspondind builds.
+\textbf{Handling bugs from nighly builds requires saving wheels.}
+Many of the reproducible bugs rely on the libraries' nightly builds,
+which are available for a limited amount of time. To ensure that bugs
+reported on these builds remain reproducible, it is necessary to save
+Python wheel files (.whl)~\cite{wheels} for the correspondind builds.
 
 \textbf{Handling bugs in specific GPU-CUDA versions requires OS
-  changes:} Many of the GPU-related bugs can only be reproduced with
-library versions that are built with specific versions of CUDA.
-These builds require those specific CUDA drivers to be installed on
-the system, and the version of the CUDA driver installed on a system
-can not be changed with Python's virtual enviroments.
+  changes:} Some GPU-related bug instances can only be reproduced with
+specific versions of CUDA~\cite{cuda}, NVIDIA's platform and API for
+programming GPUs. These instances require specific CUDA drivers to be
+installed on the system. Python virtual enviroments are not designed
+to enable change of OS drivers.
 % GPU builds\Fix{I don't understance GPU builds. do you mean
 %   GPU vendor/version? give example} and specific CUDA builds. 
 % Changing different virtual environments does not change the CUDA
@@ -364,8 +363,8 @@ can not be changed with Python's virtual enviroments.
 % system. 
 % That is why we use Docker when a bug relies on a specific
 % version of CUDA to be installed in the system.
-That is why we use Docker Containers with specific CUDA drivers to reproduce
-such bugs instead of virtual enviroments.
+We use Docker containers for the bug instances that require changes in
+drivers.
 
 \Fix{Please review and revise}
 
