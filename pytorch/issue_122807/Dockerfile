@@ -7,11 +7,12 @@ ENV cuda_version=cuda12.1
 
 RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
+RUN pip install gdown==5.2.0
+RUN gdown --fuzzy https://drive.google.com/file/d/1dWfbm1lSSbNikOpvUnmq6nZrmp1yNxpZ/view?usp=sharing -O /tmp/
 COPY test_issue_122807.py app/
 COPY requirements.txt app/
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN pip install --pre pytorch-triton==3.0.0+989adb9a29 --index-url https://download.pytorch.org/whl/nightly/cu121
-RUN curl -OL https://download.pytorch.org/whl/nightly/cu121/torch-2.4.0.dev20240326%2Bcu121-cp311-cp311-linux_x86_64.whl
-RUN pip install torch-2.4.0.dev20240326%2Bcu121-cp311-cp311-linux_x86_64.whl
+RUN pip install /tmp/torch-2.4.0a0+gita166d4b-cp311-cp311-linux_x86_64.whl
 CMD ["pytest", "-sx"]

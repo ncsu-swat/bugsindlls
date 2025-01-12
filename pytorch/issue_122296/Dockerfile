@@ -7,6 +7,8 @@ ENV cuda_version=cuda12.1
 
 RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
+RUN pip install gdown==5.2.0
+RUN gdown --fuzzy https://drive.google.com/file/d/1c-TWGjCe9xQV4q8s0hfz9k-pwNCQQPmb/view?usp=sharing -O /tmp/
 COPY test_issue_122296.py app/
 COPY requirements.txt app/
 WORKDIR /app
