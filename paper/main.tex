@@ -4,6 +4,7 @@
 \usepackage{xcolor}
 \usepackage{xspace}
 \usepackage{listings}
+\usepackage{enumitem}
 \lstset{
   basicstyle=\ttfamily,
   columns=fullflexible,
@@ -285,7 +286,10 @@ and reproduce bug instances.
   \centering
   \caption{\label{table:bug-characterization}Characterization of
     reproducible bugs from \tname.\Fix{Is this up to date? I have seen
-  lots of activity recently but these numbers remain the same.}}
+  lots of activity recently but these numbers remain the
+  same.}\Fix{Can we add info about whether Python and/or C code causes
+      the bug?}\Fix{Can we add info on whether it is GPU related
+      (i.e., only manifests in GPUs)?}}
 \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
   \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
@@ -363,28 +367,36 @@ to enable change of OS drivers.
 % system. 
 % That is why we use Docker when a bug relies on a specific
 % version of CUDA to be installed in the system.
-We use Docker containers for the bug instances that require changes in
-drivers.
+We use Docker containers~\cite{merkel2014docker} for the bug instances
+that require changes in drivers.
 
 \subsection{Method}
 \label{sec:method}
 
-% \Fix{Abid, explain the steps you followed to create a bug
-%   isntance. For example, (1) selected an issues (according to the
-%   criteria defined in 2.1), (2) ...}
+The following steps show the method we use to create bug instances:
 
-In order to add a bug to the dataset, a series of steps are followed.
-
-\begin{itemize}
-  \item A suitable issue is selected following the criteria defined in \ref{sec:selection-criterion}.
-  \item A list of dependencies to reproduced the bug are written on a requirements text (requirements.txt).
-  \item A python file is created that contains the bug revealing code, along with a test (pytest) that passes upon successfully trigerring the buggy behavior.
-  \item If the bug depends on a CUDA-specific build, a Dockerfile is written that can create a docker container with the required CUDA-driver installed along with the requirements.txt file and the python script copied into it.
-  \item A script is written that can create the virtual environment or the Docker container and execute the python test.
-  \item All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
-\end{itemize}
-
-\Fix{Please review and revise}
+\begin{enumerate}[leftmargin=0.5cm]
+  \item Select an issue following the criteria defined in Section~\ref{sec:selection-criterion};
+  \item Write file \CodeIn{requirements.txt} with the list of dependencies to reproduce the bug;
+  \item Create a file showing the code that causes the bug (for documentation);
+  \item Create a file with a \CodeIn{pytest} test case that passes if
+    the code triggers the buggy behavior documented in the issue;
+    %% A python file is created that contains the bug revealing code, along with a test (pytest) that passes upon successfully trigerring the buggy behavior.
+  \item If the bug depends on a CUDA-specific build, write a
+    Dockerfile to create a container including the needed CUDA-driver
+    and the other artifacts mentioned above (e.g., test file and
+    requirements);
+    %% along with the requirements.txt file and the python
+    %% script copied into it.
+  \item Write a script that creates the virtual environment (either
+    Python's \CodeIn{venv}~\cite{venv} or Docker container) and runs
+    the test on it;
+  \item Create a directory \CodeIn{<lib>/<bug-id>} containing all the
+    artifacts mentioned above, where \CodeIn{lib} refers to the
+    affected library and \CodeIn{bug-id} is a fresh identifier of the
+    bug instance.
+    %% All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
+\end{enumerate}
 
 \section{\tname: Database of Bugs in DL libraries}
 \subsection{Bug Interface}
