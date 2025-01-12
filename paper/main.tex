@@ -398,17 +398,43 @@ The following steps show the method we use to create bug instances:
     %% All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
 \end{enumerate}
 
-\section{\tname: Database of Bugs in DL libraries}
-\subsection{Bug Interface}
+\textbf{Test Oracles.}~
+The bug reproduction code includes python tests (pytest). The test
+oracle is satisfied when the bug is reproduced successfully. For bugs
+that throw an unexpected exception, the test catches the exception and
+reports the exception details along with a pass status. For bugs that
+result in incorrect output value, assertions are placed in the code to
+expect the incorrect output value, hence passing the test when the bug
+occurs. For bugs that crash after raising a signal, the code snippet
+is placed in a seperate file and executed, while the file contaning
+the actual test asserts the presence of the signal raised by the
+code. Upon successful reproduction, the original code crashes raising
+the proper signla and the assertion passes.\Fix{Please review and
+  revise}
+
+\textbf{Example}~\Fix{Can you show here the artifacts associated to bug
+  120903 that you will use in the next section? If it takes too much
+  space, show only directory with files and the test case.}
+
+\section{\tname} % : Database of Bugs in DL libraries
+
+This section presents the interface of \tname\ and walks the reader
+through a demonstration showing the tool's functionality.
+
+
+\subsection{Interface}
 
 \begin{table}
   \centering
   \caption{\label{table:bug-interface}\tname's bug interface.}
 \begin{tabular}{lp{6.5cm}}
-\toprule
+  \toprule
+  \textbf{command} & \textbf{description} \\
+  \midrule
 list-tests & List the tests available on this dataset\\
 run-test & Runs one test\\
 run-tests & Runs all the tests\\
+run-tool & Runs a testing tool in a given buggy environment \\
 show-info & Shows information about the tests available on this benchmark\\
 stats & Shows statistics about this dataset (e.g., number of tests
 that require GPU, number of tests that reproduce bugs in C or Python
@@ -417,67 +443,91 @@ code, etc.)\\
 \end{tabular}
 \end{table}
 
-Table~\ref{table:bug-interface} shows \Fix{...}
-
-\subsection{Test Oracle}
-
+Table~\ref{table:bug-interface} shows the list of commands in the
+\tname's interface along with a short description for these
+commands. In the following we demonstrate \tname.
 % \Fix{explain that the test passes if the bug can be reproduced}
 
-The bug reproduction code includes python tests (pytest). The test oracle is satisfied when the bug is reproduced successfully. For bugs that throw an unexpected exception, the test catches the exception and reports the exception details along with a pass status. For bugs that result in incorrect output value, assertions are placed in the code to expect the incorrect output value, hence passing the test when the bug occurs. For bugs that crash after raising a signal, the code snippet is placed in a seperate file and executed, while the file contaning the actual test asserts the presence of the signal raised by the code. Upon successful reproduction, the original code crashes raising the proper signla and the assertion passes.
+\subsection{Usage}
 
-\Fix{Please review and revise}
+To enable system-wide access of the framework, it is necessary to add
+the directory \CodeIn{/framework} to the \CodeIn{PATH} environment
+variable. Run the following commands for that:
 
-\subsection{Usage and Setup}
+\begin{lstlisting}[language=bash]
+$> git clone git@github.com:ncsu-swat/bugsindlls.git
+$> cd bugsindlls
+$> export PATH=$PATH:`pwd`/framework
+\end{lstlisting}
+
 
 \subsubsection{Running one bug instance}
 
 % \Fix{walkthrough an example. Show input and part of output. Explain
 %   the output.}
 
-Let's take the bug from issue no. 120903 from \torch. To make sure the framework is accessible system wide, the "framework" folder in the tool needs to be added to the PATH environment. The command to run a specific test is "run-test". To reproduce this bug, the command line prompt is as the following:
+
+Let us use the bug 120903~\Fix{cite} from \torch\ to demonstrate the
+command \CodeIn{run-test}, which runs a test to reproduce a bug on an
+environment with the necessary dependencies installed. Use the
+following command to reproduce the bug:
 
 \begin{lstlisting}[language=bash]
-  $> run-test --library-name pytorch --bug-id 120903
+$> run-test --library-name pytorch --bug-id 120903
 \end{lstlisting}
 
-The output will look like this upon reproducing successfully:
+\noindent
+Execution of this command produces the following output:
 
 \begin{lstlisting}[language=bash]
-  ...
-  Versions of relevant libraries:
-  [pip3] numpy==1.26.4
-  [pip3] torch==2.2.0+cpu
-  [conda] torch                     2.2.0+cpu                pypi_0    pypi
-  ====== test session starts ======
-  platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
-  rootdir: /home/mnaziri/Documents/DL_Testing/dnnbugs/pytorch/issue_120903
-  collected 1 item                                                                            
+... 
+Versions of relevant libraries:
+[pip3] numpy==1.26.4
+[pip3] torch==2.2.0+cpu
+[conda] torch                     2.2.0+cpu                pypi_0    pypi
+====== test session starts ======
+platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
+rootdir: /home/mnaziri/Documents/DL_Testing/dnnbugs/pytorch/issue_120903
+collected 1 item                                                                            
 
-  test_issue_120903.py Pytorch issue no. 120903
-  Seed:  120903
-  RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch. 
-  ====== 1 passed in 0.96s ======
+test_issue_120903.py Pytorch issue no. 120903
+Seed:  120903
+RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch. 
+====== 1 passed in 0.96s ======
 \end{lstlisting}
 
-In this output, the dependencies used in the reproduction of the bug are listed. Then, the pytest is executed and the exception (bug) is caught. Afterwards, the issue id is printed and the exception that has been caught is printed to demonstrate the bug. At the end, the test is shown to be passed, signifying the successful reproduction of the bug.
+The output shows the dependencies installed in the environment to
+reproduce the bug and the verdict of the test oracle from pytest. In
+this case, the execution of the bug-revealing test throws a runtime
+error. Note that this test passes as it reproduces the intended bug.
 
-\Fix{Please review and revise}
+%% Afterwards, the issue
+%% id is printed and the exception that has been caught is printed to
+%% demonstrate the bug. At the end, the test is shown to be passed,
+%% signifying the successful reproduction of the bug.
+
+%% \Fix{Please review and revise}
 
 \subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}
 
+Tool execution proceeds in two steps: (1) Creation of Docker container
+associated with a tool and (2) Execution of the tool.  The following
+script executes the first step, i.e., it builds a Docker container for
+FreeFuzz:
+
 % \Fix{walkthrough an example. Show input and part of output. Explain
 %   the output.}
+%% The user needs to execute two steps to integrate a testing tool (e.g.,
+%% FreeFuzz) on \tname.
+%% 1. Create a docker container for the tool
+%% 2. A script that takes the name of the library as an argument and run FreeFuzz on the library
 
-To integrate a testing tool such as FreeFuzz, there are two steps:
-
-1. A docker container with the environment of FreeFuzz
-2. A script that takes the name of the library as an argument and run FreeFuzz on the library
-
-To build a docker container for FreeFuzz, the following script can be run:
 
 \begin{lstlisting}[language=bash]
-  $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
+$> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 \end{lstlisting}
+
+\Fix{I am here -Marcelo}
 
 Once the docker container is built and is running, providing the name of the container and the location of the script that can execute the tool (either absolute path or relative to the root of the repository) to the command "run-tool" in the framework along with the library and bug id will first reproduce the bug seperately and then update the environment inside the docker to run the tool with the script provided. For example, the issue no. 117033 and the \torch~library, the following command would run FreeFuzz on the enviroment of the bug:
 
