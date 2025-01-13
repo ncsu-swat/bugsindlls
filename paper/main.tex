@@ -198,7 +198,8 @@ of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
   Our dataset currently consists of \numbugs{} environments to
   reproduce bugs across three popular DL libraries, namely, \jax,
   \tf, and \torch.
-\textbf{Screencast}:~\url{https://tinyurl.com/BugsInDLLs}  
+\textbf{Screencast}:~\url{https://tinyurl.com/BugsInDLLs}\\
+\textbf{GitHub repository}:~\url{https://github.com/ncsu-swat/bugsindlls}    
 \end{abstract}
 
 %%
@@ -274,7 +275,7 @@ however we observe that the evaluation of these techniques do
 effectiveness. The lack of evaluation standards is an obstacle to the
 fair comparison of techniques, hindering research progress.
 
-This paper presents \tname, a database of curated reproducible bugs to
+We present \tname, a database of curated reproducible bugs to
 enable credible evaluation of DL library testing techniques. \tname\ is
 equipped with a command-line interface to enable researchers to analyze
 and reproduce bug instances.
@@ -310,9 +311,8 @@ representing three popular DL libraries, namely, \jax, \tf, and
 \torch. Table~\ref{table:bug-characterization} shows the list of bug
 instances for each supported library. Column ``\#'' shows the number
 of bug instances, column ``build'' shows the breakdown of instances
-based on the kind of build, and column ``environment'' shows the
-breakdown of instances based on the kind of environment to reproduce
-the bug.
+for each kind of build, and column ``environment'' shows the breakdown
+of instances for each kind of environment to reproduce the bug.
 
 \subsection{Selection Criteria}
 \label{sec:selection-criterion}
@@ -322,7 +322,7 @@ the bug.
 \textbf{Libraries.}~\torch~and \tf are popular DL libraries
 intensively used in the literature. \jax\ is a newer library that has
 been rapidly gaining popularity. All these libraries are open source
-with active communities supporting their maintenaance.
+with active communities supporting their maintenance.
 
 %% We chose these three popular datasets in order to enhance the process
 %% of developing testing tools around these libraries.
@@ -338,7 +338,7 @@ the ones that have enough information to reproduce the bugs, i.e.,
 code to reproduce the bug, enviroment required for
 reproduction\Fix{Abid, can you confirm that environment here is not
   the same as venv-docker that we are using on Table 1? instead it
-  means the version of CUDA, libraries, etc.? If so, avoid using the
+  means the version of CUDA, libraries, etc.? If so, avoid (re)using the
   word environment.}, clear description of the desired behavior,
 etc. Once we can successfully reproduce the bug by creating the
 enviroment detailed in the report, we choose the bug to be included in
