@@ -423,7 +423,7 @@ the proper signla and the assertion passes.\Fix{Please review and
 
 \textbf{Example}~\Fix{Can you show here the artifacts associated to bug
   120903 that you will use in the next section? If it takes too much
-  space, show only directory with files and the test case.}
+  space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
 
 \section{\tname} % : Database of Bugs in DL libraries
 
@@ -562,7 +562,7 @@ proceeds in two steps (1) reproduce the bug separately, as done with
 command \CodeIn{run-test}, and (2) then update the environment inside
 the docker container of the tool to run the tool with the script
 provided.\Fix{is the container destroyed after that? you are changing
-  the environment for a certain bug, right?!} The first step is a
+  the environment for a certain bug, right?! - Abid: the dependencies are installed inside the docker, but after running the dependencies are not reverted back. if another bug is to be reproduced, installing the new dependencies will simply overwrite the previous dependencies} The first step is a
 sanity check to assure that the bug can indeed be reproduced. For
 example, the following command runs FreeFuzz on the enviroment of the
 bug associated with the issue 117033 from \torch.
