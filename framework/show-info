@@ -85,24 +85,6 @@ fi
 # (2) generate json from csv
 # (3) pretty-print json 
 (
-    grep Issue ${home_location}/bug_dataset_${library_name}.csv # column names
-    grep $bug_id ${home_location}/bug_dataset_${library_name}.csv # bug row
-) | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | \
-    # remove spaces before comma    
-    sed 's/, /,/g' | \
-    # remove first two chars        
-    cut -c 3- | \
-    # revert string        
-    rev | \
-    # remore first two chars on reversed string (i.e., last two)        
-    cut -c 3- | \
-    # reverse back        
-    rev | \
-    # print all columns (using comma as separator)        
-    awk -F\, '{ for (i = 1; i <= NF; i++) print $i }'
-
-
-
-
-
- 
+    sed -n '2p' ${home_location}/bug_dataset_${library_name}.csv # header
+    awk -F, -v id="$bug_id" '$1 == id' ${home_location}/bug_dataset_${library_name}.csv # bug row
+) | python -c 'import csv, json, sys; [print(json.dumps(dict(r), indent=2)) for r in csv.DictReader(sys.stdin)]'
