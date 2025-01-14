@@ -342,11 +342,13 @@ the developer community as true bugs. We determine this by checking
 whether the bugs have appropriate labels and have been fixed with pull
 requests linked to them. Among these confirmed bug reports, we choose
 the ones that have enough information to reproduce the bugs, i.e.,
-code to reproduce the bug, enviroment required for
-reproduction\Fix{Abid, can you confirm that environment here is not
-  the same as venv-docker that we are using on Table 1? instead it
-  means the version of CUDA, libraries, etc.? If so, avoid (re)using the
-  word environment.}, clear description of the desired behavior,
+code to reproduce the bug, dependencies required for the bug
+reproduction
+% \Fix{Abid, can you confirm that environment here is not
+%   the same as venv-docker that we are using on Table 1? instead it
+%   means the version of CUDA, libraries, etc.? If so, avoid (re)using the
+%   word environment.}
+, clear description of the desired behavior,
 etc. Once we can successfully reproduce the bug by creating the
 enviroment detailed in the report, we choose the bug to be included in
 our dataset.
