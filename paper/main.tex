@@ -295,15 +295,15 @@ work. \tname\ is publicly available from the following URL:
   \caption{\label{table:bug-characterization}Characterization of
     reproducible bugs from \tname.\Fix{Is this up to date? I have seen
   lots of activity recently but these numbers remain the
-  same.}\Fix{Can we add info about whether Python and/or C code causes
-      the bug?}\Fix{Can we add info on whether it is GPU related
-      (i.e., only manifests in GPUs)?}}
+  same - Fixed (Abid)}\Fix{Can we add info about whether Python and/or C code causes
+      the bug? - Abid: we report how many c,python and cuda native files are buggy in total but not per bug, so currently no}\Fix{Can we add info on whether it is GPU related
+      (i.e., only manifests in GPUs)? - Abid: venv-docker is the same as cpu-gpu}}
 \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
   \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
-  \\ \cmidrule(lr){2-4} \jax{} & 44 & 43-1 & 43-1 \\ \torch{} & 33 &
-  15-18 & 19-14 \\ \tf{} & 25 & 24-1 & 25-0 \\ \midrule
-  \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 82-20 & 87-15
+  \\ \cmidrule(lr){2-4} \jax{} & 46 & 45-1 & 45-1 \\ \torch{} & 37 &
+  18-19 & 21-16 \\ \tf{} & 24 & 23-1 & 24-0 \\ \midrule
+  \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 86-21& 90-17
   \\ \bottomrule
 \end{tabular}
 \end{table}
