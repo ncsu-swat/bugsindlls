@@ -11,6 +11,7 @@
   frame=single,
   breaklines=true,
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  escapeinside={(*@}{@*)},
 }
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -555,7 +556,7 @@ of the two-step integration method.
 %% 2. A script that takes the name of the library as an argument and run FreeFuzz on the library
 
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,keywords={}]
 $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 \end{lstlisting}
 
@@ -563,7 +564,7 @@ $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 The script \CodeIn{install\_freefuzz\_docker.sh} contains the
 following instructions:
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,keywords={}]
 #!/bin/bash
 git clone https://github.com/ise-uiuc/FreeFuzz.git
 docker build -t freefuzz .
@@ -586,15 +587,15 @@ indeed be reproduced. For example, the following command runs FreeFuzz
 on the enviroment of the bug associated with the issue 117033 from
 \torch.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,keywords={}]
 $> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
 The output looks like the following:
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,keywords={}]
 ...  
-[Reproducing the bug]
+(*@\textbf{[Reproducing the bug]}@*)
 ====== test session starts ======
 platform linux -- Python 3.10.0, pytest-8.3.3, pluggy-1.5.0
 ...
@@ -602,13 +603,13 @@ IndexError: list index out of range
 ====== 1 passed in 1.09s ======
 ...
 
-[Setting up FreeFuzz]
+(*@\textbf{[Setting up FreeFuzz]}@*)
 Updating environment in the container of the testing tool
 Successfully copied 16.4kB to freefuzz:/tmp/issue_117033
 __pycache__  install_environment.sh  reproduce_bug.sh  requirements.txt  test_issue_117033.py
 ...
 
-[Running FreeFuzz]
+(*@\textbf{[Running FreeFuzz]}@*)
 Running the testing tool on the environment of the bug
 Testing on  ['torch']
 torch.log2
