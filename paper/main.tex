@@ -661,9 +661,14 @@ allows systematic benchmarking for DLL fuzzers.
 Deep Learning (DL) Libraries (e.g., \torch) provide the basic blocks
 for creating AI-enabled applications, which are becoming very
 popular. Several testing techniques have been proposed in the
-literature to find bugs on these libraries. Unfortunately, the lack of
-a dataset of reproducible bugs in those libraries poses a barrier to
-a proper evaluation of these techniques. \tname{} fills the gaps by 
+literature to find bugs in these libraries. Unfortunately, the lack of
+a dataset of reproducible bugs in those libraries poses an important
+barrier to the proper evaluation of these techniques. \tname{} fills
+the gaps. It includes a total of \numbugs\ across three major DL
+libraries. We plan to continue expanding this dataset and to explore
+automated approaches to extract patches from issue trackers and
+``frontport'' them~\cite{hazimeh2020magma} to a single version of the
+library to facilitate testing.
 
 
 \balance
