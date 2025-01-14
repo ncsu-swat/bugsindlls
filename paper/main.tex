@@ -440,6 +440,8 @@ def test_f():
   print(f'{e_info.type.__name__}: {e_info.value}')
 \end{lstlisting}
 
+In this example, the unexpected behavior is a \CodeIn{RuntimeError} thrown by the call to the \CodeIn{fake\_quantize\_per\_channel\_affine} API from \torch. Since the test oracle should pass when the bug is successfully reproduced, the code catches the exception and prints information about it, and upon catching the exception successfully, the test passes. If the bug reproduction fails i.e. the exception is not thrown or a different exception is thrown, the test will fail.
+
 \section{\tname} % : Database of Bugs in DL libraries
 
 This section presents the interface of \tname\ and walks the reader
