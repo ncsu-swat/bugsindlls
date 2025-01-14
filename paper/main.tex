@@ -418,12 +418,27 @@ occurs. For bugs that crash after raising a signal, the code snippet
 is placed in a seperate file and executed, while the file contaning
 the actual test asserts the presence of the signal raised by the
 code. Upon successful reproduction, the original code crashes raising
-the proper signla and the assertion passes.\Fix{Please review and
+the proper signal and the assertion passes.\Fix{Please review and
   revise}
 
-\textbf{Example}~\Fix{Can you show here the artifacts associated to bug
-  120903 that you will use in the next section? If it takes too much
-  space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
+\textbf{Example}
+% ~\Fix{Can you show here the artifacts associated to bug
+%   120903 that you will use in the next section? If it takes too much
+%   space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
+  The issue no. 120903 in pytorch has the following test code that checks the oracle:
+
+\begin{lstlisting}[language=python]
+def test_f():
+  input_data = torch.randn(3, 4, 5, 6)
+  scale = np.array([0.1, 0.2, 0.3, 0.4])
+  zero_point = torch.tensor([1, 2, 3, 4], dtype=torch.int32)
+  axis = 1
+  quant_min = 0
+  quant_max = 255
+  with pytest.raises(RuntimeError) as e_info:
+      output = torch.fake_quantize_per_channel_affine(input_data, torch.from_numpy(scale), zero_point, axis, quant_min, quant_max)
+  print(f'{e_info.type.__name__}: {e_info.value}')
+\end{lstlisting}
 
 \section{\tname} % : Database of Bugs in DL libraries
 
