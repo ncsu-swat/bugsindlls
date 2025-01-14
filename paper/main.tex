@@ -276,15 +276,15 @@ fair comparison of techniques, hindering research progress.
 We present \tname, a database of curated reproducible bugs to
 enable credible evaluation of DL library testing techniques. \tname\ is
 equipped with a command-line interface to enable researchers to analyze
-and reproduce bug instances. The following screencast demonstrate some
-of the features in \tname:
+and reproduce bug instances. The following screencast demonstrates some
+of the features of \tname:
 
 \url{https://tinyurl.com/BugsInDLLs}\\
 
 \tname\ has been under active development since March 21, 2024, the
-day of the first commit in the corresponding GitHub repository. Two
-UROP students, two PhD students, and two faculty were involved in the
-work. \tname\ is publicly available from the following URL:
+day of the first commit in its GitHub repository. Two UROP students,
+two PhD students, and two faculty were involved in the work during
+this period. \tname\ is publicly available from the following URL:
 
 \url{https://github.com/ncsu-swat/bugsindlls}
 
@@ -293,11 +293,13 @@ work. \tname\ is publicly available from the following URL:
 \begin{table}
   \centering
   \caption{\label{table:bug-characterization}Characterization of
-    reproducible bugs from \tname.\Fix{Is this up to date? I have seen
-  lots of activity recently but these numbers remain the
-  same - Fixed (Abid)}\Fix{Can we add info about whether Python and/or C code causes
-      the bug? - Abid: we report how many c,python and cuda native files are buggy in total but not per bug, so currently no}\Fix{Can we add info on whether it is GPU related
-      (i.e., only manifests in GPUs)? - Abid: venv-docker is the same as cpu-gpu}}
+    reproducible bugs from \tname.}
+  %%   \Fix{Is this up to date? I have seen
+  %% lots of activity recently but these numbers remain the
+  %% same - Fixed (Abid)}\Fix{Can we add info about whether Python and/or C code causes
+  %%     the bug? - Abid: we report how many c,python and cuda native files are buggy in total but not per bug, so currently no}\Fix{Can we add info on whether it is GPU related
+  %%     (i.e., only manifests in GPUs)? - Abid: venv-docker is the same
+  %%     as cpu-gpu}}
 \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
   \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
@@ -475,6 +477,7 @@ commands. In the following we demonstrate \tname.
 % \Fix{explain that the test passes if the bug can be reproduced}
 
 \subsection{Usage}
+\label{sec:usage}
 
 To enable system-wide access of the framework, it is necessary to add
 the directory \CodeIn{/framework} to the \CodeIn{PATH} environment
@@ -578,67 +581,70 @@ The second step runs the \tname's command \CodeIn{run-tool}, which
 proceeds in two steps (1) reproduce the bug separately, as done with
 command \CodeIn{run-test}, and (2) then update the environment inside
 the docker container of the tool to run the tool with the script
-provided.\Fix{is the container destroyed after that? you are changing
-  the environment for a certain bug, right?! - Abid: the dependencies are installed inside the docker, but after running the dependencies are not reverted back. if another bug is to be reproduced, installing the new dependencies will simply overwrite the previous dependencies} The first step is a
-sanity check to assure that the bug can indeed be reproduced. For
-example, the following command runs FreeFuzz on the enviroment of the
-bug associated with the issue 117033 from \torch.
+provided. The first step is a sanity check to assure that the bug can
+indeed be reproduced. For example, the following command runs FreeFuzz
+on the enviroment of the bug associated with the issue 117033 from
+\torch.
 
 \begin{lstlisting}[language=bash]
-  $> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
+$> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
 The output looks like the following:
 
 \begin{lstlisting}[language=bash]
-  ...
-  [Reproducing the bug]
-  ====== test session starts ======
-  platform linux -- Python 3.10.0, pytest-8.3.3, pluggy-1.5.0
-  ...
-  IndexError: list index out of range
-  ====== 1 passed in 1.09s ======
-  ...
-  [Setting up FreeFuzz]
-  Updating environment in the container of the testing tool
-  Successfully copied 16.4kB to freefuzz:/tmp/issue_117033
-  __pycache__  install_environment.sh  reproduce_bug.sh  requirements.txt  test_issue_117033.py
-  ...
-  [Running FreeFuzz]
-  Running the testing tool on the environment of the bug
-  Testing on  ['torch']
-  torch.log2
-  ...
-  torch.nn.MaxUnpool2d
-  ../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [1,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
-  ../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [2,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
-  ...
+...  
+[Reproducing the bug]
+====== test session starts ======
+platform linux -- Python 3.10.0, pytest-8.3.3, pluggy-1.5.0
+...
+IndexError: list index out of range
+====== 1 passed in 1.09s ======
+...
+
+[Setting up FreeFuzz]
+Updating environment in the container of the testing tool
+Successfully copied 16.4kB to freefuzz:/tmp/issue_117033
+__pycache__  install_environment.sh  reproduce_bug.sh  requirements.txt  test_issue_117033.py
+...
+
+[Running FreeFuzz]
+Running the testing tool on the environment of the bug
+Testing on  ['torch']
+torch.log2
+...
+torch.nn.MaxUnpool2d
+../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [1,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
+../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [2,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
+...
 \end{lstlisting}
 
 % \Fix{Consider the comments from Saikat, please.}
 Initially the script reproduces the bug, then it updates the environment inside the docker container of FreeFuzz to match the enviroment of the bug. Then it proceeds to run the entire testing tool on the enviroment. After the execution completes, the output can be checked for all failures produced by FreeFuzz (saved inside the container) and manually inspected to see if any failure that can reveal the bug in question was generated by the tool. In this case, the failure generated by FreeFuzz could not generate a failure that can reveal this bug since the API "torch.\_dynamo.export" is not supported by FreeFuzz.
 
-\Fix{Please review and revise}
-
 \section{\tname: Use cases}
 
-\Fix{@Saikat, can you please write 1-2 sentences about each use case here?}
-
-\subsection{Evaluating DL library testing techniques}
-\subsection{Fault Detection}
-\subsection{Program Repair}
-
+We anticipate two major use cases for \tname: (1) \textbf{evaluation
+  of testing techniques} and (2) \textbf{evaluation of repair
+  techniques}. Dozens of API- and model-level testing techniques have
+been proposed in the literature recently and it is imperative to
+evaluate them using a standard benchmark. \tname\ provides such
+benchmark. Considering repair, as testing techniques mature it becomes
+important to identify candidate repairs that can be recommended to
+developers when reporting issues in bug trackers. With \tname\ it is
+possible to identify if the problem has been resolved.
 
 \section{Related Work} 
-Several bug datasets have been proposed in literature for general software. Some
-popular examples includes software-artifact infrastructure repository
-(SIR)~\cite{do2005supporting} which was one of the bug datasets containing 81
-artificial faults in projects across multiple languages,
-Defects4J~\cite{just2014defects4j} which includes 357 real bugs across five
-large real-world Java projects, BugsInPy~\cite{widyasari2020bugsinpy} containing
-493 real bugs from 17 real-world Python programs, and
-BugsJS~\cite{vancsics2020relationship} containing 453 bugs across 10 Javascript
-projects.
+
+Several bug datasets have been proposed in literature for general
+software. Some popular examples includes software-artifact
+infrastructure repository (SIR)~\cite{do2005supporting} which was one
+of the bug datasets containing 81 artificial faults in projects across
+multiple languages, Defects4J~\cite{just2014defects4j} which includes
+357 real bugs across five large real-world Java projects,
+BugsInPy~\cite{widyasari2020bugsinpy} containing 493 real bugs from 17
+real-world Python programs, and BugsJS~\cite{vancsics2020relationship}
+containing 453 bugs across 10 Javascript projects.
 %
 Google's FuzzBench~\cite{metzman2021fuzzbench} provides an evaluation platform
 for comparing general purpose fuzzers. Magma~\cite{hazimeh2020magma} is another
@@ -652,9 +658,15 @@ allows systematic benchmarking for DLL fuzzers.
 % Denchmark~\cite{kim2021denchmark}
 
 \section{Conclusion and Future Work}
+Deep Learning (DL) Libraries (e.g., \torch) provide the basic blocks
+for creating AI-enabled applications, which are becoming very
+popular. Several testing techniques have been proposed in the
+literature to find bugs on these libraries. Unfortunately, the lack of
+a dataset of reproducible bugs in those libraries poses a barrier to
+a proper evaluation of these techniques. \tname{} fills the gaps by 
 
-\Fix{Marcelo will write a paragraph}
 
+\balance
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 
@@ -664,9 +676,8 @@ allows systematic benchmarking for DLL fuzzers.
 
 \section{Walkthrough}
 
-\Fix{}
-
-
+Section~\ref{sec:usage} demonstrates usage of \tname. The reader can
+also follow the steps in the README.md file on our GitHub repository.
 
 \end{document}
 \endinput
