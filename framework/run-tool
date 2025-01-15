@@ -108,9 +108,10 @@ fi
     /^pytest/ { in_block = 0 } 
     in_block
     ' "reproduce_bug.sh" > "install_environment.sh";
+    [ -s install_environment.sh ] || echo "pip install -r requirements.txt" > "install_environment.sh";
     chmod +x "install_environment.sh";
     cd ${home_location}/${library_name};
-    docker cp issue_${bug_id} ${container}:/tmp/issue_${bug_id};
+    docker cp issue_${bug_id}/. ${container}:/tmp/issue_${bug_id};
     docker exec -it ${container} bash -c "ls /tmp/issue_${bug_id} && cd /tmp/issue_${bug_id} && bash install_environment.sh";
     echo "Running the testing tool on the environment of the bug";
     cd ${home_location};

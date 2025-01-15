@@ -11,5 +11,4 @@ COPY test_issue_121671.py app/
 COPY requirements.txt app/
 WORKDIR /app
 RUN pip install -r requirements.txt
-RUN pip install torch==2.3.0+cu121 --index-url https://download.pytorch.org/whl/cu121
 CMD ["pytest", "-sx"]

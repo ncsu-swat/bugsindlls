@@ -22,5 +22,7 @@ packaging==24.1
 pluggy==1.5.0
 pytest==8.2.2
 sympy==1.12.1
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.3.0+cu121
 triton==2.3.0
 typing_extensions==4.12.2
