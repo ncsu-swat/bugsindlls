@@ -27,7 +27,6 @@ pytorch-triton==3.0.0+901819d2b6
 setuptools==57.5.0
 sympy==1.12
 tomli==2.0.1
---extra-index-url https://download.pytorch.org/whl/nightly/cu118
-torch==2.3.0.dev20240220
+torch @ file:///tmp/torch-2.3.0a0%2Bgit8efa066-cp38-cp38-linux_x86_64.whl#sha256=d3812b7ed1be3389bd85415c3707053a700282951c82d6a288d64dc4c18231a1
 typing_extensions==4.8.0
 wheel==0.43.0
