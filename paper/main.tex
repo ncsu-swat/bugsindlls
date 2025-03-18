@@ -438,7 +438,7 @@ the proper signal and the assertion passes.
 %   space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
   The issue no. 120903 in pytorch has the following test code that checks the oracle:
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python,basicstyle=\small,]
 def test_f():
   input_data = torch.randn(3, 4, 5, 6)
   scale = np.array([0.1, 0.2, 0.3, 0.4])
@@ -492,7 +492,7 @@ To enable system-wide access of the framework, it is necessary to add
 the directory \CodeIn{/framework} to the \CodeIn{PATH} environment
 variable. Run the following commands for that:
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,basicstyle=\small,]
 $> git clone git@github.com:ncsu-swat/bugsindlls.git
 $> cd bugsindlls
 $> export PATH=$PATH:`pwd`/framework
@@ -510,14 +510,14 @@ command \CodeIn{run-test}, which runs a test to reproduce a bug on an
 environment with the necessary dependencies installed. Use the
 following command to reproduce the bug:
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,basicstyle=\small,]
 $> run-test --library-name pytorch --bug-id 120903
 \end{lstlisting}
 
 \noindent
 Execution of this command produces the following output:
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash,basicstyle=\small,]
 ... 
 Versions of relevant libraries:
 [pip3] numpy==1.26.4
@@ -565,7 +565,7 @@ of the two-step integration method.
 %% 2. A script that takes the name of the library as an argument and run FreeFuzz on the library
 
 
-\begin{lstlisting}[language=bash,keywords={}]
+\begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 \end{lstlisting}
 
@@ -573,7 +573,7 @@ $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 The script \CodeIn{install\_freefuzz\_docker.sh} contains the
 following instructions:
 
-\begin{lstlisting}[language=bash,keywords={}]
+\begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 #!/bin/bash
 git clone https://github.com/ise-uiuc/FreeFuzz.git
 docker build -t freefuzz .
@@ -596,13 +596,13 @@ indeed be reproduced. For example, the following command runs FreeFuzz
 on the enviroment of the bug associated with the issue 117033 from
 \torch.
 
-\begin{lstlisting}[language=bash,keywords={}]
+\begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 $> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
 The output looks like the following:
 
-\begin{lstlisting}[language=bash,keywords={}]
+\begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 ...  
 (*@\textbf{[Reproducing the bug]}@*)
 ====== test session starts ======
