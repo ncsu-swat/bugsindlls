@@ -273,6 +273,8 @@ however we observe that the evaluation of these techniques do
 \emph{not} use a reference set of reproducible bugs to evaluate their
 effectiveness. The lack of evaluation standards is an obstacle to the
 fair comparison of techniques, hindering research progress.
+\Fix{Clarify how the "evaluation set" used by the existing works is different from the "reference set" that we are proposing. Also, need more compelling reason/some sort of evaluation of other fuzzers
+to complement the motivation}
 
 We present \tname, a database of curated reproducible bugs to
 enable credible evaluation of DL library testing techniques. \tname\ is
@@ -340,6 +342,10 @@ with active communities supporting their maintenance.
 % \Fix{Abid, explain the criterion for selecting the bugs (e.g., it
   % contains test code showing the problem).}
 
+\Fix{Need to add what labels were used, which period we took the issues from,
+how many issues we looked at, define "bug reports", mention how many bugs had 
+been filtered with each criterion}
+
 \textbf{Bugs.}~We focused on bug reports that have been accepted by
 the developer community as true bugs. We determine this by checking
 whether the bugs have appropriate labels and have been fixed with pull
@@ -389,7 +395,7 @@ The following steps show the method we use to create bug instances:
 
 \begin{enumerate}[leftmargin=0.5cm]
   \item Select an issue following the criteria defined in Section~\ref{sec:selection-criterion};
-  \item Write file \CodeIn{requirements.txt} with the list of dependencies to reproduce the bug;
+  \item Write file \CodeIn{requirements.txt} with the list of dependencies to reproduce the bug; \Fix{Clarify that the version of the library which was used to report the bug is also included in the requirements.txt file}
   \item Create a file showing the code that causes the bug (for documentation);
   \item Create a file with a \CodeIn{pytest} test case that passes if
     the code triggers the buggy behavior documented in the issue;
@@ -538,6 +544,7 @@ error. Note that this test passes as it reproduces the intended bug.
 
 %% \Fix{Please review and revise}
 
+\Fix{What evaluation can be added to this section?}
 \subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}
 
 Tool execution proceeds in two steps: (1) Creation of Docker container
@@ -633,7 +640,9 @@ evaluate them using a standard benchmark. \tname\ provides such
 benchmark. Considering repair, as testing techniques mature it becomes
 important to identify candidate repairs that can be recommended to
 developers when reporting issues in bug trackers. With \tname\ it is
-possible to identify if the problem has been resolved.
+possible to identify if the problem has been resolved. 
+\Fix{The concept of repairing has not been tied to any commands in the tool. Suggestions include
+a way to recreate an enviroment with the bug fixed, or a way to check if the bug has been fixed in a new version of the library.}
 
 \section{Related Work} 
 
