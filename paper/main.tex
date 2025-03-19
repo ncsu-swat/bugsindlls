@@ -336,7 +336,16 @@ of instances for each kind of environment to reproduce the bug.
 \textbf{Libraries.}~\torch~and \tf are popular DL libraries
 intensively used in the literature. \jax\ is a newer library that has
 been rapidly gaining popularity. All these libraries are open source
-with active communities supporting their maintenance.
+with active communities supporting their maintenance. From these three
+libraries, we selected issue reports from specific periods in their
+respective issue trackers. For \torch, we selected issues from the
+period between \torchfrom and \torchto. For \tf, we selected issues
+from the period between \tffrom and \tfto. For \jax, we selected
+issues from the period between \jaxfrom and \jaxto. We have chosen
+different periods for each library depending on the number of issues
+reported in the issue tracker in that period. For example, \tf has a
+much longer period compared to the others because the frequency of
+issues reported in the issue tracker is lower.
 
 %% We chose these three popular datasets in order to enhance the process
 %% of developing testing tools around these libraries.
@@ -344,25 +353,53 @@ with active communities supporting their maintenance.
 % \Fix{Abid, explain the criterion for selecting the bugs (e.g., it
   % contains test code showing the problem).}
 
-\Fix{Need to add what labels were used, which period we took the issues from,
-how many issues we looked at, define "bug reports", mention how many bugs had 
-been filtered with each criterion}
+% \Fix{Need to add what labels were used, which period we took the issues from,
+% how many issues we looked at, define "bug reports", mention how many bugs had 
+% been filtered with each criterion}
 
-\textbf{Bugs.}~We focused on bug reports that have been accepted by
+\textbf{Bugs.}~We focus on issue reports that have been accepted by
 the developer community as true bugs. We determine this by checking
-whether the bugs have appropriate labels and have been fixed with pull
-requests linked to them. Among these confirmed bug reports, we choose
-the ones that have enough information to reproduce the bugs, i.e.,
+whether the issue reports have the label "bug" and have been fixed with pull
+requests linked to them. We then create a filter that incorporates
+the periods mentioned above, the label, the issue status being closed
+and the presence of a linked pull request. We found \numtorchfiltered{}
+issues for \torch, \numtffiltered{} issues for \tf, and \numjaxfiltered{}
+issues for \jax after filtering the issues. \torch has the highest number
+of issues due to a lack of a label for bugs in the issue tracker.
+
+We then manually inspect the
+filtered issues to ensure that they contain enough information to
+reproduce the bug, i.e.,
 code to reproduce the bug, dependencies required for the bug
-reproduction
+reproduction, clear description of the desired behavior,
+etc. We also filter bugs that are not in the core functionality
+of the library e.g. documentation issues, feature requests, etc.
+After this stage of manual inspection, we end up with \numtorchinspected{}
+issues for \torch, \numtfinspected{} issues for \tf, and \numjaxinspected{}
+issues for \jax.
+
+% Among these confirmed bug reports, we choose
+% the ones that have enough information to reproduce the bugs, i.e.,
+% code to reproduce the bug, dependencies required for the bug
+% reproduction
 % \Fix{Abid, can you confirm that environment here is not
 %   the same as venv-docker that we are using on Table 1? instead it
 %   means the version of CUDA, libraries, etc.? If so, avoid (re)using the
 %   word environment.}
-, clear description of the desired behavior,
-etc. Once we can successfully reproduce the bug by creating the
+% , clear description of the desired behavior,
+% etc. 
+Afterwards, we assess the reproducibility of the bug by creating a
+virtual environment that contains the necessary dependencies to
+reproduce the bug.
+Once we can successfully reproduce the bug by creating the
 enviroment detailed in the report, we choose the bug to be included in
-our dataset.
+our dataset. Through this process, we end up with \numtorchselected{},
+\numtfselected{}, and \numjaxselected{} bug instances for \torch, \tf,
+and \jax, respectively.
+
+\Fix{Abid: Added what labels were used, which period we took the issues from,
+how many issues we looked at, defined "bug reports", mentioned how many bugs had 
+been filtered with each criterion. Please review and revise}
 
 \subsection{Challenges}
 \label{sec:challenges}
