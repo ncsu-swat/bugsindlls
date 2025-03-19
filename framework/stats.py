@@ -59,6 +59,9 @@ def process_file(libname, print_fmt, total_bugs):
         num_cuda = 0  
         ##
         num_nightly = 0
+        ##
+        bug_library_version = {}
+
         for row in csv_reader:
             if row["Reproduced"] == "Yes":
                 total_bugs += 1
@@ -99,6 +102,15 @@ def process_file(libname, print_fmt, total_bugs):
                 if row["Nightly"].lower().strip() == "yes":
                     num_nightly += 1
 
+                # bug library versions
+                bug_l_version = row["Buggy Version"].strip()
+                if bug_l_version == "":
+                    print(f"\nWARNING: {row['Issue #']} does not have a library version")
+                if bug_l_version not in bug_library_version:
+                    bug_library_version[bug_l_version] = [row['Issue #']]
+                else:
+                    bug_library_version[bug_l_version].append(row['Issue #'])
+
         print(f'  # Total: {total_bugs - initial_bugs}')
         print(f'  # Require GPU: {num_gpus} ({num_gpus*100/(num_gpus+num_cpus):.2f}%)')
         print(f'  # Do NOT Require GPU: {num_cpus} ({num_cpus*100/(num_gpus+num_cpus):.2f}%)')        
@@ -115,7 +127,14 @@ def process_file(libname, print_fmt, total_bugs):
                 print(f'    {bug_m_type}: {bug_manifest_type[bug_m_type]}')
             else:
                 print(f'    <undefined>: {bug_manifest_type[bug_m_type]}')
-    
+        print('----------------------------')
+        print(f'  # Bug library version breakdown:')
+        for bug_l_version in bug_library_version.keys():
+            if bug_l_version.strip() > "":
+                print(f'    {bug_l_version}: {", ".join(bug_library_version[bug_l_version])} (Total: {len(bug_library_version[bug_l_version])})')
+            else:
+                print(f'    <undefined>: {", ".join(bug_library_version[bug_l_version])} (Total: {len(bug_library_version[bug_l_version])})')
+
     if (print_fmt == "trie") or (print_fmt == "both"):
         print('----------------------------')
         print(tr)             
