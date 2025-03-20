@@ -335,7 +335,7 @@ of instances for each kind of environment to reproduce the bug. Co-incidentally,
 all bugs that require a GPU build are reproduced using a docker
 container i.e. the column venv-docker is the same as bugs reproducible with CPU-GPU builds
 of the libraries respectively. Table~\ref{table:bug-stats} shows whay type of error is manifested
-due to each bug instance. In total, we have 15 different types of bug manifestations across
+due to each bug instance. In total, we have \numbugtypes\ different types of bug manifestations across
 the three libraries.
 
 \Fix{Added table and description, please revise}
@@ -405,8 +405,8 @@ virtual environment that contains the necessary dependencies to
 reproduce the bug.
 Once we can successfully reproduce the bug by creating the
 enviroment detailed in the report, we choose the bug to be included in
-our dataset. Through this process, we end up with \numtorchselected{},
-\numtfselected{}, and \numjaxselected{} bug instances for \torch, \tf,
+our dataset. Through this process, we end up with \numtorchbugs{},
+\numtfbugs{}, and \numjaxbugs{} bug instances for \torch, \tf,
 and \jax, respectively.
 
 \Fix{Abid: Added what labels were used, which period we took the issues from,
@@ -418,23 +418,26 @@ been filtered with each criterion. Please review and revise}
   \caption{\label{table:bug-stats}Different bug manifestation types from \tname.}
   \begin{tabular}{lrrrr}\toprule
     Bug manifestation type &Jax &Pytorch &Tensorflow \\\midrule
-    Internal Exception &11 &9 &1 \\
     Incorrect Output &14 &11 &5 \\
-    Value Error &7 &0 &3 \\
+    Internal Exception &11 &9 &4 \\
+    Value Error &7 &0 &4 \\
     Type Error &3 &2 &3 \\
-    Attribute Error &2 &0 &0 \\
+    Attribute Error &2 &0 &2 \\
     Index Error &2 &1 &0 \\
     Floating Point Error &1 &0 &0 \\
     Error Not Raised &1 &0 &0 \\
     Parse Error &1 &0 &0 \\
-    Runtime Error &1 &7 &1 \\
+    Runtime Warning &1 &0 &0 \\
     Not Implemented Error &1 &0 &0 \\
     Memory Error &1 &1 &0 \\
     Invalid Argument Error &1 &0 &1 \\
-    Crash &0 &4 &10 \\
+    Runtime Error &0 &7 &1 \\
     Assertion Error &0 &2 &0 \\
+    Segmentation Fault &0 &2 &1 \\
+    Floating Point Exception &0 &1 &0 \\
+    Aborted &0 &1 &8 \\
     \midrule
-    $\Sigma$ &46 &37 &24 \\
+    $\Sigma$ &\numjaxbugs{} &\numtorchbugs{} &\numtfbugs{} \\
     \bottomrule
   \end{tabular}
 \end{table}

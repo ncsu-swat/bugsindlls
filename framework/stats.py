@@ -124,7 +124,7 @@ def process_file(libname, print_fmt, total_bugs):
         bug_manifest_type = dict(sorted(bug_manifest_type.items(), key=lambda item: item[1], reverse=True)) # sort by number of occurance
         for bug_m_type in bug_manifest_type.keys():
             if bug_m_type.strip() > "":
-                print(f'    {bug_m_type}: {bug_manifest_type[bug_m_type]}')
+                print(f'    {bug_m_type.title()}: {bug_manifest_type[bug_m_type]}')
             else:
                 print(f'    <undefined>: {bug_manifest_type[bug_m_type]}')
         print('----------------------------')
