@@ -8,14 +8,15 @@ hash conda 2>/dev/null || { echo >&2 "I require conda but it's not installed.  A
 usage="
 -l library-name (mandatory)
   The id of the library for which the information shall be printed. Options: jax, pytorch, tensorflow
--i bug-id (mandatory)
+-i bug-id (optional if -u is provided)
   The bug number of the library-name for which the information shall be printed.
 -c container (mandatory)
   The docker container that contains the testing tool.
 -r run-script (mandatory)
   The path to the script relative to the root directory of the repository (or absolute path) that can execute the testing tool.
+-u use-library-version (optional)
+  The version of the library for which the first bug-id will be retrieved automatically.
 "
-
 
 function usage {
 cat <<-____HALP
@@ -31,7 +32,6 @@ case $1 in
      exit 0;;
 esac
 
-
 # before running through `getopts`, translate out convenient long-versions
 for opt in "$@"; do
     shift
@@ -40,18 +40,20 @@ for opt in "$@"; do
       '--bug-id')          set -- "$@" '-i' ;;
       '--container')       set -- "$@" '-c' ;;
       '--run-script')      set -- "$@" '-r' ;;
+      '--use-library-version') set -- "$@" '-u' ;;
       *)                   set -- "$@" "${opt}" ;;
     esac
 done
 
 ### read the flag and assign values to corresponding variables
-while getopts :l:i:c:r: flag
+while getopts :l:i:c:r:u: flag
 do
     case "${flag}" in
         l) library_name=${OPTARG};;
         i) bug_id=${OPTARG};;
         c) container=${OPTARG};;
         r) run_script=${OPTARG};;
+        u) library_version=${OPTARG};;
         \?) echo "invalid option: -$OPTARG."
             usage
             exit 1
@@ -77,9 +79,29 @@ if ! [[ "$library_name" =~ ^(jax|pytorch|tensorflow)$ ]]; then
     exit    
 fi
 
+### If -u is provided, fetch bug_id from stats output
+if [ -n "$library_version" ]; then
+    bug_id=$(stats -l "$library_name" -p none | awk -v version="$library_version" '
+        BEGIN { found = 0 }
+        /# Bug library version breakdown:/ { found = 1; next }
+        found && match($0, /^[[:space:]]*([^:]+):[[:space:]]*([0-9, ]+)/, arr) {
+            if (arr[1] == version) {
+                split(arr[2], bug_ids, ",");
+                gsub(/[[:space:],]/, "", bug_ids[1]);
+                print bug_ids[1];
+                exit;
+            }
+        }')
+    if [ -z "$bug_id" ]; then
+        echo "Could not find an issue number for version $library_version"
+        exit 1
+    fi
+    echo "Using bug-id $bug_id for library $library_name version $library_version"
+fi
 
-### bug_id is mandatory
-if [ "$bug_id" == "" ]; then 
+### bug_id is mandatory only if -u is not provided
+if [ -z "$bug_id" ] && [ -z "$library_version" ]; then
+    echo "Please provide bug id (-i) or library version (-u)"
     usage
     exit
 fi
@@ -95,7 +117,6 @@ if ! ls $home_location/$library_name | cut -d\_ -f2 | grep $bug_id > /dev/null ;
     echo "could not find bug-id $bug_id for $library_name"
     exit
 fi
-
 
 (
     cd ${home_location}/${library_name}/issue_${bug_id};
