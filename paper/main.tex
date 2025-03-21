@@ -677,13 +677,24 @@ error. Note that this test passes as it reproduces the intended bug.
 % \Fix{What evaluation can be added to this section?}
 \subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}\label{sec:running-free-fuzz}
 
-To run any tool on \tname, a script that contains commands to run the tool, a preprocessing script to extract error types and buggy APIs for a specific library version, and a postprocessing script to match the execution log with the expected errors needs to be provided. We provide implementations for FreeFuzz~\cite{wei2022free} in the \CodeIn{tool-integration} directory that contains templates for these scripts.
+A developer needs to provide three scripts to integrate a fuzzing
+tool: (1) a script that contains commands to run the tool; (2) a
+preprocessing script to extract error types and buggy APIs for a
+specific library version, and (3) a postprocessing script to match the
+execution log with the expected errors needs to be provided. The
+directory \CodeIn{tool-integration} that contains templates for these
+scripts and their instantiations for FreeFuzz~\cite{wei2022free}, a
+popular API fuzzer for DL libraries.
+%
+%% Tool execution proceeds in four steps: (1) Creation of Docker
+%% container associated with a tool, (2) Reproduction of example bug from
+%% the library version provided as input (3) Execution of preprocessing
+%% script to extract error types and buggy APIs for a specific library
+%% vesion (4) Execution of the tool and (5) Execution of postprocessing
+%% script to match the execution log with the expected errors.
 
-Tool execution proceeds in four steps: (1) Creation of Docker container
-associated with a tool, (2) Reproduce an example bug from the library version provided as input (3) Running a preprocessing script to extract error types and buggy APIs for a specific library vesion (4) Execution of the tool and (5) Running a postprocessing script to match the execution log with the expected errors. Let us
-demonstrate this process on FreeFuzz~\cite{wei2022free}, an API-level
-fuzzer for DL libraries. The following script executes the first step
-of the two-step integration method.
+We demonstrate the integration of FreeFuzz~\cite{wei2022free}. The
+following script creates a Docker container associated with FreeFuzz.
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
@@ -691,7 +702,7 @@ $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 
 \noindent
 The script \CodeIn{install\_freefuzz\_docker.sh} contains the
-following instructions:
+following instructions\Fix{add brief explanation for what it does}:
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 #!/bin/bash
@@ -701,8 +712,10 @@ docker run --name freefuzz --gpus all -d freefuzz:latest
 docker exec -it freefuzz mongorestore dump/
 \end{lstlisting}
 
-The next four steps are executed with \tname's command \CodeIn{run-tool}.
-When the comment is run, firstly an example bug that is reproducible with the library version provided as an input is run as a sanity check. Then, a preprocessing script to extract error types and buggy APIs for a specific library version runs.
+The next four steps are executed with \tname's command
+\CodeIn{run-tool}.
+
+When the command is run, firstly an example bug that is reproducible with the library version provided as an input is run as a sanity check. Then, a preprocessing script to extract error types and buggy APIs for a specific library version runs.
 Then the environment inside
 the docker container of the tool is updated to match the library version passed as an input and the fuzzing tool runs inside the enviroment. After the execution is complete, the next step is running a postprocessing script that checks the execution log against the error types of the bug to determine if the bugs were reproduced or not.
 For example, the following command runs FreeFuzz
