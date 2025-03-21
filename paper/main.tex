@@ -813,7 +813,7 @@ Reproduced 0 out of 3 bugs
 The execution log shows that the tool did not reproduce any of the
 three bugs that were expected to be reproduced since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. The outputs of the tool are saved in the container and can be inspected manually to further inspect the execution log. From this result, the developer can decide to add support for these three APIs in FreeFuzz and run the tool again to check if the bugs can be reproduced now. This will allow developers to decide on which APIs to add support for.
 
-\subsection{Contribution}
+\subsection{Contributions}
 
 \tname\ allows users to contribute to the dataset by adding new bug
 instances. This opens up the tool to the community to help in
