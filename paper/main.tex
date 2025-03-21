@@ -263,36 +263,63 @@ of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
 
 \section{Introduction}
 
-\sloppy Serveral important application domains (e.g., transportation,
-medicine, etc.) use AI as part of their business processes. Deep
-Learning~(DL) libraries, such as \jax, \torch{}, and \tf{}, provide
-the building blocks for the AI components of these applications.
-Unfortunately, as any piece of software, these libraries contain
-bugs. An impressive number of techniques have been recently proposed
-to find bugs in these
+\sloppy Several application domains (e.g., transportation and
+medicine) use AI as part of their solutions. Deep Learning~(DL)
+libraries, such as \jax, \torch{}, and \tf{}, provide the building
+blocks for the AI components of these applications.  Unfortunately, as
+any piece of software, these libraries contain bugs. An impressive
+number of techniques have been recently proposed to find bugs in these
 libraries~\cite{wei2022free,xie2022docter,deng2022fuzzing,pham2019cradle,guo2020audee,wang2020deep,gu2022muffin,deng2023large,liu2023nnsmith,liu2023neuri,shi2023acetest,deng2023largeedge},
-however we observe that the evaluation of these techniques do
-\emph{not} use a reference set of reproducible bugs to evaluate their
-effectiveness. The lack of evaluation standards is an obstacle to the
-fair comparison of techniques, hindering research progress.
-\Fix{Clarify how the "evaluation set" used by the existing works is different from the "reference set" that we are proposing. Also, need more compelling reason/some sort of evaluation of other fuzzers
-to complement the motivation}
+however we observe these techniques propose an independent evaluation
+methodology. These techniques do \emph{not} use a reference database
+of reproducible bugs to evaluate their effectiveness. The lack of an
+evaluation standards is a serious obstacle to a fair and rigorous
+comparison of techniques and hinders research progress.
+
+%%~\cite{just2014defects4j,smytzek2024tests4py,widyasari2020bugsinpy,kim2021denchmark}
+Although many datasets of reproducible bugs have been proposed in the
+literature, there is a lack of solutions satisfying the following
+criteria:
+
+\begin{enumerate}[leftmargin=0.2in]
+\item developers should be able to write tests scripts in Python;
+\item ~they should be able to handle nighly builds and specific
+  versions of CUDA (\textsection~\ref{sec:challenges});
+\item they should be able to integrate fuzzing tools in the framework.
+\end{enumerate}  
+
+Note that DL libraries are written in Python. Existing datasets of
+reproducible bugs exist in Python (e.g.,
+BugInPy~\cite{widyasari2020bugsinpy} and
+Tests4Py~\cite{smytzek2024tests4py}), but they fail to satisfy the
+second or the third requirement. For example, BugsInPy and Tests4Py do
+not support artifacts in Docker, which are necessary to modify CUDA
+drivers in the guest OS to reproduce specific GPU-related
+bugs.\footnote{BugsInPy and Tests4Py use python virtual environments,
+e.g., venv and pyenv.} More importantly, a dataset of Deep Learning
+Libraries needs to support the integration of new fuzzing tools. The
+central purpose of such dataset is to \emph{enable the systematic
+evaluation of testing techniques}.
+
+%% \Fix{Clarify how the
+%%   "evaluation set" used by the existing works is different from the
+%%   "reference set" that we are proposing. Also, need more compelling
+%%   reason/some sort of evaluation of other fuzzers to complement the
+%%   motivation}
 
 % \Fix{Add a "Tool availablity" section and move the details there, upload the video to YouTube, archive 
 % the tool at zenodo}
 
-We present \tname, a database of curated reproducible bugs to
-enable credible evaluation of DL library testing techniques. \tname\ is
-equipped with a command-line interface to enable researchers to analyze
-and reproduce bug instances. 
+We present \tname, a database of curated reproducible bugs to enable
+credible evaluation of DL library testing techniques. \tname\ is
+equipped with a command-line interface to enable researchers to
+analyze and reproduce bug instances.  \tname\ has been under active
+development since March 21, 2024, the day of the first commit in its
+GitHub repository. Two UROP students, two PhD students, and two
+faculty were involved in the work during this
+period. Section~\ref{sec:tool-availability} details tool availability.
 
-\tname\ has been under active development since March 21, 2024, the
-day of the first commit in its GitHub repository. Two UROP students,
-two PhD students, and two faculty were involved in the work during
-this period. Details on tool availability is provided in
-Section~\ref{sec:tool-availability}.
-
-\Fix{Need to add text regarding differentiating the tool from BugsInPy}
+%\Fix{Need to add text regarding differentiating the tool from BugsInPy}
 
 \section{Tool Availability}
 \label{sec:tool-availability}
