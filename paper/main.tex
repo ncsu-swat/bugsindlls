@@ -727,20 +727,15 @@ script containing the commands to run the tool
 (\CodeIn{run\_freefuzz\_docker.sh}. The script reports on output how
 many bugs are reproducible with this library version were successfully
 reproduced by the given tool.  Tool execution proceeds as
-follows. First, creation of docker container associated with the tool
-done\Fix{ask gpt to revise/polish the text} with the script
-\CodeIn{install\_freefuzz\_docker.sh}.  Then, an example bug\Fix{I
-  don't understand ``example bug''. bugs in this version, no??!!} that
-is reproducible with the library version provided as an input is run
-as a sanity check.  Then, the preprocessing script
-(\CodeIn{preprocess.py}) is executed to extract error types and buggy
-APIs for a specific library vesion and the environment inside the
-docker container of the tool is updated to match the library version
-passed as an input and the fuzzing tool runs inside the
-enviroment. After the execution is complete, the script finally runs a
-postprocessing script (\CodeIn{postprocess.py}) to check the execution
-log against the ground truth to determine if the bugs were reproduced
-or not.
+follows. First, a Docker container associated with the tool is created using
+\CodeIn{install_freefuzz_docker.sh}. Next, a reproducible bug is tested using
+the specified library version as input to verify the setup.
+Following this, the preprocessing script (\CodeIn{preprocess.py}) is executed 
+to extract error types and identify buggy APIs for the given library version.
+The environment inside the Docker container is then updated to match the specified version, 
+ensuring compatibility before running the fuzzing tool. Once execution is complete, a postprocessing 
+script (\CodeIn{postprocess.py}) is run to analyze the execution log against the ground truth, 
+determining whether the bugs were successfully reproduced.
 
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
