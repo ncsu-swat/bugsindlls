@@ -1,5 +1,10 @@
 \documentclass[sigconf,screen]{acmart}
 
+\setcopyright{none} % to remove the copyright notice
+\settopmatter{printacmref=false} % to remove the ACM Reference Format
+\renewcommand\footnotetextcopyrightpermission[1]{} % to remove copyright box
+
+
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{xspace}
@@ -24,23 +29,23 @@
 %% values in them; it is your responsibility as an author to replace
 %% the commands and values with those provided to you when you
 %% complete the rights form.
-\setcopyright{acmlicensed}
-\copyrightyear{2018}
-\acmYear{2018}
-\acmDOI{XXXXXXX.XXXXXXX}
-%% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-  conference title from your rights confirmation email}{June 03--05,
-  2018}{Woodstock, NY}
-%%
-%%  Uncomment \acmBooktitle if the title of the proceedings is different
-%%  from ``Proceedings of ...''!
-%%
-%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
-%%  June 03--05, 2018, Woodstock, NY}
-\acmISBN{978-1-4503-XXXX-X/2018/06}
-\acmBooktitle{Companion Proceedings of the 33rd ACM Symposium on the Foundations
-of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
+%% \setcopyright{acmlicensed}
+%% \copyrightyear{2018}
+%% \acmYear{2018}
+%% \acmDOI{XXXXXXX.XXXXXXX}
+%% %% These commands are for a PROCEEDINGS abstract or paper.
+%% \acmConference[Conference acronym 'XX]{Make sure to enter the correct
+%%   conference title from your rights confirmation email}{June 03--05,
+%%   2018}{Woodstock, NY}
+%% %%
+%% %%  Uncomment \acmBooktitle if the title of the proceedings is different
+%% %%  from ``Proceedings of ...''!
+%% %%
+%% %%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%% %%  June 03--05, 2018, Woodstock, NY}
+%% \acmISBN{978-1-4503-XXXX-X/2018/06}
+%% \acmBooktitle{Companion Proceedings of the 33rd ACM Symposium on the Foundations
+%% of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
 
 %%
 %% Submission ID.
@@ -337,8 +342,7 @@ period. Section~\ref{sec:tool-availability} details tool availability.
 
 \url{https://github.com/ncsu-swat/bugsindlls}
 
-The following video demonstrates some
-of the features of \tname:
+The following video demonstrates \tname:
 
 \url{https://www.youtube.com/watch?v=NslNWrULT1c}
 
