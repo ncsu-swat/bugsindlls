@@ -1,6 +1,6 @@
 ,Filter:,is:issue is:closed created:2021-02-01..2024-07-31 label:type:bug linked:pr ,Total Reproduced:,29,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Type,Remarks,Issue Link,PR Link
-72365,,tf.range miss some dtypes support ,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/72365,
+72365,,tf.range miss some dtypes support ,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/72365,
 65869,65936,Check failed in tf.raw_ops.GatherV2 when the value of axis is too large.,Yes,Closed,CPU,,04/16/2024,2.16.1,No,tensorflow/core/kernels/gather_op.cc,Compute(),Internal exception,,https://github.com/tensorflow/tensorflow/issues/65869,https://github.com/tensorflow/tensorflow/pull/65936
 65865,67468,Overflow in tf.raw_ops.SparseReduceMaxSparse when there are too large values in input_shape.,Yes,Closed,CPU,,04/17/2024,2.15.0,No,Force Pushed,Force Pushed,Internal exception,,https://github.com/tensorflow/tensorflow/issues/65865,https://github.com/tensorflow/tensorflow/pull/67468
 65629,65729,Check failed in tf.raw_ops.CropAndResize when boxes and box_ind are empty. ,Yes,Closed,CPU,,04/13/2024,2.15.0,No,tensorflow/core/kernels/image/crop_and_resize_op.cc,ComputeAsync(),Aborted,,https://github.com/tensorflow/tensorflow/issues/65629,https://github.com/tensorflow/tensorflow/pull/65726
@@ -62,34 +62,34 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 59114,59658,Segmentation fault when running gen_ragged_array_ops.ragged_cross,Yes,Closed,CPU,,01/05/2023,2.13.0,No,tensorflow/core/kernels/ragged_cross_op.cc,BuildOutputTensors(),Segmentation Fault,"Needs to anticipate crash, not exception (#56)",https://github.com/tensorflow/tensorflow/issues/59114,https://github.com/tensorflow/tensorflow/pull/59658
 59084,59660,Check failure when running tensorflow.python.ops.gen_ragged_conversion_ops.ragged_tensor_to_variant,Yes,Closed,CPU,,01/04/2023,2.11.0,No,tensorflow/core/kernels/ragged_tensor_to_variant_op.cc,UnbatchRaggedZerothDim(),Aborted,"PR is closed due to inactivity at the time of writing, but the bug is fixed in the latest build (tensorflow==2.16.1)",https://github.com/tensorflow/tensorflow/issues/59084,https://github.com/tensorflow/tensorflow/pull/59660
 59076,,Issue created for Rollback of PR #58358: Fix unigram assert,No,Closed,,,,,,,,,Skipped: rollback of a PR,https://github.com/tensorflow/tensorflow/issues/59076,
-59058,,tf.image.extract_patches fails to JIT-compile inside keras model,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/59058,
+59058,,tf.image.extract_patches fails to JIT-compile inside keras model,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/59058,
 58973,17463,cannot deepcopy Optimizer class anymore in tf>=2.11,Yes,Closed,CPU,,12/21/2022,2.11.0,No,keras/optimizers/legacy/optimizer_v2.py,__deepcopy__(),Runtime Error,PR in Keras,https://github.com/tensorflow/tensorflow/issues/58973,https://github.com/keras-team/keras/pull/17463
-58318,,CHECK fail in tf.raw_ops.AssignAddVariableOp when value has dtype of float64,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/58318,
+58318,,CHECK fail in tf.raw_ops.AssignAddVariableOp when value has dtype of float64,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/58318,
 58133,,tf.range have accumulate floating point error on CPU,No,Closed,,,,,,,,,TODO,https://github.com/tensorflow/tensorflow/issues/58133,
-58053,,tf.saturate_cast errors for tf.complex type tensor,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/58053,
+58053,,tf.saturate_cast errors for tf.complex type tensor,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/58053,
 57958,57983,tf.nn.conv2d_transpose abort with large output_shape,Yes,Closed,CPU,,10/04/2022,2.10.0,No,tensorflow/core/kernels/conv_grad_shape_utils.cc,Conv2DBackpropComputeInputShape(),Aborted,,https://github.com/tensorflow/tensorflow/issues/57958,https://github.com/tensorflow/tensorflow/pull/57983
-57897,,tf.image.resize crash with abort when antialias is set to True,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57897,
+57897,,tf.image.resize crash with abort when antialias is set to True,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57897,
 57779,,tf.cast python float to tf.float64 or tf.complex128 leads to loss of precision,No,Closed,,,,,,,,,Skipped: api misuse,https://github.com/tensorflow/tensorflow/issues/57779,
-57754,,tf.image.crop_and_resize crash (abort) when given num_boxes=0,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57754,
-57728,,tf.random.poisson crash(abort),No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57728,
-57716,,tf.math.unsorted_segment_min (max/sum/prod) crash (abort),No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57716,
-57500,,Floating point exception can be triggered in AvgPool3D when run with CPU and OneDNN is enbaled,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57500,
-57192,,Integer dtype not supported for tensorflow.math.tan,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/57192,
-55278,,tf.function condition with tensor,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/55278,
-55199,,Missing input validation on tf.ragged.constant,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/55199,
-54855,,tf.raw_ops.RGBToHSV lack support for bfloat16,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54855,
-54475,,Error message of tf.nn.gelu with uint16 input is misleading,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54475,
-54415,,tf.histogram_fixed_width_bins lack checking for nbins,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54415,
-54412,,tf.boolean_mask lack checking for bool arguments,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54412,
-54317,,tf.math.asin lack support for complex,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54317,
-54187,,"AttributeError: 'float' object has no attribute 'dtype', When executing tfp.optimizer.differential_evolution_one_step",No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/54187,
+57754,,tf.image.crop_and_resize crash (abort) when given num_boxes=0,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57754,
+57728,,tf.random.poisson crash(abort),No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57728,
+57716,,tf.math.unsorted_segment_min (max/sum/prod) crash (abort),No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57716,
+57500,,Floating point exception can be triggered in AvgPool3D when run with CPU and OneDNN is enbaled,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57500,
+57192,,Integer dtype not supported for tensorflow.math.tan,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/57192,
+55278,,tf.function condition with tensor,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/55278,
+55199,,Missing input validation on tf.ragged.constant,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/55199,
+54855,,tf.raw_ops.RGBToHSV lack support for bfloat16,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54855,
+54475,,Error message of tf.nn.gelu with uint16 input is misleading,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54475,
+54415,,tf.histogram_fixed_width_bins lack checking for nbins,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54415,
+54412,,tf.boolean_mask lack checking for bool arguments,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54412,
+54317,,tf.math.asin lack support for complex,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54317,
+54187,,"AttributeError: 'float' object has no attribute 'dtype', When executing tfp.optimizer.differential_evolution_one_step",No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/54187,
 53660,53695,tf.sparse.split crashes when axis is a tuple,Yes,Closed,CPU,,01/06/2022,2.7.0,No,tensorflow/core/kernels/sparse_split_op.cc,SparseSplitOpImpl(),Aborted,,https://github.com/tensorflow/tensorflow/issues/53660,https://github.com/tensorflow/tensorflow/pull/53695
-53300,,tf.stack silently output wrong result with 0-dimension tensor,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/53300,
-51967,,tf.nn.sigmoid_cross_entropy_with_logits should support broadcasting,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/51967,
-51618,,tf.image.extract_glimpse crashes with negative input,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/51618,
-49606,,reduce_variance gives error in case of RaggedTensor when axis=0,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/49606,
-48941,,tf.ragged.constant fails on list of np.array,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/48941,
-48903,,tf.data.experimental.snapshot segfault when using repeat and prefetch,No,Closed,,,,,,,,,For 712,https://github.com/tensorflow/tensorflow/issues/48903,
+53300,,tf.stack silently output wrong result with 0-dimension tensor,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/53300,
+51967,,tf.nn.sigmoid_cross_entropy_with_logits should support broadcasting,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/51967,
+51618,,tf.image.extract_glimpse crashes with negative input,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/51618,
+49606,,reduce_variance gives error in case of RaggedTensor when axis=0,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/49606,
+48941,,tf.ragged.constant fails on list of np.array,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/48941,
+48903,,tf.data.experimental.snapshot segfault when using repeat and prefetch,No,Closed,,,,,,,,,,https://github.com/tensorflow/tensorflow/issues/48903,
 48646,48654,ReLU layer wrong result with negative threshold,Yes,Closed,CPU,,04/20/2021,2.4.0,No,tensorflow/python/keras/layers/advanced_activations.py,__init__(),Assertion Error,,https://github.com/tensorflow/tensorflow/issues/48646,https://github.com/tensorflow/tensorflow/pull/48654
 48609,48634,Bug in ragged version of tf.losses.SparseCategoricalCrossentropy,Yes,Closed,CPU,,04/19/2021,2.6.0-dev20210419,Yes,tensorflow/python/keras/losses.py,_wrapper(),Value Error,,https://github.com/tensorflow/tensorflow/issues/48609,https://github.com/tensorflow/tensorflow/pull/48634
 48589,48610,Conv2d didn't raise exception for invalid input argument.,Yes,Closed,CPU,,04/17/2021,2.4.1,No,tensorflow/python/keras/layers/convolutional.py,"build(), _check_invalid_dimension()",Assertion Error,,https://github.com/tensorflow/tensorflow/issues/48589,https://github.com/tensorflow/tensorflow/pull/48610
