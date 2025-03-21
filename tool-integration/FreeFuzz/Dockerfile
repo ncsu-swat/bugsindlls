@@ -15,3 +15,4 @@ COPY postprocess.py FreeFuzz/
 COPY preprocess.py FreeFuzz/
 WORKDIR /FreeFuzz
 RUN pip install -r requirements.txt
+RUN pip install rapidfuzz
