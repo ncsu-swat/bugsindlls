@@ -624,6 +624,7 @@ Table~\ref{table:bug-interface} shows the list of commands in the
 commands. In the following we demonstrate \tname.
 % \Fix{explain that the test passes if the bug can be reproduced}
 
+\vspace{-1ex}
 \subsection{Usage}
 \label{sec:usage}
 
@@ -808,7 +809,7 @@ Reproduced 0 out of 3 bugs
 %   work). I hope you can do this on video or show another example to
 %   complement this or modify this.}
 
-\Fix{Abid: Added text to motivate adding support for these APIs, please revise}
+% \Fix{Abid: Added text to motivate adding support for these APIs, please revise}
 
 The execution log shows that the tool did not reproduce any of the
 three bugs that were expected to be reproduced since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. The outputs of the tool are saved in the container and can be inspected manually to further inspect the execution log. From this result, the developer can decide to add support for these three APIs in FreeFuzz and run the tool again to check if the bugs can be reproduced now. This will allow developers to decide on which APIs to add support for.
