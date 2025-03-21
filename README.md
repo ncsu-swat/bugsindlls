@@ -1,4 +1,4 @@
-# dnnbugs
+# BugsinDLLs
 A benchmark of reproducible bugs in DNN libraries
 
 ## Prerequisites
