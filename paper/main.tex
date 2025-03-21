@@ -656,9 +656,7 @@ Versions of relevant libraries:
 [conda] torch                     2.2.0+cpu                pypi_0    pypi
 ====== test session starts ======
 platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
-rootdir: /home/mnaziri/Documents/DL_Testing/dnnbugs/pytorch/issue_120903
-collected 1 item                                                                            
-
+...
 test_issue_120903.py Pytorch issue no. 120903
 Seed:  120903
 RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch. 
@@ -677,24 +675,16 @@ error. Note that this test passes as it reproduces the intended bug.
 
 %% \Fix{Please review and revise}
 
-\Fix{What evaluation can be added to this section?}
+% \Fix{What evaluation can be added to this section?}
 \subsubsection{Running FreeFuzz~\cite{wei2022free} on \tname.}\label{sec:running-free-fuzz}
 
-Tool execution proceeds in two steps: (1) Creation of Docker container
-associated with a tool and (2) Execution of the tool.  Let us
+To run any tool on \tname, a script that contains commands to run the tool, a preprocessing script to extract error types and buggy APIs for a specific library version, and a postprocessing script to match the execution log with the expected errors needs to be provided. We provide implementations for FreeFuzz~\cite{wei2022free} in the \CodeIn{tool-integration} directory that contains templates for these scripts.
+
+Tool execution proceeds in four steps: (1) Creation of Docker container
+associated with a tool, (2) Reproduce an example bug from the library version provided as input (3) Running a preprocessing script to extract error types and buggy APIs for a specific library vesion (4) Execution of the tool and (5) Running a postprocessing script to match the execution log with the expected errors. Let us
 demonstrate this process on FreeFuzz~\cite{wei2022free}, an API-level
 fuzzer for DL libraries. The following script executes the first step
 of the two-step integration method.
-
-%i.e., it builds a Docker container for FreeFuzz:
-
-% \Fix{walkthrough an example. Show input and part of output. Explain
-%   the output.}
-%% The user needs to execute two steps to integrate a testing tool (e.g.,
-%% FreeFuzz) on \tname.
-%% 1. Create a docker container for the tool
-%% 2. A script that takes the name of the library as an argument and run FreeFuzz on the library
-
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
@@ -712,66 +702,66 @@ docker run --name freefuzz --gpus all -d freefuzz:latest
 docker exec -it freefuzz mongorestore dump/
 \end{lstlisting}
 
-%\Fix{I am here -Marcelo}
-%% Once the docker container is built and is running, providing the name
-%% of the container and the location of the script that can execute the
-%% tool (either absolute path or relative to the root of the repository)
-%% to the command
-
-The second step runs the \tname's command \CodeIn{run-tool}, which
-proceeds in two steps (1) reproduce the bug separately, as done with
-command \CodeIn{run-test}, and (2) then update the environment inside
-the docker container of the tool to run the tool with the script
-provided. The first step is a sanity check to assure that the bug can
-indeed be reproduced. For example, the following command runs FreeFuzz
-on the enviroment of the bug associated with the issue 117033 from
-\torch.
+The next four steps are executed with \tname's command \CodeIn{run-tool}.
+When the comment is run, firstly an example bug that is reproducible with the library version provided as an input is run as a sanity check. Then, a preprocessing script to extract error types and buggy APIs for a specific library version runs.
+Then the environment inside
+the docker container of the tool is updated to match the library version passed as an input and the fuzzing tool runs inside the enviroment. After the execution is complete, the next step is running a postprocessing script that checks the execution log against the error types of the bug to determine if the bugs were reproduced or not.
+For example, the following command runs FreeFuzz
+on version 2.2.0 from \torch.
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-$> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
+$> run-tool --container freefuzz --library-name pytorch \ 
+   --use-library-version 2.2.0 \
+   --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
+The script \CodeIn{run\_freefuzz\_docker.sh} contains instructions to run the preprocessing script, the tool, and the postprocessing script.
 The output looks like the following:
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-...  
-(*@\textbf{[Reproducing the bug]}@*)
-====== test session starts ======
-platform linux -- Python 3.10.0, pytest-8.3.3, pluggy-1.5.0
+Using bug-id 120903 for library pytorch version 2.2.0
 ...
-IndexError: list index out of range
+====== test session starts ======
+platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
+...
+RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch.
 ====== 1 passed in 1.09s ======
 ...
-
-(*@\textbf{[Setting up FreeFuzz]}@*)
 Updating environment in the container of the testing tool
-Successfully copied 16.4kB to freefuzz:/tmp/issue_117033
-__pycache__  install_environment.sh  reproduce_bug.sh  requirements.txt  test_issue_117033.py
+Successfully copied 16.4kB to freefuzz:/tmp/issue_120903
 ...
-
-(*@\textbf{[Running FreeFuzz]}@*)
 Running the testing tool on the environment of the bug
+APIs under test:
+torch.fake_quantize_per_channel_affine
+torch.all
+torch.compile
 Testing on  ['torch']
-torch.log2
+torch.atanh
 ...
-torch.nn.MaxUnpool2d
-../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [1,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
-../aten/src/ATen/native/cuda/MaxUnpooling.cu:47: max_unpooling2d_forward_kernel: block: [0,0,0], thread: [2,0,0] Assertion `maxind >= 0 && maxind < outputImageSize` failed.
-...
+No violation of precision-oracle in the compare-bug category
+No violation of precision-oracle in the potential-bug category
+No violation of cuda-oracle in the compare-bug category
+No violation of cuda-oracle in the potential-bug category
+No violation of crash-oracle in the compare-bug category
+No violation of crash-oracle in the potential-bug category
+-> torch.fake_quantize_per_channel_affine did not face any failures
+-> torch.all did not face any failures
+-> torch.compile did not face any failures
+Reproduced 0 out of 3 bugs
 \end{lstlisting}
 
 % \Fix{Consider the comments from Saikat, please.}
-Initially, the script reproduces the bug and updates the environment
-inside the docker container of FreeFuzz to match the enviroment of the
-bug. Then, it proceeds to run the entire testing tool on the
-enviroment.
+% Initially, the script reproduces the bug and updates the environment
+% inside the docker container of FreeFuzz to match the enviroment of the
+% bug. Then, it proceeds to run the entire testing tool on the
+% enviroment.
 
-\Fix{Abid, this does not make sense to me. If you are checking this
-  manually, you could run FreeFuzz separately and check manually. What
-  is the point?! You need to provide a list of bugs and check
-  automatically how many the tool can find (based on some criteria,
-  e.g, match the error message in Assertion or some n frames in the
-  stack (for crash)). --Marcelo}
+% \Fix{Abid, this does not make sense to me. If you are checking this
+%   manually, you could run FreeFuzz separately and check manually. What
+%   is the point?! You need to provide a list of bugs and check
+%   automatically how many the tool can find (based on some criteria,
+%   e.g, match the error message in Assertion or some n frames in the
+%   stack (for crash)). --Marcelo}
 After the execution completes, the output can be
 checked for all failures produced by FreeFuzz (saved inside the
 container) and manually inspected to see if any failure that can
@@ -780,7 +770,8 @@ the failure generated by FreeFuzz could not generate a failure that
 can reveal this bug since the API "torch.\_dynamo.export" is not
 supported by FreeFuzz.
 
-
+The execution log shows that the tool did not reproduce any of the
+three bugs that were expected to be reproduced since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. The outputs of the tool are saved in the container and can be inspected manually to further inspect the execution log.
 
 \subsection{Contribution}
 
