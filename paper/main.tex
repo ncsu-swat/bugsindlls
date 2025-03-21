@@ -116,50 +116,55 @@ of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
 
 \author{M. M. Abid Naziri}
 \affiliation{%
-  \institution{NC State University}
+  \institution{NC State University, USA}
   %\city{Rocquencourt}
-  \country{USA}
+  \country{}
 }
 \email{mnaziri@ncsu.edu}
 
 \author{Aman Kumar Singh}
 \affiliation{%
- \institution{Amrita Vishwa Vidyapeetham}
+ \institution{Amrita Vishwa Vidyapeetham, India}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{India}}
+ \country{}
+}
 \email{amanks@am.amrita.edu}
 
 \author{Feiran Qin}
 \affiliation{%
- \institution{NC State University}
+ \institution{NC State University, USA}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{USA}}
+ \country{}
+}
 \email{fqin2@ncsu.edu}
 
 \author{Benjamin Wu}
 \affiliation{%
- \institution{Purdue University}
+ \institution{Purdue University, USA}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{USA}}
+ \country{}
+}
 \email{wu2059@purdue.edu}
 
 \author{Saikat Dutta}
 \affiliation{%
- \institution{Cornell University}
+ \institution{Cornell University, USA}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{USA}}
+ \country{}
+}
 \email{saikatd@cornell.edu}
 
 \author{Marcelo d'Amorim}
 \affiliation{%
- \institution{NC State University}
+ \institution{NC State University, USA}
  %% \city{Doimukh}
  %% \state{Arunachal Pradesh}
- \country{USA}}
+ \country{}
+}
 \email{mdamori@ncsu.edu}
 
 
@@ -366,15 +371,19 @@ representing three popular DL libraries, namely, \jax, \tf, and
 \torch. Table~\ref{table:bug-characterization} shows the list of bug
 instances for each supported library. Column ``\#'' shows the number
 of bug instances, column ``build'' shows the breakdown of instances
-for each kind of build, and column ``environment'' shows the breakdown
-of instances for each kind of environment to reproduce the bug. Co-incidentally,
+for each kind of build (release or nightly), and column
+``environment'' shows the breakdown of instances for each kind of
+environment to reproduce the bug (venv or docker). Co-incidentally,
 all bugs that require a GPU build are reproduced using a docker
-container i.e. the column venv-docker is the same as bugs reproducible with CPU-GPU builds
-of the libraries respectively. Table~\ref{table:bug-stats} shows whay type of error is manifested
-due to each bug instance. In total, we have \numbugtypes\ different types of bug manifestations across
-the three libraries.
-
-\Fix{Added table and description, please revise}
+container, i.e. the column venv-docker matches would have been
+observed with a column CPU-GPU, to indicate if the bug is can be
+reproduced with a CPU or if it requires a
+GPU. Table~\ref{table:bug-stats} shows the breakdown error types for
+the bugs in our dataset. The row ``Incorrect Output'' is listed first
+as it requires a distinct kind of oracle comparing consistency of the
+outputs of test runs on a CPU and on GPU. In total, we have
+\numbugtypes\ different types of bug manifestations across the three
+libraries.
 
 \subsection{Selection Criteria}
 \label{sec:selection-criterion}
@@ -414,17 +423,25 @@ and the presence of a linked pull request. We found \numtorchfiltered{}
 issues for \torch, \numtffiltered{} issues for \tf, and \numjaxfiltered{}
 issues for \jax after filtering the issues. \torch has the highest number
 of issues due to a lack of a label for bugs in the issue tracker.
-
-We then manually inspect the
-filtered issues to ensure that they contain enough information to
-reproduce the bug, i.e.,
-code to reproduce the bug, dependencies required for the bug
-reproduction, clear description of the desired behavior,
-etc. We also filter bugs that are not in the core functionality
-of the library e.g. documentation issues, feature requests, etc.
-After this stage of manual inspection, we end up with \numtorchinspected{}
-issues for \torch, \numtfinspected{} issues for \tf, and \numjaxinspected{}
-issues for \jax.
+%%
+Then, we manually inspect the filtered issues to ensure that they
+contain enough information to reproduce the bug, i.e., code to
+reproduce the bug, dependencies required for the bug reproduction,
+clear description of the desired behavior, etc. We discard bugs that
+are not in the core functionality of the library e.g. documentation
+issues, feature requests, etc. After this stage of manual inspection,
+we end up with \numtorchinspected{} issues for \torch,
+\numtfinspected{} issues for \tf, and \numjaxinspected{} issues for
+\jax.
+%
+Finally, we assess the reproducibility of the bug by creating a
+virtual environment that contains the necessary dependencies to
+reproduce the bug.  Once we can successfully reproduce the bug by
+creating the enviroment detailed in the report, we include the
+corresponding artifacts in our dataset. Throughout this process, we
+obtain \textbf{\numjaxbugs{}}, \textbf{\numtorchbugs{}}, and
+\textbf{\numtfbugs{}} bug instances for \jax, \torch, and \tf,
+respectively.
 
 % Among these confirmed bug reports, we choose
 % the ones that have enough information to reproduce the bugs, i.e.,
@@ -436,22 +453,16 @@ issues for \jax.
 %   word environment.}
 % , clear description of the desired behavior,
 % etc. 
-Afterwards, we assess the reproducibility of the bug by creating a
-virtual environment that contains the necessary dependencies to
-reproduce the bug.
-Once we can successfully reproduce the bug by creating the
-enviroment detailed in the report, we choose the bug to be included in
-our dataset. Through this process, we end up with \numtorchbugs{},
-\numtfbugs{}, and \numjaxbugs{} bug instances for \torch, \tf,
-and \jax, respectively.
 
-\Fix{Abid: Added what labels were used, which period we took the issues from,
-how many issues we looked at, defined "bug reports", mentioned how many bugs had 
-been filtered with each criterion. Please review and revise}
+%% \Fix{Abid: Added what labels were used, which period we took the issues from,
+%% how many issues we looked at, defined "bug reports", mentioned how many bugs had 
+%% been filtered with each criterion. Please review and revise}
 
 \begin{table}
   \centering
-  \caption{\label{table:bug-stats}Different bug manifestation types from \tname.}
+  \caption{\label{table:bug-stats}Different bug manifestation types
+    from \tname.\Fix{If time allows, add a total column and sort rows
+      according to it (except incorrect output)}}
   \begin{tabular}{lrrrr}\toprule
     Bug manifestation type &Jax &Pytorch &Tensorflow \\\midrule
     Incorrect Output &14 &11 &5 \\
@@ -487,12 +498,12 @@ which are available for a limited amount of time. To ensure that bugs
 reported on these builds remain reproducible, it is necessary to save
 Python wheel files (.whl)~\cite{wheels} for the correspondind builds.
 
-\textbf{Handling bugs in specific GPU-CUDA versions requires OS
-  changes:} Some GPU-related bug instances can only be reproduced with
-specific versions of CUDA~\cite{cuda}, NVIDIA's platform and API for
-programming GPUs. These instances require specific CUDA drivers to be
-installed on the system. Python virtual enviroments are not designed
-to enable change of OS drivers.
+\vspace{0.5ex}\noindent\textbf{Handling bugs in specific GPU-CUDA
+  versions requires OS changes:} Some GPU-related bug instances can
+only be reproduced with specific versions of CUDA~\cite{cuda},
+NVIDIA's platform and API for programming GPUs. These instances
+require specific CUDA drivers to be installed on the system. Python
+virtual enviroments are not designed to enable change of OS drivers.
 % GPU builds\Fix{I don't understance GPU builds. do you mean
 %   GPU vendor/version? give example} and specific CUDA builds. 
 % Changing different virtual environments does not change the CUDA
@@ -551,7 +562,7 @@ the proper signal and the assertion passes.
 % ~\Fix{Can you show here the artifacts associated to bug
 %   120903 that you will use in the next section? If it takes too much
 %   space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
-  The issue no. 120903 in pytorch has the following test code that checks the oracle:
+  The issue no. 120903 in \torch\ has the following test code that checks the oracle:
 
 \begin{lstlisting}[language=python,basicstyle=\small,]
 def test_f():
