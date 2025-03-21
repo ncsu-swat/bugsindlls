@@ -122,13 +122,13 @@ $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 To run the tool in a bug's environment (e.g. pytorch issue_117033)
 
 ```Shell
-$> run-tool --container freefuzz --library-name pytorch --bug-id 117033 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
+$> run-tool --container freefuzz --library-name pytorch --bug-id 120875 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 ```
 
 Alternatively, to run the tool by specifying a library version instead of a bug ID (e.g., torch version 2.3.1):
 
 ```Shell
-$> run-tool --container freefuzz --library-name pytorch --use-library-version 2.3.1 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
+$> run-tool --container freefuzz --library-name pytorch --use-library-version 2.2.0 --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 ```
 
 Sample output:
