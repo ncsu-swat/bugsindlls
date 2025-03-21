@@ -466,30 +466,29 @@ respectively.
 \begin{table}
   \centering
   \caption{\label{table:bug-stats}Different bug manifestation types
-    from \tname.\Fix{If time allows, add a total column and sort rows
-      according to it (except incorrect output)}}
-  \begin{tabular}{lrrrr}\toprule
-    Bug manifestation type &Jax &Pytorch &Tensorflow \\\midrule
-    Incorrect Output &14 &11 &5 \\
-    Internal Exception &11 &9 &4 \\
-    Value Error &7 &0 &4 \\
-    Type Error &3 &2 &3 \\
-    Attribute Error &2 &0 &2 \\
-    Index Error &2 &1 &0 \\
-    Floating Point Error &1 &0 &0 \\
-    Error Not Raised &1 &0 &0 \\
-    Parse Error &1 &0 &0 \\
-    Runtime Warning &1 &0 &0 \\
-    Not Implemented Error &1 &0 &0 \\
-    Memory Error &1 &1 &0 \\
-    Invalid Argument Error &1 &0 &1 \\
-    Runtime Error &0 &7 &1 \\
-    Assertion Error &0 &2 &0 \\
-    Segmentation Fault &0 &2 &1 \\
-    Floating Point Exception &0 &1 &0 \\
-    Aborted &0 &1 &8 \\
+    from \tname.}
+  \begin{tabular}{lrrrrr}\toprule
+    Bug manifestation type &Jax &Pytorch &Tensorflow &Total \\\midrule
+    Incorrect Output &14 &11 &5 &30 \\
+    Internal Exception &11 &9 &4 &24 \\
+    Value Error &7 &0 &4 &11 \\
+    Type Error &0 &1 &8 &9 \\
+    Attribute Error &3 &2 &3 &8 \\
+    Index Error &0 &7 &1 &8 \\
+    Runtime Error &2 &0 &2 &4 \\
+    Memory Error &2 &1 &0 &3 \\
+    Invalid Argument Error &0 &2 &1 &3 \\
+    Floating Point Error &1 &1 &0 &2 \\
+    Error Not Raised &1 &0 &1 &2 \\
+    Parse Error &0 &2 &0 &2 \\
+    Runtime Warning &1 &0 &0 &1 \\
+    Not Implemented Error &1 &0 &0 &1 \\
+    Assertion Error &1 &0 &0 &1 \\
+    Segmentation Fault &1 &0 &0 &1 \\
+    Floating Point Exception &1 &0 &0 &1 \\
+    Aborted &0 &1 &0 &1 \\
     \midrule
-    $\Sigma$ &\numjaxbugs{} &\numtorchbugs{} &\numtfbugs{} \\
+    $\Sigma$ &\numjaxbugs{} &\numtorchbugs{} &\numtfbugs{} &\numbugs{} \\
     \bottomrule
   \end{tabular}
 \end{table}
