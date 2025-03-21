@@ -97,6 +97,15 @@ if [ -n "$library_version" ]; then
         exit 1
     fi
     echo "Using bug-id $bug_id for library $library_name version $library_version"
+    cd ${framework_location}
+
+    python retrieve.py "Type" $library_name $library_version > error_list.txt
+    docker cp error_list.txt ${container}:/tmp/
+    rm error_list.txt
+
+    python retrieve.py "Buggy API" $library_name $library_version > apis_under_test.txt
+    docker cp apis_under_test.txt ${container}:/tmp/
+    rm apis_under_test.txt
 fi
 
 ### bug_id is mandatory only if -u is not provided

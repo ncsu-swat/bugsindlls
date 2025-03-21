@@ -11,5 +11,7 @@ RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
 
 COPY FreeFuzz FreeFuzz/
+COPY postprocess.py FreeFuzz/
+COPY preprocess.py FreeFuzz/
 WORKDIR /FreeFuzz
 RUN pip install -r requirements.txt
