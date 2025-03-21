@@ -17,9 +17,8 @@ pytest==8.3.3
 requests==2.28.1
 sympy==1.12
 tomli==2.0.1
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.1.2+cpu
-torchaudio==2.1.2+cpu
-torchvision==0.16.2+cpu
+torch==2.1.2
+torchaudio==2.1.2
+torchvision==0.16.2
 typing_extensions==4.9.0
 urllib3==1.26.13

@@ -22,10 +22,9 @@ safetensors==0.4.5
 sympy==1.12
 tokenizers==0.19.1
 tomli==2.0.1
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.2.2+cpu
-torchaudio==2.2.2+cpu
-torchvision==0.17.2+cpu
+torch==2.2.2
+torchaudio==2.2.2
+torchvision==0.17.2
 tqdm==4.66.5
 transformers==4.41.2
 typing_extensions==4.9.0
