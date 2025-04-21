@@ -1,8 +1,8 @@
 \documentclass[sigconf,screen]{acmart}
 
-\setcopyright{none} % to remove the copyright notice
-\settopmatter{printacmref=false} % to remove the ACM Reference Format
-\renewcommand\footnotetextcopyrightpermission[1]{} % to remove copyright box
+% \setcopyright{none} % to remove the copyright notice
+% \settopmatter{printacmref=false} % to remove the ACM Reference Format
+% \renewcommand\footnotetextcopyrightpermission[1]{} % to remove copyright box
 
 
 \usepackage{multirow}
@@ -46,11 +46,12 @@
 %% \acmISBN{978-1-4503-XXXX-X/2018/06}
 %% \acmBooktitle{Companion Proceedings of the 33rd ACM Symposium on the Foundations
 %% of Software Engineering (FSE '25), June 23--27, 2025, Trondheim, Norway}
+\setcopyright{acmlicensed}
 \copyrightyear{2025}
 \acmYear{2025}
-\setcopyright{acmlicensed}\acmConference[ISSTA Companion '25]{34th ACM SIGSOFT International Symposium on Software Testing and Analysis}{June 25--28, 2025}{Trondheim, Norway}
-\acmBooktitle{34th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA Companion '25), June 25--28, 2025, Trondheim, Norway}
 \acmDOI{10.1145/3713081.3731739}
+\acmConference[ISSTA Companion '25]{34th ACM SIGSOFT International Symposium on Software Testing and Analysis}{June 25--28, 2025}{Trondheim, Norway}
+\acmBooktitle{34th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA Companion '25), June 25--28, 2025, Trondheim, Norway}
 \acmISBN{979-8-4007-1474-0/2025/06}
 %%
 %% Submission ID.
@@ -896,6 +897,9 @@ evaluate them. We plan to continue expanding this dataset and to
 explore automated approaches to extract patches from issue trackers
 and ``frontport'' them~\cite{hazimeh2020magma} to a single version of
 the library to facilitate testing even further.
+
+\section{Acknowledgements}
+This work was supported and funded by the National Science Foundation grant numbers CCF-2349961.
 
 \balance
 \bibliographystyle{ACM-Reference-Format}
