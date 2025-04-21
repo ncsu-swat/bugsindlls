@@ -363,22 +363,25 @@ period. Section~\ref{sec:tool-availability} details tool availability.
 
 \begin{table}
   \centering
+  \small
   \caption{\label{table:bug-characterization}Characterization of
-    reproducible bugs from \tname.}
+    bugs from \tname.}
+  \vspace{-1ex}
   %%   \Fix{Is this up to date? I have seen
   %% lots of activity recently but these numbers remain the
   %% same - Fixed (Abid)}\Fix{Can we add info about whether Python and/or C code causes
   %%     the bug? - Abid: we report how many c,python and cuda native files are buggy in total but not per bug, so currently no}\Fix{Can we add info on whether it is GPU related
   %%     (i.e., only manifests in GPUs)? - Abid: venv-docker is the same
   %%     as cpu-gpu}}
-\begin{tabular}{l|rrr}
+  \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
   \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
   \\ \cmidrule(lr){2-4} \jax{} & 46 & 45-1 & 45-1 \\ \torch{} & 37 &
   18-19 & 21-16 \\ \tf{} & 29 & 27-2 & 29-0 \\ \midrule
   \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 90-22& 95-17
   \\ \bottomrule
-\end{tabular}
+  \end{tabular}
+  \vspace{-2ex}  
 \end{table}
 
 This section describes the criteria for selecting libraries and bugs
@@ -479,9 +482,11 @@ respectively.
 %% been filtered with each criterion. Please review and revise}
 
 \begin{table}
+  \small
   \centering
   \caption{\label{table:bug-stats}Different bug manifestation types
     from \tname.}
+  \vspace{-1ex}
   \begin{tabular}{lrrrrr}\toprule
     Bug manifestation type &Jax &Pytorch &Tensorflow &Total \\\midrule
     Incorrect Output &14 &11 &5 &30 \\
@@ -506,6 +511,7 @@ respectively.
     $\Sigma$ &\numjaxbugs{} &\numtorchbugs{} &\numtfbugs{} &\numbugs{} \\
     \bottomrule
   \end{tabular}
+  \vspace{-2ex}  
 \end{table}
 
 \subsection{Challenges}
@@ -607,8 +613,10 @@ through a demonstration showing the tool's functionality.
 \subsection{Interface}
 
 \begin{table}
+  \small
   \centering
-  \caption{\label{table:bug-interface}\tname's bug interface.}
+  \caption{\label{table:bug-interface}\tname command-line interface.}
+  \vspace{-1ex}
 \begin{tabular}{lp{6.5cm}}
   \toprule
   \textbf{command} & \textbf{description} \\
@@ -623,6 +631,7 @@ that require GPU, number of tests that reproduce bugs in C or Python
 code, etc.)\\
 \bottomrule
 \end{tabular}
+  \vspace{-3ex}
 \end{table}
 
 Table~\ref{table:bug-interface} shows the list of commands in the
@@ -651,9 +660,9 @@ $> export PATH=$PATH:`pwd`/framework
 %   the output.}
 
 
-Let us use the bug 120903~\cite{torch120903} from \torch\ to demonstrate the
+Let us use bug 120903~\cite{torch120903} from \torch\ to demonstrate the
 command \CodeIn{run-test}, which runs a test to reproduce a bug on an
-environment with the necessary dependencies installed. Use the
+environment with needed dependencies installed. Use the
 following command to reproduce the bug:
 
 \begin{lstlisting}[language=bash,basicstyle=\small,]
@@ -701,15 +710,14 @@ execution log with the expected errors (\CodeIn{postprocess.py}) needs to be pro
 % \Fix{name
 %   these scripts here and refer back to them in the text below} 
 The
-directory \CodeIn{tool-integration} that contains templates for these
+directory \CodeIn{tool-integration} contains templates for these
 scripts and their instantiations for FreeFuzz~\cite{wei2022free}, a
 popular API fuzzer for DL libraries.
 % \Fix{remove this paragraph. Explain the steps when they appear. It is difficult
 %   to follow}
 % \Fix{up to here}
-
 We demonstrate the integration of FreeFuzz~\cite{wei2022free}. The
-following script creates a Docker container associated with FreeFuzz.
+following script creates a Docker container for FreeFuzz.
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
@@ -885,20 +893,21 @@ allows systematic benchmarking for DLL fuzzers.
 % Denchmark~\cite{kim2021denchmark}
 
 \section{Conclusion and Future Work}
-Deep Learning (DL) Libraries (e.g., \torch) provide the basic blocks
-for creating AI-enabled applications, which are becoming very
-popular. Several testing techniques have been proposed in the
-literature to find bugs in these libraries. Unfortunately, the lack of
-a dataset of reproducible bugs in those libraries poses an important
-barrier to the proper evaluation of these techniques. \tname{} fills
-this gap. It includes a total of \numbugs\ across three major DL
-libraries and provides an infrastructure to integrate fuzzers and
-evaluate them. We plan to continue expanding this dataset and to
-explore automated approaches to extract patches from issue trackers
-and ``frontport'' them~\cite{hazimeh2020magma} to a single version of
-the library to facilitate testing even further.
+Deep Learning Libraries provide the basic blocks for creating
+AI-enabled applications. Several testing techniques have been proposed
+in the literature to find bugs in these libraries. Unfortunately, the
+lack of a dataset of reproducible bugs in those libraries poses an
+important barrier to the proper evaluation of these
+techniques. \tname{} fills this gap. It includes a total of
+\numbugs\ bugs across three major DL libraries and provides an
+infrastructure to evaluate fuzzers.  To facilitate evaluation of
+testing techniques even further we plan to continue expanding this
+dataset and to explore automated approaches to ``frontport'' bugs into
+single version of the library as in the Magma
+benchmark~\cite{hazimeh2020magma}.
 
-\section{Acknowledgements}
+
+\section*{Acknowledgements}
 This work was supported and funded by the National Science Foundation grant numbers CCF-2349961.
 
 \balance
