@@ -8,8 +8,8 @@ A benchmark of reproducible bugs in DNN libraries
 
 
 ## Steps to configure
-1. Clone this repository: ```$> git clone https://github.com/ncsu-swat/dnnbugs.git```
-2. Add dnnbugs to your PATH: ```$> export PATH=$PATH:<dnnbugs_path>/framework```
+1. Clone this repository: ```$> git clone https://github.com/ncsu-swat/bugsindlls.git```
+2. Add bugsindlls to your PATH: ```$> export PATH=$PATH:<bugsindlls_path>/framework```
 
 
 ## Commands
@@ -81,7 +81,7 @@ Versions of relevant libraries:
 [conda] torch                     2.2.0+cpu                pypi_0    pypi
 ====== test session starts ======
 platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
-rootdir: /home/mnaziri/Documents/DL_Testing/dnnbugs/pytorch/issue_120903
+rootdir: /home/mnaziri/Documents/DL_Testing/bugsindlls/pytorch/issue_120903
 collected 1 item                                                                            
 
 test_issue_120903.py Pytorch issue no. 120903
