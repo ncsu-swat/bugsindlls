@@ -441,7 +441,7 @@ issues reported in the issue tracker is lower.
 the developer community as true bugs. We determine this by checking
 whether the issue reports have the label "bug" and have been fixed with pull
 requests linked to them. We then create a filter that incorporates
-the periods mentioned above, the label, the issue status being closed
+the periods mentioned above, the label (bug), the issue status being closed
 and the presence of a linked pull request. We found \numtorchfiltered{}
 issues for \torch, \numtffiltered{} issues for \tf, and \numjaxfiltered{}
 issues for \jax after filtering the issues. \torch has the highest number
@@ -450,14 +450,14 @@ of issues due to a lack of a label for bugs in the issue tracker.
 Then, we manually inspect the filtered issues to ensure that they
 contain enough information to reproduce the bug, i.e., code to
 reproduce the bug, dependencies required for the bug reproduction,
-clear description of the desired behavior, etc. We discard bugs that
+clear description of the desired behavior, etc. We discard cases that
 are not in the core functionality of the library e.g. documentation
 issues, feature requests, etc. After this stage of manual inspection,
 we end up with \numtorchinspected{} issues for \torch,
 \numtfinspected{} issues for \tf, and \numjaxinspected{} issues for
 \jax.
 %
-Finally, we do a deeper analysis on these bugs. We find some bugs that
+Finally, we do a deeper analysis on these bugs. We find some cases that
 are related to building/installation/problematic unit tests instead of
 bugs in the core API functionality, as well as some bugs that lack any
 code snippet provided with the bug report to reproduce the bug. These
@@ -469,7 +469,11 @@ or can not be reproduced due to an expired nightly build that can no
 longer be accessed. We successfully reproduce the bug if none of these
 issues are present by
 creating the enviroment detailed in the report, and we include the
-corresponding artifacts in our dataset. Throughout this process, we
+corresponding artifacts in our dataset. We use a virtual enviroment
+(conda~\cite{venv}) when the bug can be reproduced on a CPU, and we use docker
+containers~\cite{merkel2014docker} with appropriate CUDA drivers when the bug 
+requires a GPU.
+Throughout this process, we
 obtain \textbf{\numjaxbugs{}}, \textbf{\numtorchbugs{}}, and
 \textbf{\numtfbugs{}} bug instances for \jax, \torch, and \tf,
 respectively.
@@ -522,6 +526,7 @@ respectively.
   \vspace{-2ex}  
 \end{table}
 
+\vspace{-1ex}
 \subsection{Challenges}
 \label{sec:challenges}
 
@@ -550,9 +555,8 @@ that require changes in drivers.
 
 \subsection{Method}
 \label{sec:method}
-
 The following steps show the method we use to create bug instances:
-
+\vspace{-5mm}
 \begin{enumerate}[leftmargin=0.5cm]
   \item Select an issue following the criteria defined in Section~\ref{sec:selection-criterion};
   \item Identify the version of the library used to report the bug along with other dependencies;
@@ -576,7 +580,6 @@ The following steps show the method we use to create bug instances:
     bug instance.
     %% All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
 \end{enumerate}
-
 \textbf{Test Oracles.}~
 The bug reproduction code includes python tests (pytest). The test
 oracle is satisfied when the bug is reproduced successfully. For bugs
@@ -596,7 +599,7 @@ the proper signal and the assertion passes.
 %   120903 that you will use in the next section? If it takes too much
 %   space, show only directory with files and the test case. - Abid: by the test case, do you mean the python code used to reproduce the bug?} 
   The issue no. 120903 in \torch\ has the following test code that checks the oracle:
-
+\vspace{-1ex}
 \begin{lstlisting}[language=python,basicstyle=\small,]
 def test_f():
   input_data = torch.randn(3, 4, 5, 6)
@@ -609,9 +612,10 @@ def test_f():
       output = torch.fake_quantize_per_channel_affine(input_data, torch.from_numpy(scale), zero_point, axis, quant_min, quant_max)
   print(f'{e_info.type.__name__}: {e_info.value}')
 \end{lstlisting}
-
+\vspace{-1ex}
 In this example, the unexpected behavior is a \CodeIn{RuntimeError} thrown by the call to the \CodeIn{fake\_quantize\_per\_channel\_affine} API from \torch. Since the test oracle should pass when the bug is successfully reproduced, the code catches the exception and prints information about it, and upon catching the exception successfully, the test passes. If the bug reproduction fails i.e. the exception is not thrown or a different exception is thrown, the test will fail.
 
+\vspace{-1ex}
 \section{\tname} % : Database of Bugs in DL libraries
 
 This section presents the interface of \tname\ and walks the reader
@@ -831,6 +835,7 @@ Reproduced 0 out of 3 bugs
 The execution log shows that the tool did not reproduce any of the
 three bugs that were expected to be reproduced since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. The outputs of the tool are saved in the container and can be inspected manually to further inspect the execution log. From this result, the developer can decide to add support for these three APIs in FreeFuzz and run the tool again to check if the bugs can be reproduced now. This will allow developers to decide on which APIs to add support for.
 
+\vspace{-1ex}
 \subsection{Contributions}
 
 \tname\ allows users to contribute to the dataset by adding new bug
@@ -872,6 +877,7 @@ instance:
 %% \Fix{The concept of repairing has not been tied to any commands in the tool. Suggestions include
 %% a way to recreate an enviroment with the bug fixed, or a way to check if the bug has been fixed in a new version of the library.}
 
+\vspace{-1ex}
 \section{Related Work} 
 
 Several bug datasets have been proposed in literature for general
@@ -894,7 +900,7 @@ allows systematic benchmarking for DLL fuzzers.
 % Defects4J\cite{just2014defects4j}
 % BugsInPy~\cite{widyasari2020bugsinpy} Tests4Py~\cite{smytzek2024tests4py}
 % Denchmark~\cite{kim2021denchmark}
-
+\vspace{-1ex}
 \section{Conclusion and Future Work}
 Deep Learning Libraries provide the basic blocks for creating
 AI-enabled applications. Several testing techniques have been proposed
