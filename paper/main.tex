@@ -457,10 +457,18 @@ we end up with \numtorchinspected{} issues for \torch,
 \numtfinspected{} issues for \tf, and \numjaxinspected{} issues for
 \jax.
 %
-Finally, we assess the reproducibility of the bug by creating a
+Finally, we do a deeper analysis on these bugs. We find some bugs that
+are related to building/installation/problematic unit tests instead of
+bugs in the core API functionality, as well as some bugs that lack any
+code snippet provided with the bug report to reproduce the bug. These
+bugs can be detected and discarded at this stage.
+We assess the reproducibility of a bug by creating a
 virtual environment that contains the necessary dependencies to
-reproduce the bug.  Once we can successfully reproduce the bug by
-creating the enviroment detailed in the report, we include the
+reproduce the bug. Some bugs require very specific hardware (e.g. TPU) 
+or can not be reproduced due to an expired nightly build that can no
+longer be accessed. We successfully reproduce the bug if none of these
+issues are present by
+creating the enviroment detailed in the report, and we include the
 corresponding artifacts in our dataset. Throughout this process, we
 obtain \textbf{\numjaxbugs{}}, \textbf{\numtorchbugs{}}, and
 \textbf{\numtfbugs{}} bug instances for \jax, \torch, and \tf,
@@ -758,25 +766,20 @@ determining whether the bugs were successfully reproduced.
 
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-$> run-tool --container freefuzz --library-name pytorch \ 
-   --use-library-version 2.2.0 \
+$> run-tool -c freefuzz -l pytorch -v 2.2.0 \
    --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
 % The script \CodeIn{run\_freefuzz\_docker.sh} contains instructions to run the preprocessing script, the tool, and the postprocessing script.
 The output looks like the following:
-
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
 Using bug-id 120903 for library pytorch version 2.2.0
 ...
-====== test session starts ======
-platform linux -- Python 3.10.0, pytest-8.2.0, pluggy-1.5.0
-...
-RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please report a bug to PyTorch.
+RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL 
+ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please
+report a bug to PyTorch.
 ====== 1 passed in 1.09s ======
-...
 Updating environment in the container of the testing tool
-Successfully copied 16.4kB to freefuzz:/tmp/issue_120903
 ...
 Running the testing tool on the environment of the bug
 APIs under test:
