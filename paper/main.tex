@@ -375,7 +375,7 @@ period. Section~\ref{sec:tool-availability} details tool availability.
   %%     as cpu-gpu}}
   \begin{tabular}{l|rrr}
   \toprule & \multirow{2}{*}{\#} & \multicolumn{1}{r}{build} &
-  \multicolumn{1}{r}{enviroment} \\ & & release-nightly & venv-docker
+  \multicolumn{1}{r}{enviroment} \\ & & release-nightly & conda-docker
   \\ \cmidrule(lr){2-4} \jax{} & 46 & 45-1 & 45-1 \\ \torch{} & 37 &
   18-19 & 21-16 \\ \tf{} & 29 & 27-2 & 29-0 \\ \midrule
   \multicolumn{1}{c|}{$\Sigma$} & \numbugs{} & 90-22& 95-17
@@ -396,9 +396,9 @@ instances for each supported library. Column ``\#'' shows the number
 of bug instances, column ``build'' shows the breakdown of instances
 for each kind of build (release or nightly), and column
 ``environment'' shows the breakdown of instances for each kind of
-environment to reproduce the bug (venv or docker). Co-incidentally,
+environment to reproduce the bug (conda enviroment or docker). Co-incidentally,
 all bugs that require a GPU are reproduced using docker
-containers, i.e. the column venv-docker matches what would have been
+containers, i.e. the column conda-docker matches what would have been
 observed with a column CPU-GPU, to indicate if the bug can be
 reproduced with a CPU or if it requires a
 GPU. Table~\ref{table:bug-stats} shows the breakdown error types for
