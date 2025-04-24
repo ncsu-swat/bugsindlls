@@ -397,9 +397,9 @@ of bug instances, column ``build'' shows the breakdown of instances
 for each kind of build (release or nightly), and column
 ``environment'' shows the breakdown of instances for each kind of
 environment to reproduce the bug (venv or docker). Co-incidentally,
-all bugs that require a GPU build are reproduced using a docker
-container, i.e. the column venv-docker matches would have been
-observed with a column CPU-GPU, to indicate if the bug is can be
+all bugs that require a GPU are reproduced using docker
+containers, i.e. the column venv-docker matches what would have been
+observed with a column CPU-GPU, to indicate if the bug can be
 reproduced with a CPU or if it requires a
 GPU. Table~\ref{table:bug-stats} shows the breakdown error types for
 the bugs in our dataset. The row ``Incorrect Output'' is listed first
@@ -738,13 +738,13 @@ container that encapsulates FreeFuzz.
 %% docker exec -it freefuzz mongorestore dump/
 %% \end{lstlisting}
 
-The following script runs FreeFuzz all bugs associated with version
+The following script runs FreeFuzz on all bugs associated with version
 2.2.0 of \torch.  The command \CodeIn{run-tool} takes the library
 version as an input, along with the name of the docker container
 (already created), the name of the library, and the user-provided
 script containing the commands to run the tool
-(\CodeIn{run\_freefuzz\_docker.sh}. The script reports on output how
-many bugs are reproducible with this library version were successfully
+(\CodeIn{run\_freefuzz\_docker.sh}. The script reports how
+many bugs that are reproducible with this version of the library were successfully
 reproduced by the given tool.  Tool execution proceeds as
 follows. First, a Docker container associated with the tool is created using
 \CodeIn{install\_freefuzz\_docker.sh}. Next, a reproducible bug is tested using
