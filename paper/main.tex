@@ -348,7 +348,7 @@ period. Section~\ref{sec:tool-availability} details tool availability.
 
 \url{https://github.com/ncsu-swat/bugsindlls}
 
-\vspace{0.5ex}\noindent{}The following video demonstrates \tname:
+\vspace{0.5ex}\noindent{}The video from this URL demonstrates \tname:
 
 \url{https://www.youtube.com/watch?v=NslNWrULT1c}
 
@@ -637,10 +637,11 @@ list-tests & List the tests available on this dataset\\
 run-test & Runs one test\\
 run-tests & Runs all the tests\\
 run-tool & Runs a testing tool in a given buggy environment \\
-show-info & Shows information about the tests available on this benchmark\\
+show-info & Shows information about available tests\\
 stats & Shows statistics about this dataset (e.g., number of tests
-that require GPU, number of tests that reproduce bugs in C or Python
-code, etc.)\\
+that require GPU, etc)\\
+%% number of tests that reproduce bugs in C or Python
+%% code, etc.)\\
 \bottomrule
 \end{tabular}
   \vspace{-3ex}
@@ -777,22 +778,19 @@ $> run-tool -c freefuzz -l pytorch -v 2.2.0 \
 % The script \CodeIn{run\_freefuzz\_docker.sh} contains instructions to run the preprocessing script, the tool, and the postprocessing script.
 The output looks like the following:
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-Using bug-id 120903 for library pytorch version 2.2.0
-...
+Using bug-id 120903 for library pytorch version 2.2.0...
 RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL 
 ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please
 report a bug to PyTorch.
 ====== 1 passed in 1.09s ======
-Updating environment in the container of the testing tool
-...
+Updating environment in the container of the testing tool...
 Running the testing tool on the environment of the bug
 APIs under test:
 torch.fake_quantize_per_channel_affine
 torch.all
 torch.compile
 Testing on  ['torch']
-torch.atanh
-...
+torch.atanh...
 No violation of precision-oracle in the compare-bug category
 No violation of precision-oracle in the potential-bug category
 No violation of cuda-oracle in the compare-bug category
