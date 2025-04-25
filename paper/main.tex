@@ -294,7 +294,7 @@ libraries~\cite{wei2022free,xie2022docter,deng2022fuzzing,pham2019cradle,guo2020
 however we observe these techniques propose an independent evaluation
 methodology. These techniques do \emph{not} use a reference database
 of reproducible bugs to evaluate their effectiveness. The lack of an
-evaluation standards is a serious obstacle to a fair and rigorous
+evaluation standard is a serious obstacle to a fair and rigorous
 comparison of techniques and hinders research progress.
 
 %%~\cite{just2014defects4j,smytzek2024tests4py,widyasari2020bugsinpy,kim2021denchmark}
@@ -303,8 +303,8 @@ literature, there is a lack of solutions satisfying the following
 criteria:
 
 \begin{enumerate}[leftmargin=0.2in]
-\item developers should be able to write tests scripts in Python;
-\item ~they should be able to handle nighly builds and specific
+\item developers should be able to write test scripts in Python;
+\item they should be able to handle nighly builds and specific
   versions of CUDA (\textsection~\ref{sec:challenges});
 \item they should be able to integrate fuzzing tools in the framework.
 \end{enumerate}  
@@ -401,10 +401,10 @@ all bugs that require a GPU are reproduced using docker
 containers, i.e. the column conda-docker matches what would have been
 observed with a column CPU-GPU, to indicate if the bug can be
 reproduced with a CPU or if it requires a
-GPU. Table~\ref{table:bug-stats} shows the breakdown error types for
+GPU. Table~\ref{table:bug-stats} shows the breakdown of error types for
 the bugs in our dataset. The row ``Incorrect Output'' is listed first
 as it requires a distinct kind of oracle comparing consistency of the
-outputs of test runs on a CPU and on GPU. In total, we have
+outputs of test runs on a CPU and on a GPU. In total, we have
 \numbugtypes\ different types of bug manifestations across the three
 libraries.
 
@@ -459,14 +459,12 @@ we end up with \numtorchinspected{} issues for \torch,
 %
 Finally, we do a deeper analysis on these bugs. We find some cases that
 are related to building/installation/problematic unit tests instead of
-bugs in the core API functionality, as well as some bugs that lack any
-code snippet provided with the bug report to reproduce the bug. These
+bugs in the core API functionality, as well as some cases that are simply API misuses, not bugs. These
 bugs can be detected and discarded at this stage.
 We assess the reproducibility of a bug by creating a
 virtual environment that contains the necessary dependencies to
 reproduce the bug. Some bugs require very specific hardware (e.g. TPU) 
-or can not be reproduced due to an expired nightly build that can no
-longer be accessed. We successfully reproduce the bug if none of these
+or can not be reproduced due to requiring a debug build that only the developers can access. We successfully reproduce the bug if none of these
 issues are present by
 creating the enviroment detailed in the report, and we include the
 corresponding artifacts in our dataset. We use a virtual enviroment
@@ -541,7 +539,7 @@ Python wheel files (.whl)~\cite{wheels} for the correspondind builds.
 only be reproduced with specific versions of CUDA~\cite{cuda},
 NVIDIA's platform and API for programming GPUs. These instances
 require specific CUDA drivers to be installed on the system. Python
-virtual enviroments are not designed to enable change of OS drivers.
+virtual environments are not designed to enable changing OS drivers.
 % GPU builds\Fix{I don't understance GPU builds. do you mean
 %   GPU vendor/version? give example} and specific CUDA builds. 
 % Changing different virtual environments does not change the CUDA
@@ -572,12 +570,13 @@ The following steps show the method we use to create bug instances:
     %% along with the requirements.txt file and the python
     %% script copied into it.
   \item Write a script that creates the virtual environment (either
-    Python's \CodeIn{Conda Enviroment}~\cite{venv} or Docker container) and runs
+    Python's \CodeIn{Conda Enviroment}~\cite{venv} or Docker container~\cite{merkel2014docker}) and runs
     the test on it;
   \item Create a directory \CodeIn{<lib>/<bug-id>} containing all the
-    artifacts mentioned above, where \CodeIn{lib} refers to the
-    affected library and \CodeIn{bug-id} is a fresh identifier of the
-    bug instance.
+    artifacts mentioned above, where \CodeIn{lib} is the
+    affected library and \CodeIn{bug-id} is the issue number of the bug report.
+    % is a fresh identifier of the
+    % bug instance.
     %% All files are put into a single self-contained folder with the issue id in the name so that the tools exposed by the framework of our tool can find and execute the the bug reproduction script.
 \end{enumerate}
 \textbf{Test Oracles.}~
@@ -719,7 +718,7 @@ A developer needs to provide three scripts to integrate a fuzzing
 tool: (1) a script that contains commands to run the tool (e.g. \CodeIn{run\_freefuzz\_docker.sh}); (2) a
 preprocessing script to extract error types and buggy APIs for a
 specific library version (\CodeIn{preprocess.py}), and (3) a postprocessing script to match the
-execution log with the expected errors (\CodeIn{postprocess.py}) needs to be provided.
+execution log with the expected errors (\CodeIn{postprocess.py}).
 % \Fix{name
 %   these scripts here and refer back to them in the text below} 
 The
@@ -737,7 +736,7 @@ $> cd tool-integration/FreeFuzz && bash install_freefuzz_docker.sh
 \end{lstlisting}
 
 \noindent
-The script \CodeIn{install\_freefuzz\_docker.sh} build the docker
+The script \CodeIn{install\_freefuzz\_docker.sh} builds the docker
 container that encapsulates FreeFuzz.
 
 %% 
@@ -756,7 +755,7 @@ The following script runs FreeFuzz on all bugs associated with version
 version as an input, along with the name of the docker container
 (already created), the name of the library, and the user-provided
 script containing the commands to run the tool
-(\CodeIn{run\_freefuzz\_docker.sh}. The script reports how
+(\CodeIn{run\_freefuzz\_docker.sh}). The script reports how
 many bugs that are reproducible with this version of the library were successfully
 reproduced by the given tool.  Tool execution proceeds as
 follows. First, a Docker container associated with the tool is created using
