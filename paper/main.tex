@@ -752,7 +752,7 @@ container that encapsulates FreeFuzz.
 %% \end{lstlisting}
 
 The following script runs FreeFuzz on all bugs associated with version
-2.2.0 of \torch.  The command \CodeIn{run-tool} takes the library
+2.2.1+cu121 of \torch.  The command \CodeIn{run-tool} takes the library
 version as an input, along with the name of the docker container
 (already created), the name of the library, and the user-provided
 script containing the commands to run the tool
@@ -771,36 +771,35 @@ determining whether the bugs were successfully reproduced.
 
 
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-$> run-tool -c freefuzz -l pytorch -v 2.2.0 \
+$> run-tool -c freefuzz -l pytorch -v 2.2.1+cu121 \
    --run-script tool-integration/FreeFuzz/run_freefuzz_docker.sh
 \end{lstlisting}
 
 % The script \CodeIn{run\_freefuzz\_docker.sh} contains instructions to run the preprocessing script, the tool, and the postprocessing script.
 The output looks like the following:
 \begin{lstlisting}[language=bash,basicstyle=\small,keywords={}]
-Using bug-id 120903 for library pytorch version 2.2.0...
-RuntimeError: !needs_dynamic_casting<func_t>::check(iter) INTERNAL 
-ASSERT FAILED at "../aten/src/ATen/native/cpu/Loops.h":310, please
-report a bug to PyTorch.
-====== 1 passed in 1.09s ======
-Updating environment in the container of the testing tool...
+Using bug-id 121725 for library pytorch version 2.2.1+cu121
+...
+RuntimeError: Please look up dimensions by name, got: name = None.
+====== 1 passed in 0.63s ======
+Updating environment in the container of the testing tool
+...
 Running the testing tool on the environment of the bug
 APIs under test:
-torch.fake_quantize_per_channel_affine
-torch.all
-torch.compile
+torch.logsumexp
+torch.autograd.grad
 Testing on  ['torch']
-torch.atanh...
+torch.multinomial
+...
 No violation of precision-oracle in the compare-bug category
 No violation of precision-oracle in the potential-bug category
 No violation of cuda-oracle in the compare-bug category
 No violation of cuda-oracle in the potential-bug category
 No violation of crash-oracle in the compare-bug category
 No violation of crash-oracle in the potential-bug category
--> torch.fake_quantize_per_channel_affine did not face any failures
--> torch.all did not face any failures
--> torch.compile did not face any failures
-Reproduced 0 out of 3 bugs
+-> torch.logsumexp did not face any failures
+-> torch.autograd.grad did not face any failures
+Reproduced 0 out of 2 bugs
 \end{lstlisting}
 
 % \Fix{Consider the comments from Saikat, please.}
@@ -831,7 +830,12 @@ Reproduced 0 out of 3 bugs
 % \Fix{Abid: Added text to motivate adding support for these APIs, please revise}
 
 The execution log shows that the tool did not reproduce any of the
-three bugs that were expected to be reproduced since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. The outputs of the tool are saved in the container and can be inspected manually to further inspect the execution log. From this result, the developer can decide to add support for these three APIs in FreeFuzz and run the tool again to check if the bugs can be reproduced now. This will allow developers to decide on which APIs to add support for.
+two bugs that were expected to be reproduced. 
+% since the three buggy APIs \CodeIn{torch.fake\_quantize\_per\_channel\_affine}, \CodeIn{torch.all}, and \CodeIn{torch.compile} are not supported by FreeFuzz. 
+Among the two buggy APIs, FreeFuzz supports \CodeIn{torch.logsumexp} but the bug could not be reproduced, whereas FreeFuzz does not support \CodeIn{torch.autograd.grad}.
+The outputs from the tool are saved in the container so that the execution log can be inspected further manually.
+% can be inspected manually to further inspect the execution log. 
+From this result, the developer can debug and refine their technique to catch bugs that it missed, as well as add support for APIs that are currently unsupported.
 
 \vspace{-1ex}
 \subsection{Contributions}
