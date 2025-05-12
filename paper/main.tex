@@ -129,54 +129,55 @@
 
 \author{M M Abid Naziri}
 \affiliation{%
-  \institution{NC State University, USA}
-  %\city{Rocquencourt}
+  \institution{NC State University, Raleigh, USA}
+  % \city{Raleigh}
+  % \country{USA}
   \country{}
 }
 \email{mnaziri@ncsu.edu}
 
 \author{Aman Kumar Singh}
 \affiliation{%
- \institution{Amrita Vishwa Vidyapeetham, India}
- %% \city{Doimukh}
- %% \state{Arunachal Pradesh}
+ \institution{Amrita Vishwa Vidyapeetham, Coimbatore, India}
+%  \city{Coimbatore}
+%  \country{India}
  \country{}
 }
 \email{amanks@am.amrita.edu}
 
 \author{Feiran Qin}
 \affiliation{%
- \institution{NC State University, USA}
- %% \city{Doimukh}
- %% \state{Arunachal Pradesh}
- \country{}
+\institution{NC State University, Raleigh, USA}
+% \city{Raleigh}
+% \country{USA}
+\country{}
 }
 \email{fqin2@ncsu.edu}
 
 \author{Benjamin Wu}
 \affiliation{%
- \institution{Purdue University, USA}
- %% \city{Doimukh}
- %% \state{Arunachal Pradesh}
+ \institution{Purdue University, West Lafayette, USA}
+%  \city{West Lafayette}
+%  \country{USA}
  \country{}
 }
 \email{wu2059@purdue.edu}
 
 \author{Saikat Dutta}
 \affiliation{%
- \institution{Cornell University, USA}
- %% \city{Doimukh}
- %% \state{Arunachal Pradesh}
+ \institution{Cornell University, Ithaca, USA}
+%  \city{Ithaca}
+%  \country{USA}
  \country{}
 }
 \email{saikatd@cornell.edu}
 
 \author{Marcelo d'Amorim}
 \affiliation{%
- \institution{NC State University, USA}
- %% \city{Doimukh}
- %% \state{Arunachal Pradesh}
- \country{}
+\institution{NC State University, Raleigh, USA}
+% \city{Raleigh}
+% \country{USA}
+\country{}
 }
 \email{mdamori@ncsu.edu}
 
@@ -249,6 +250,18 @@
 %%  </concept>
 %% </ccs2012>
 %% \end{CCSXML}
+\vspace{-0.3cm}
+\begin{CCSXML}
+  <ccs2012>
+    <concept>
+        <concept_id>10011007.10011074.10011099.10011102.10011103</concept_id>
+        <concept_desc>Software and its engineering~Software testing and debugging</concept_desc>
+        <concept_significance>500</concept_significance>
+        </concept>
+  </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Software and its engineering~Software testing and debugging}
 
 %% \ccsdesc[500]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
 %% \ccsdesc[300]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
@@ -258,6 +271,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
+\vspace{-0.3cm}
 \keywords{Deep learning libraries, testing, benchmarking}
 %% %% A "teaser" image appears between the author and affiliation
 %% %% information and the body of the document, and typically spans the
@@ -281,7 +295,7 @@
 %% add page numbers
 % \pagestyle{plain}
 
-
+\vspace{-2ex}
 \section{Introduction}
 
 \sloppy Several application domains (e.g., transportation and
@@ -301,14 +315,14 @@ comparison of techniques and hinders research progress.
 Although many datasets of reproducible bugs have been proposed in the
 literature, there is a lack of solutions satisfying the following
 criteria:
-
-\begin{enumerate}[leftmargin=0.2in]
-\item developers should be able to write test scripts in Python;
-\item they should be able to handle nighly builds and specific
-  versions of CUDA (\textsection~\ref{sec:challenges});
-\item they should be able to integrate fuzzing tools in the framework.
+% \vspace{-2ex}
+\begin{enumerate}[leftmargin=0.2in,topsep=0pt]
+\item ability to write test scripts in Python;
+\item handlin nightly builds and specific
+  CUDA versions (\textsection~\ref{sec:challenges});
+\item ability to integrate fuzzing tools in the framework.
 \end{enumerate}  
-
+% \vspace{-2ex}
 Note that DL libraries are written in Python. Existing datasets of
 reproducible bugs exist in Python (e.g.,
 BugInPy~\cite{widyasari2020bugsinpy} and
@@ -341,24 +355,22 @@ faculty were involved in the work during this
 period. Section~\ref{sec:tool-availability} details tool availability.
 
 %\Fix{Need to add text regarding differentiating the tool from BugsInPy}
-
+\vspace{-0.29cm}
 \section{Tool Availability}
 \label{sec:tool-availability}
 \tname\ is publicly available from the following URL:
-
 \url{https://github.com/ncsu-swat/bugsindlls}
 
-\vspace{0.5ex}\noindent{}The video from this URL demonstrates \tname:
-
+\noindent{}The video from this URL demonstrates \tname:
 \url{https://www.youtube.com/watch?v=NslNWrULT1c}
 
-\vspace{0.5ex}\noindent{}The archived version at Zenodo is available with this DOI:
+% \vspace{0.5ex}\noindent{}The archived version at Zenodo is available with this DOI:
 
-\url{https://doi.org/10.5281/zenodo.15064163}\\
+% \url{https://doi.org/10.5281/zenodo.15064163}\\
 
 % \Fix{Upload to YouTube with voiceover and add link here, archive 
 % the tool at zenodo}
-
+\vspace{-0.2cm}
 \section{Objects and Methods}
 
 \begin{table}
@@ -916,7 +928,7 @@ dataset and to explore automated approaches to ``frontport'' bugs into
 single version of the library as in the Magma
 benchmark~\cite{hazimeh2020magma}.
 
-
+\vspace{-1ex}
 \section*{Acknowledgements}
 This work was supported and funded by the National Science Foundation grant numbers CCF-2349961.
 
