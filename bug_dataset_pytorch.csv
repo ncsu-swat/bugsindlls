@@ -1,4 +1,4 @@
-,Filter:,is:issue is:closed created:2023-12-01..2024-08-16 linked:pr ,Total Reproduced:,37,,,,,,,,,,,,
+,Filter:,is:issue is:closed created:2023-12-01..2024-08-16 linked:pr ,Total Reproduced:,38,,,,,,,,,,,,
 Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nightly,Buggy File(s),Buggy Function(s),Buggy API,Type,Remarks,Issue Link,PR Link
 133671,,Scaled_dot_product_attention CPU flash_attention backend backward result is not the same as math backend,No,Closed,,,,,,,,,,,https://github.com/pytorch/pytorch/issues/133671,
 133267,,torch.ldexp incorrectly returns infinity for float64 inputs larger than float32 max,No,Closed,,,,,,,,,,,https://github.com/pytorch/pytorch/issues/133267,
@@ -142,3 +142,4 @@ Issue #,PR #,Title,Reproduced,Issue Status,Device,API,Reported,Buggy Version,Nig
 116670,,torch.export.unflatten loses node.meta['val'],,,,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/116670,
 116609,,"RuntimeError: ""eye"" not implemented for 'BFloat16'",,,,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/116609,
 116463,,[dynamo] missing support for itertools.chain.from_iterable,,,,,,,,,,,,TODO,https://github.com/pytorch/pytorch/issues/116463,
+112732,112782,Segmentation fault in torch.nn.functional.cosine_embedding_loss with empty tensors and mixed dtypes,Yes,Closed,CPU,,11/02/2023,2.1.0,No,aten/src/ATen/native/Loss.cpp,cosine_embedding_loss(),torch.nn.functional.cosine_embedding_loss,Segmentation Fault,,https://github.com/pytorch/pytorch/issues/112732,https://github.com/pytorch/pytorch/pull/112782
