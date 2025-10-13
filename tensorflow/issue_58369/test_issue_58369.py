@@ -13,8 +13,8 @@ def test_f():
         print("cpu_output", cpu_output)
         print("gpu_output", gpu_output)
         print("numpy_output", numpy_output)
-        #assert cpu_output==numpy_output
-        #assert not cpu_output==gpu_output
+        assert cpu_output==numpy_output
+        assert not cpu_output==gpu_output
     except:
         assert False
 
