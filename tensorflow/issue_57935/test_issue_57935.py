@@ -1,6 +1,7 @@
 import tensorflow as tf
 import sys
 import numpy as np
+import pytest
 
 def test_f():
     print('Using tensorflow', tf.__version__)
@@ -8,11 +9,10 @@ def test_f():
 
     # CPU
     with tf.device('/CPU:0'):
-        try:
+        with pytest.raises(tf.errors.InvalidArgumentError) as e_info:
             result_cpu = tf.experimental.numpy.floor_divide(0, 0)
             result_cpu = result_cpu.numpy()   
-        except Exception as e:
-            result_cpu = str(type(e).__name__)
+        print(f'{e_info.type.__name__}: {e_info.value}')
 
     # GPU
     with tf.device('/GPU:0'):
@@ -30,9 +30,7 @@ def test_f():
 
     # Print results
     print("numpy:", np_result)
-    print("cpu:", result_cpu)
     print("gpu:", result_gpu)
 
     # Assertions
-    assert result_cpu != np_result
     assert result_gpu != np_result
