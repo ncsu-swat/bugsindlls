@@ -10,6 +10,6 @@ def test_f():
         subprocess.run(["python3", "-m", "buggy_code.py"], check=True)
     except subprocess.CalledProcessError as err:
         print(err)
-        assert err.returncode == -signal.SIGFPE    # Process returns SIGSEGV signal (segmentation fault)
+        assert err.returncode == -signal.SIGFPE    
     else:
         assert False
