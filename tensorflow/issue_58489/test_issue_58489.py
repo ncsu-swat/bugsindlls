@@ -28,5 +28,5 @@ def test_f():
     else:
         pytest.skip("No GPU available for test")
 
-    np.testing.assert_array_equal(exp_numpy, exp_cpu.numpy())          # CPU matches NumPy
+    assert np.array_equal(exp_numpy, exp_cpu.numpy())          # CPU matches NumPy
     assert not np.array_equal(exp_cpu.numpy(), exp_gpu.numpy())        # CPU differs from GPU
