@@ -8,3 +8,4 @@ with tf.device("GPU:0"):
         seed=seed,
         alpha=alpha,
     )
+    print("Success")
