@@ -1,29 +1,15 @@
-# test_softshrink_cpu_gpu_diff.py
 import torch
-import pytest
-import torch.nn.functional as F
+import pytest 
 
-@pytest.mark.cuda
-def test_softshrink_cpu_gpu_diff():
+def test_f():
     input_tensor = torch.randn(34, 43, dtype=torch.float16)
     lambd = 65507.0
 
-    # CPU behavior
-    cpu_failed = False
-    try:
-        F.softshrink(input_tensor, lambd)
-    except RuntimeError:
-        cpu_failed = True
-
-    # GPU behavior
-    if not torch.cuda.is_available():
-        pytest.skip("CUDA not available; skipping GPU test")
-
-    gpu_failed = False
-    try:
-        F.softshrink(input_tensor.cuda(), lambd)
-    except RuntimeError:
-        gpu_failed = True
-
-    # Pass test only if CPU and GPU differ
-    assert cpu_failed != gpu_failed, "BUG NOT REPRODUCED: CPU/GPU difference not observed"
+    out_cpu = torch.nn.functional.softshrink(input_tensor, lambd)
+    print("No errors on CPU")
+    
+    with pytest.raises(RuntimeError) as e_info:
+        out_gpu = torch.nn.functional.softshrink(input_tensor.cuda(), lambd)
+        # RuntimeError: value cannot be converted to type at::Half without overflow
+        print("No errors on CUDA")  # does not reach here
+    print(f'{e_info.type.__name__}: {e_info.value}')
