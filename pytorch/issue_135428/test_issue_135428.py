@@ -1,29 +1,30 @@
-# test_normalize_complex_cpu_gpu_repro.py
 import torch
-import pytest
 import numpy as np
+import pytest
 
-@pytest.mark.cuda
-def test_normalize_complex_cpu_gpu_difference():
-    # Large p and small magnitude to trigger CPU NaNs
+def test_f():
     p = 196
-    a = torch.tensor([
-        [1e-5 + 0.j, 2e-5 + 0.j],
-        [3e-5 + 0.j, 4e-5 + 0.j],
-        [5e-5 + 0.j, 6e-5 + 0.j],
-        [7e-5 + 0.j, 8e-5 + 0.j],
-        [9e-5 + 0.j, 1e-4 + 0.j],
-    ], dtype=torch.complex64)
 
-    # CPU: this should produce NaNs
-    cpu_output = torch.nn.functional.normalize(a, p=p)
-    cpu_has_nan = torch.isnan(cpu_output).any()
+    a = torch.tensor([[0.54269608+0.j,  1.57257892+0.j],
+                    [0.14092422+0.j,  0.69102135+0.j],
+                    [0.80219698+0.j,  0.12309907+0.j],
+                    [0.07455064+0.j, -0.43134838+0.j],
+                    [0.98688694+0.j,  2.097082 + 0.j]])
 
-    # GPU: should not produce NaNs
-    if not torch.cuda.is_available():
-        pytest.skip("CUDA not available; skipping GPU part")
-    gpu_output = torch.nn.functional.normalize(a.cuda(), p=p)
-    gpu_has_nan = torch.isnan(gpu_output).any()
+    cpu = np.allclose(torch.nn.functional.normalize(a, p=p).real, torch.nn.functional.normalize(a.real, p=p))
+    # false
 
-    # Test passes only if CPU has NaNs but GPU does not
-    assert cpu_has_nan and not gpu_has_nan, "BUG NOT REPRODUCED: CPU did not produce NaNs or GPU matches CPU"
+    gpu =  np.allclose(torch.nn.functional.normalize(a.cuda(), p=p).real.cpu(), torch.nn.functional.normalize(a.real.cuda(), p=p).cpu())
+    # true
+
+    print("cpu:", cpu)
+    print("gpu:", gpu)
+
+    print(torch.nn.functional.normalize(a, p=p))
+    # tensor([[        nan+nanj,         nan+nanj],
+    #         [ 2.0394e-01+0.j,  1.0000e+00+0.j],
+    #         [ 1.0000e+00+0.j,  1.5345e-01+0.j],
+    #         [ 7.4551e+10+0.j, -4.3135e+11+0.j],
+    #         [ 0.0000e+00+0.j,  0.0000e+00+0.j]])
+    
+    assert cpu != gpu
