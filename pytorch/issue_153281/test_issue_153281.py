@@ -1,30 +1,28 @@
-# test_rrelu_cpu_gpu_diff.py
 import torch
 import pytest
-import torch.nn.functional as F
 
-@pytest.mark.cuda
-def test_rrelu_cpu_gpu_difference():
-    input_tensor = torch.tensor([-1.0])
+def test_f():
+    input = torch.tensor([-1.0])
     lower = 0
     upper = float('inf')
 
-    # CPU behavior
-    cpu_failed = False
-    try:
-        F.rrelu(input_tensor, lower, upper, training=True)
-    except RuntimeError:
-        cpu_failed = True
+    training = False
 
-    # GPU behavior
-    if not torch.cuda.is_available():
-        pytest.skip("CUDA not available; skipping GPU test")
+    out_gpu = torch.nn.functional.rrelu(input.cuda(), lower, upper, training=training).cpu()
+    print(out_gpu) # tensor([-inf])
 
-    gpu_failed = False
-    try:
-        F.rrelu(input_tensor.cuda(), lower, upper, training=True)
-    except RuntimeError:
-        gpu_failed = True
+    out_cpu = torch.nn.functional.rrelu(input, lower, upper, training=training) # No error
+    print(out_cpu) # tensor([-inf])
+    
+    assert torch.equal(out_cpu, out_gpu)
+    
+    training = True
 
-    # Pass test if CPU and GPU behave differently
-    assert cpu_failed != gpu_failed, "BUG NOT REPRODUCED: CPU/GPU difference not observed"
+    out_gpu = torch.nn.functional.rrelu(input.cuda(), lower, upper, training=training).cpu()
+    print(out_gpu) # tensor([-inf])
+
+    with pytest.raises(RuntimeError) as e_info:
+        out_cpu = torch.nn.functional.rrelu(input, lower, upper, training=training) 
+        # RuntimeError: Expected to - from <= std::numeric_limits<T>::max() to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+        print(out_cpu)
+    print(f'{e_info.type.__name__}: {e_info.value}')
