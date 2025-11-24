@@ -3,6 +3,8 @@ import tensorflow as tf
 import numpy as np
 
 def test_tf_pow_cpu_gpu_difference():
+    print(tf.__version__)
+    
     x = tf.constant([-48], dtype=tf.int64)
     y = tf.constant([66], dtype=tf.int64)
 
@@ -21,9 +23,6 @@ def test_tf_pow_cpu_gpu_difference():
     print("GPU output:", output_gpu)
     print("NumPy output:", output_np)
 
-    # The bug is a difference between CPU and GPU
-    if np.array_equal(output_cpu, output_gpu):
-        pytest.fail("CPU and GPU outputs are identical; bug not reproduced.")
-    else:
-        # If CPU and GPU differ, test passes (bug reproduced)
-        assert True, "Bug reproduced: CPU and GPU outputs differ"
+    assert np.array_equal(output_cpu, output_np), "CPU output does not match NumPy output"
+    assert not np.array_equal(output_gpu, output_np), "GPU output match NumPy output"
+    assert not np.array_equal(output_cpu, output_gpu), "CPU and GPU outputs should differ"
