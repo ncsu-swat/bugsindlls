@@ -18,14 +18,14 @@ if ! [[ "$major" =~ $re ]]
 then
     # Does not have an Nvidia gpu/driver
     conda init
-    conda create --name issue_57495 python==3.8 pip -y
+    conda create --name issue_57751 python==3.8 pip -y
     eval "$(conda shell.bash hook)"
-    conda activate issue_57495
+    conda activate issue_57751
     pip install -r requirements.txt
     pytest -sx
     returncode=$?
     conda deactivate
-    conda env remove --name issue_57495 -y
+    conda env remove --name issue_57751 -y
     rm custom_model.keras
     exit ${returncode}
 elif [ "$major" -lt "$reqmajor" ]
@@ -48,6 +48,6 @@ then
     fi
 fi
 
-docker build -t issue_57495 .
-docker run -it --rm --gpus all issue_57495
+docker build -t issue_57751 .
+docker run -it --rm --gpus all issue_57751
 exit $?

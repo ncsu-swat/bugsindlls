@@ -7,8 +7,7 @@ ENV cuda_version=cuda11.8
 
 RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
-COPY buggy_code.py app/
-COPY test_issue_57495.py app/
+COPY test_issue_57751.py app/
 COPY requirements.txt app/
 WORKDIR /app
 RUN pip install -r requirements.txt
