@@ -3,7 +3,7 @@ import pytest
 import signal
 
 def test_f():
-    issue_no = '96277'
+    issue_no = '97087'
     print('Pytorch issue no.', issue_no)
 
     try:
