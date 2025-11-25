@@ -1,35 +1,17 @@
-import pytest
 import torch
-import torch.nn as nn
 import numpy as np
+import pytest
 
-@pytest.mark.cuda
-def test_logsoftmax_float16_cpu_gpu_diff():
+def test_f():
     rng = np.random.default_rng(432)
+
     input_tensor = torch.tensor(rng.uniform(-20260., -19740., size=(18, 1, 2, 2, 21, 2)), dtype=torch.float16)
     dim = 2
 
-    # ---------------- CPU ----------------
-    cpu_failed = False
-    try:
-        out_cpu = nn.LogSoftmax(dim=dim)(input_tensor)
-    except RuntimeError:
-        cpu_failed = True
+    output_cpu = torch.nn.LogSoftmax(dim=dim)(input_tensor)
+    output_gpu = torch.nn.LogSoftmax(dim=dim).cuda()(input_tensor.cuda())
 
-    # ---------------- GPU ----------------
-    if not torch.cuda.is_available():
-        pytest.skip("CUDA not available; skipping GPU test")
-
-    gpu_failed = False
-    try:
-        out_gpu = nn.LogSoftmax(dim=dim).cuda()(input_tensor.cuda())
-    except RuntimeError:
-        gpu_failed = True
-
-    # ---------------- Test logic ----------------
-    if cpu_failed != gpu_failed:
-        # BUG reproduced → test PASSES
-        pass
-    else:
-        # CPU and GPU behave the same → bug NOT reproduced → fail test
-        pytest.fail("BUG NOT REPRODUCED: CPU and GPU behaved the same")
+    print(output_cpu[0, 0, 0, 0, 5, 0])  # tensor(-inf, dtype=torch.float16)
+    print(output_gpu[0, 0, 0, 0, 5, 0])  # tensor(0., device='cuda:0', dtype=torch.float16)
+    
+    assert not torch.allclose(output_cpu, output_gpu.cpu()), "CPU and GPU outputs are close!"
