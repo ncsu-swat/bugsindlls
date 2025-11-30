@@ -2,7 +2,7 @@ import torch
 import pytest
 
 def test_f():
-
+    
     # Input bfloat16 tensor
     tensor_bf16 = torch.tensor([
         [ 1.0986e-25, -1.9114e+30, -9.5291e-20, -4.3163e-39, -1.2337e+23,
@@ -35,10 +35,10 @@ def test_f():
     print("\nGPU cumsum result (dtype=torch.int8) (moved to CPU for printing):")
     print(gpu_res_cpu)
 
-    assert not torch.equal(cpu_res, gpu_res_cpu), "CPU and GPU results match!"
-    
     print("\nDifference (CPU - GPU):")
     print(difference)
+    
+    assert not  torch.allclose(cpu_res, gpu_res_cpu, equal_nan=True), "CPU and GPU results match!"
 
     # For calculating expected behavior:
     # 1. Explicitly cast bfloat16 tensor to int8
