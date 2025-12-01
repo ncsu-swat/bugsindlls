@@ -11,7 +11,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
 RUN apt-get install -y libcudnn9-cuda-12 libcudnn9-dev-cuda-12
 
 # Copy application files
-COPY test_issue_153212.py app/
+COPY test_issue_153312.py app/
 COPY requirements.txt app/
 
 WORKDIR /app
