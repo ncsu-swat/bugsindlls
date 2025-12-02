@@ -3,11 +3,7 @@ import pytest
 import signal
 
 def test_f():
-<<<<<<<< HEAD:pytorch/issue_94669/test_issue_94669.py
     issue_no = '94669'
-========
-    issue_no = '97087'
->>>>>>>> origin/main:pytorch/issue_97087/test_issue_97087.py
     print('Pytorch issue no.', issue_no)
 
     try:
