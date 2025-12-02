@@ -3,6 +3,7 @@ import pytest
 import numpy as np
 
 def test_f():
+    print(torch.__version__)
     a = torch.tensor(float('nan'))
 
     cpu_output = a.clone().cpu().type(torch.int32)
