@@ -1,7 +1,22 @@
-FROM python:3.11
+FROM python:3.12.3
+
+# Install CUDA 12.6
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get install -y cuda-toolkit-12-6
+
+# cuDNN version compatible with CUDA 12.x
+RUN apt-get install -y libcudnn9-cuda-12 libcudnn9-dev-cuda-12
+
+# Copy application files
+COPY test_issue_158310.py app/
+COPY requirements.txt app/
 
 WORKDIR /app
-COPY test_issue_158310.py requirements.txt ./
+
+# Install Python requirements
 RUN pip install -r requirements.txt
 
 CMD ["pytest", "-sx"]
