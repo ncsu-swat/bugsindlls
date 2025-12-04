@@ -10,7 +10,7 @@ conda create --name issue_54855 python=3.8 pip -y
 eval "$(conda shell.bash hook)"
 conda activate issue_54855
 pip install -r requirements.txt
-python -m pytest -sx
+pytest -sx
 returncode=$?
 conda deactivate
 conda env remove --name issue_54855 -y
