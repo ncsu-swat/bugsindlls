@@ -1,8 +1,3 @@
-import os
-import warnings
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-warnings.filterwarnings("ignore")
-
 import tensorflow as tf
 import pytest
 
@@ -14,5 +9,6 @@ def test_f():
     )
 
     # Test passes if the bug is reproduced (NotFoundError raised)
-    with pytest.raises(tf.errors.NotFoundError):
+    with pytest.raises(tf.errors.NotFoundError) as e_info:
         tf.math.atan(x)
+    print(f'{e_info.type.__name__}: {e_info.value}')
