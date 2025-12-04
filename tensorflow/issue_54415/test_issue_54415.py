@@ -8,6 +8,6 @@ def test_f():
     
     # The bug
     indices = tf.histogram_fixed_width_bins(new_values, value_range, nbins=nbins)
-    
+    print("Indices:", indices.numpy())
     # Assert the bug is reproduced
     assert indices.numpy().tolist() == [0, 0, 0, 0, 0, 0]
