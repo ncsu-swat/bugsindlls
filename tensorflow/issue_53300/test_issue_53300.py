@@ -1,8 +1,3 @@
-import os
-import warnings
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-warnings.filterwarnings("ignore")
-
 import tensorflow as tf
 import pytest
 
@@ -12,4 +7,5 @@ def test_f():
 
     # The bug: 
     t = tf.stack([x, y])
+    print(t)
     assert t.shape == (2, 0, 3)
