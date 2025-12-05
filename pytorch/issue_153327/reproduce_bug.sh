@@ -1,0 +1,17 @@
+#!/bin/bash
+
+conda init
+conda create --name issue_153327 python==3.12.3 pip -y
+eval "$(conda shell.bash hook)"
+conda activate issue_153327
+pip install -r requirements.txt
+if [[ $OSTYPE == 'darwin'* ]]
+then
+    brew install libomp
+fi
+python -m torch.utils.collect_env
+pytest -sx
+returncode=$?
+conda deactivate
+conda env remove --name issue_153327 -y
+exit ${returncode}
