@@ -1,13 +1,52 @@
+import subprocess
 import pytest
-import torch
-import torch.nn.functional as F
+import signal
 
-def test_f():
-    # 71080
-    filters = torch.randn(8, 4, 3, 3)
-    inputs = torch.randn(1, 4, 5, 5)
-    
-    with pytest.raises(RuntimeError) as excinfo:
-        F.conv2d(inputs, filters, padding=1, groups=0)
-    
-    assert "groups must be greater than zero" in str(excinfo.value) or "expected groups to be in range" in str(excinfo.value)
+def test_f1():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code1.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
+def test_f2():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code2.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
+def test_f3():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code3.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
+def test_f4():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code4.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
+def test_f5():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code5.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
+def test_f6():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code6.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE
+    else:
+        assert False
