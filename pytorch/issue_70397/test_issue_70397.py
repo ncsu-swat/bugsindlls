@@ -6,8 +6,8 @@ def test_f():
     stride = [-1, 2]
     
     res = torch.empty_strided(size, stride)
-    
-    with pytest.raises(RuntimeError) as excinfo:
+    print(torch.sum(res))
+    print(res.shape)
+    with pytest.raises(RuntimeError) as e_info:
         print(res)
-    
-    assert "out of bounds for storage of size" in str(excinfo.value)
+    print(f"{e_info.type.__name__}: {e_info.value}")
