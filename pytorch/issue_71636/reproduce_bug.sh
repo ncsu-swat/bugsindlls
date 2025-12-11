@@ -1,28 +1,18 @@
 #!/bin/bash
-set -euo pipefail
 
-if [[ "$OSTYPE" != "linux-gnu"* ]]; then
-    echo "Broken assumption: Script was tested only on Linux."
-    exit 2
+conda init
+conda create --name issue_71636 python==3.9.5 pip -y
+eval "$(conda shell.bash hook)"
+conda activate issue_71636
+pip install -r requirements.txt
+if [[ $OSTYPE == 'darwin'* ]]
+then
+    brew install libomp
 fi
+python -m torch.utils.collect_env
+pytest -sx
+returncode=$?
+conda deactivate
+conda env remove --name issue_71636 -y
+exit ${returncode}
 
-# Minimum NVIDIA driver version
-reqmajor=525
-reqminor=60
-reqpatch=13
-
-driver_version=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader)
-major=$(echo "$driver_version" | cut -d. -f1)
-minor=$(echo "$driver_version" | cut -d. -f2)
-patch=$(echo "$driver_version" | cut -d. -f3)
-
-nvidiadrivermsg="Broken assumption: Script requires an NVIDIA driver >= ${reqmajor}.${reqminor}.${reqpatch}"
-
-if ! [[ "$major" =~ ^[0-9]+$ ]] || (( major < reqmajor )) || (( major == reqmajor && minor < reqminor )) || (( major == reqmajor && minor == reqminor && patch < reqpatch )); then
-    echo "$nvidiadrivermsg"
-    exit 2
-fi
-
-docker build -t issue_71636 .
-docker run -it --rm --gpus all issue_71636
-exit $?
