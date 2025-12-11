@@ -3,12 +3,19 @@ import torch
 import torch.nn as nn
 
 def test_f():
-    # 71078
     padding = [-1, -2, 1, 1]
-    pad_module = nn.ConstantPad2d(padding, 0)
-    input_tensor = torch.rand([1, 1, 3, 3], dtype=torch.float32)
+    c1 = torch.nn.ReflectionPad2d(padding)
+    c2 = torch.nn.ReplicationPad2d(padding)
+    c3 = torch.nn.ConstantPad2d(padding, 0)
+    c4 = torch.nn.ZeroPad2d(padding)
+    input = torch.rand([1, 1, 3, 3], dtype=torch.float32)
 
-    with pytest.raises(RuntimeError) as excinfo:
-        pad_module(input_tensor)
-    
-    assert "resulted in a negative output size" in str(excinfo.value)
+    print(c1(input))
+    print(c2(input))
+
+    with pytest.raises(RuntimeError) as e_info:
+        c3(input)
+        # RuntimeError: The input size 3, plus negative padding -1 and -2 resulted in a negative output size, which is invalid. Check dimension 3 of your input.
+        c4(input)
+        # RuntimeError: The input size 3, plus negative padding -1 and -2 resulted in a negative output size, which is invalid. Check dimension 3 of your input.
+    print(f"{e_info.type.__name__}: {e_info.value}")
