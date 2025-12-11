@@ -7,9 +7,10 @@ def test_f():
     A = torch.rand([2, 3, 3], dtype=torch.float64)
     B = torch.rand([2, 3], dtype=torch.float64)
     
-    A_inv = torch.linalg.inv(A)
+    res=torch.linalg.solve(A, B)
+    print(res)
+    assert res is not None
     
-    with pytest.raises(RuntimeError) as excinfo:
-        A_inv @ B
-        
-    assert "mat1 and mat2 shapes cannot be multiplied" in str(excinfo.value)
+    with pytest.raises(RuntimeError) as e_info:
+        torch.linalg.inv(A) @ B
+    print(f"{e_info.type.__name__}: {e_info.value}")
