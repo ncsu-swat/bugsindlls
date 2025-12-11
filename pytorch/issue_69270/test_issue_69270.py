@@ -1,12 +1,30 @@
+import subprocess
 import pytest
-import torch
-import sys
+import signal
 
-def test_f():
-    tensor = torch.rand(torch.Size([2, 2, 4]), dtype=torch.float32)
-    sections = 0 
+def test_f1():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code1.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE  
+    else:
+        assert False
 
-    with pytest.raises(RuntimeError) as excinfo:
-        torch.hsplit(tensor, sections)
-    
-    assert "cannot be split into 0 sections" in str(excinfo.value) or "sections must be > 0" in str(excinfo.value)
+def test_f2():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code2.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE  
+    else:
+        assert False
+
+def test_f3():
+    try:
+        subprocess.run(["python3", "-m", "buggy_code3.py"], check=True)
+    except subprocess.CalledProcessError as err:
+        print(err)
+        assert err.returncode == -signal.SIGFPE 
+    else:
+        assert False
