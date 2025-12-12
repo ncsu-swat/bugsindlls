@@ -8,4 +8,5 @@ def test_f():
     assert torch.isnan(res)
     with pytest.raises(RuntimeError) as e_info:
         torch.max(input)
+        torch.min(input)
     print(f"{e_info.type.__name__}: {e_info.value}")
