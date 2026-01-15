@@ -1,14 +1,15 @@
 import subprocess
 import pytest
-
-SIGABRT_PROCESS_RETURNCODE = -6
+import signal
 
 def test_f():
+    issue_no = '94594'
+    print('Pytorch issue no.', issue_no)
+
     try:
         subprocess.run(["python3", "-m", "buggy_code.py"], check=True)
     except subprocess.CalledProcessError as err:
         print(err)
-        assert err.returncode == SIGABRT_PROCESS_RETURNCODE
+        assert err.returncode == -signal.SIGSEGV    # Process returns SIGSEGV signal (segmentation fault)
     else:
         assert False
-test_f()
